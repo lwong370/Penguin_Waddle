@@ -14,14 +14,4 @@ public class PenguinWaddle extends Game {
 	public void create () {
 		setScreen(new GameScreen());
 	}
-
-	@Override
-	public void render () {
-
-	}
-	
-	@Override
-	public void dispose () {
-
-	}
 }
