@@ -31,9 +31,13 @@ public class DirectionGestureDetector extends GestureDetector {
             }
 
             if(deltaY > 0){
-                directionListener.onDown();
+                if(Math.abs(deltaX) < 1){
+                    directionListener.onDown();
+                }
             } else if(deltaY < 0){
-                directionListener.onUp();
+                if(Math.abs(deltaX) < 1){
+                    directionListener.onUp();
+                }
             }
             return super.pan(x, y, deltaX, deltaY);
         }

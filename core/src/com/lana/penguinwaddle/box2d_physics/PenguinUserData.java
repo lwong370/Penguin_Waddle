@@ -6,20 +6,25 @@ import com.lana.penguinwaddle.utils.Constants;
 
 public class PenguinUserData extends UserData {
 
-    private Vector2 linearJumpAmount;
+    private Vector2 linearJumpImpulse;
+    private Vector2 linearStopTumbleImpulse;
 
     public PenguinUserData(){
         super();
         userDataType = UserDataType.PENGUIN;
-        linearJumpAmount = Constants.RUNNER_LINEAR_JUMP_AMOUNT;
+        linearJumpImpulse = Constants.RUNNER_LINEAR_JUMP_IMPULSE;
+        linearStopTumbleImpulse = Constants.RUNNER_LINEAR_STOP_TUMBLE_IMPULSE;
     }
 
-    public Vector2 getLinearJumpAmount() {
-        return linearJumpAmount;
+    public Vector2 getLinearJumpImpulse() {
+        return linearJumpImpulse;
     }
 
-    public void setLinearJumpAmount(Vector2 linearJumpAmount) {
-        this.linearJumpAmount = linearJumpAmount;
+    public void setLinearJumpImpulse(Vector2 linearJumpImpulse) {
+        this.linearJumpImpulse = linearJumpImpulse;
     }
 
+    public Vector2 getLinearStopTumbleImpulse() {
+        return linearStopTumbleImpulse;
+    }
 }

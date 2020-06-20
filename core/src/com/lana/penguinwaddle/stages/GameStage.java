@@ -2,11 +2,13 @@ package com.lana.penguinwaddle.stages;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.lana.penguinwaddle.actors.Ground;
 import com.lana.penguinwaddle.actors.Penguin;
 import com.lana.penguinwaddle.utils.BodyUtils;
+import com.lana.penguinwaddle.utils.Constants;
 import com.lana.penguinwaddle.utils.DirectionGestureDetector;
 import com.lana.penguinwaddle.utils.WorldUtils;
 
@@ -85,6 +87,13 @@ public class GameStage extends Stage implements ContactListener {
             world.step(TIME_STEP, 6, 2);
             accumulator -= TIME_STEP;
         }
+
+        //Checking cases
+        if(penguin.isTumbling()){
+            if(Math.abs(penguin.getBody().getLinearVelocity().len()) >= 0.25f ){
+                penguin.stopTumble();
+            }
+        }
     }
 
     @Override
@@ -119,8 +128,13 @@ public class GameStage extends Stage implements ContactListener {
 
     }
 
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 
-//    private void translateScreenToWorldCoordinates(int x, int y) {
+        return super.touchUp(screenX, screenY, pointer, button);
+    }
+
+    //    private void translateScreenToWorldCoordinates(int x, int y) {
 //        getCamera().unproject(touchPoint.set(x, y, 0));
 //    }
 
