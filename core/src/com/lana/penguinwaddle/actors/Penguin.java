@@ -8,6 +8,8 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Timer;
 import com.lana.penguinwaddle.box2d_physics.PenguinUserData;
 import com.lana.penguinwaddle.utils.Constants;
+import com.sun.org.apache.bcel.internal.Const;
+import jdk.vm.ci.meta.Constant;
 
 public class Penguin extends GameActor {
 
@@ -33,6 +35,8 @@ public class Penguin extends GameActor {
 
     public void tumble(){
         System.out.println("Check if tumbl before tum:" + tumbling);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox((float) (1.5/2), (float) (1.5/2));
         if(!hopping && !tumbling){
             tumbling = true;
             body.setAngularVelocity(-10f);
@@ -44,11 +48,12 @@ public class Penguin extends GameActor {
         Timer.schedule(new Timer.Task() {
             @Override
             public void run() {
-                body.applyForce(getUserData().getLinearStopTumbleImpulse(),  body.getWorldCenter(), true);
                 body.setTransform(new Vector2(body.getPosition().x, body.getPosition().y), 0f);
             }
         }, 1f);
-
+        if(body.getPosition().x > Constants.RUNNER_X){
+            body.setLinearVelocity(-2, 0);
+        }
     }
 
     public void land(){
