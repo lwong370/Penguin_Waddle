@@ -6,6 +6,9 @@ import com.lana.penguinwaddle.utils.Constants;
 
 public class PenguinUserData extends UserData {
 
+    private final Vector2 runningPosition = new Vector2(Constants.RUNNER_X, Constants.RUNNER_Y);
+    private final Vector2 dodgePosition = new Vector2(Constants.RUNNER_DODGE_X, Constants.RUNNER_DODGE_Y);
+
     private Vector2 linearJumpImpulse;
     private Vector2 linearStopTumbleImpulse;
 
@@ -20,11 +23,11 @@ public class PenguinUserData extends UserData {
         return linearJumpImpulse;
     }
 
-    public void setLinearJumpImpulse(Vector2 linearJumpImpulse) {
-        this.linearJumpImpulse = linearJumpImpulse;
+    public Vector2 getRunningPosition(){
+        return runningPosition;
     }
 
-    public Vector2 getLinearStopTumbleImpulse() {
-        return linearStopTumbleImpulse;
+    public Vector2 getDodgePosition(){
+        return dodgePosition;
     }
 }

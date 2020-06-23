@@ -95,12 +95,6 @@ public class GameStage extends Stage implements ContactListener {
             accumulator -= TIME_STEP;
         }
 
-        //Checking cases
-        if(penguin.isTumbling()){
-            if(Math.abs(penguin.getBody().getLinearVelocity().len()) >= 2 ){
-                penguin.correctAfterTumble();
-            }
-        }
     }
 
     @Override
@@ -139,9 +133,8 @@ public class GameStage extends Stage implements ContactListener {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
        //If touch up, then everything is back to norm again, you can jump, etc.
         //If dont touch up, can't perform another action.
-        if(penguin.isCorrecting()){
+        if(penguin.isTumbling()){
             penguin.stopTumbling();
-            penguin.stopCorrecting();
         }
         return super.touchUp(screenX, screenY, pointer, button);
     }

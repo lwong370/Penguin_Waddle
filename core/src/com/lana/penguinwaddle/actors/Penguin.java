@@ -33,33 +33,14 @@ public class Penguin extends GameActor {
     public void tumble(){
         if(!hopping && !tumbling && !correcting){
             tumbling = true;
-            body.setAngularVelocity(-10f);
+//            body.setAngularVelocity(-10f);
+            body.setTransform(getUserData().getDodgePosition(), (float) (-90f * (Math.PI / 180f)));
         }
-    }
-
-    public void correctAfterTumble(){
-
-        Timer.schedule(new Timer.Task() {
-            @Override
-            public void run() {
-//                body.setAngularVelocity(0);
-                body.setTransform(new Vector2(body.getPosition().x, body.getPosition().y), 0f);
-            }
-        }, 3f);
-        Timer.schedule(new Timer.Task() {
-            @Override
-            public void run() {
-                if(body.getPosition().x > Constants.RUNNER_X){
-                    body.setLinearVelocity(-2, 0);
-                }
-            }
-        }, 1f);
-
-        correcting = true;
     }
 
     public void stopTumbling(){
         tumbling = false;
+        body.setTransform(getUserData().getRunningPosition(), 0f);
     }
 
     public void land(){
