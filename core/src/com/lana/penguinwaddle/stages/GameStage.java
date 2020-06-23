@@ -5,7 +5,9 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.lana.penguinwaddle.actors.Ground;
 import com.lana.penguinwaddle.actors.Penguin;
 import com.lana.penguinwaddle.utils.BodyUtils;
@@ -68,7 +70,7 @@ public class GameStage extends Stage implements ContactListener {
 
             @Override
             public void onUp() {
-                penguin.hop();
+               penguin.hop();
             }
 
             @Override
@@ -137,9 +139,10 @@ public class GameStage extends Stage implements ContactListener {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
        //If touch up, then everything is back to norm again, you can jump, etc.
         //If dont touch up, can't perform another action.
-//        if(penguin.isTumbling()){
-//            penguin.stopTumbling();
-//        }
+        if(penguin.isCorrecting()){
+            penguin.stopTumbling();
+            penguin.stopCorrecting();
+        }
         return super.touchUp(screenX, screenY, pointer, button);
     }
 

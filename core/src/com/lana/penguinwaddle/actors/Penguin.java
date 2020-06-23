@@ -11,6 +11,7 @@ public class Penguin extends GameActor {
 
     private boolean hopping;
     private boolean tumbling;
+    private boolean correcting;
 
     public Penguin(Body body) {
         super(body);
@@ -23,31 +24,38 @@ public class Penguin extends GameActor {
 
     public void hop(){
         System.out.println("Check if tumbl before hop:" + tumbling);
-        if(!hopping && !tumbling){
+        if(!hopping && !tumbling && !correcting){
             hopping = true;
             body.applyLinearImpulse(getUserData().getLinearJumpImpulse(), body.getWorldCenter(), true);
         }
     }
 
     public void tumble(){
-        if(!hopping && !tumbling){
+        if(!hopping && !tumbling && !correcting){
             tumbling = true;
             body.setAngularVelocity(-10f);
         }
     }
 
     public void correctAfterTumble(){
+
         Timer.schedule(new Timer.Task() {
             @Override
             public void run() {
-                body.setAngularVelocity(0);
+//                body.setAngularVelocity(0);
                 body.setTransform(new Vector2(body.getPosition().x, body.getPosition().y), 0f);
             }
+        }, 3f);
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                if(body.getPosition().x > Constants.RUNNER_X){
+                    body.setLinearVelocity(-2, 0);
+                }
+            }
         }, 1f);
-        if(body.getPosition().x > Constants.RUNNER_X){
-            body.setLinearVelocity(-2, 0);
-        }
-        stopTumbling();
+
+        correcting = true;
     }
 
     public void stopTumbling(){
@@ -58,6 +66,10 @@ public class Penguin extends GameActor {
         hopping = false;
     }
 
+    public void stopCorrecting(){
+        correcting = false;
+    }
+
     public boolean isHopping(){
         return hopping;
     }
@@ -65,4 +77,9 @@ public class Penguin extends GameActor {
     public boolean isTumbling(){
         return tumbling;
     }
+
+    public boolean isCorrecting(){
+        return correcting;
+    }
+
 }
