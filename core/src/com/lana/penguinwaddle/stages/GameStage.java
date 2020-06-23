@@ -1,14 +1,14 @@
 package com.lana.penguinwaddle.stages;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.lana.penguinwaddle.actors.Ground;
 import com.lana.penguinwaddle.actors.Penguin;
 import com.lana.penguinwaddle.utils.BodyUtils;
-import com.lana.penguinwaddle.utils.Constants;
 import com.lana.penguinwaddle.utils.DirectionGestureDetector;
 import com.lana.penguinwaddle.utils.WorldUtils;
 
@@ -54,7 +54,8 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void setUpGesture(){
-        Gdx.input.setInputProcessor(new DirectionGestureDetector(new DirectionGestureDetector.DirectionListener() {
+        InputProcessor inputProcessor1 = this;
+        InputProcessor inputProcessor2 = new DirectionGestureDetector(new DirectionGestureDetector.DirectionListener() {
             @Override
             public void onLeft() {
 
@@ -74,7 +75,11 @@ public class GameStage extends Stage implements ContactListener {
             public void onDown() {
                 penguin.tumble();
             }
-        }));
+        });
+        InputMultiplexer inputMultiplexer = new InputMultiplexer();
+        inputMultiplexer.addProcessor(inputProcessor1);
+        inputMultiplexer.addProcessor(inputProcessor2);
+        Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
     @Override
@@ -90,8 +95,8 @@ public class GameStage extends Stage implements ContactListener {
 
         //Checking cases
         if(penguin.isTumbling()){
-            if(Math.abs(penguin.getBody().getLinearVelocity().len()) >= 0.25f ){
-                penguin.stopTumble();
+            if(Math.abs(penguin.getBody().getLinearVelocity().len()) >= 2 ){
+                penguin.correctAfterTumble();
             }
         }
     }
@@ -130,8 +135,17 @@ public class GameStage extends Stage implements ContactListener {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-
+       //If touch up, then everything is back to norm again, you can jump, etc.
+        //If dont touch up, can't perform another action.
+//        if(penguin.isTumbling()){
+//            penguin.stopTumbling();
+//        }
         return super.touchUp(screenX, screenY, pointer, button);
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        return super.touchDown(screenX, screenY, pointer, button);
     }
 
     //    private void translateScreenToWorldCoordinates(int x, int y) {
