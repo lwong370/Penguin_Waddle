@@ -31,11 +31,11 @@ public class DirectionGestureDetector extends GestureDetector {
             }
 
             if(deltaY > 0){
-                if(Math.abs(deltaX) < 1){
+                if(Math.abs(deltaX) < 2.5){
                     directionListener.onDown();
                 }
             } else if(deltaY < 0){
-                if(Math.abs(deltaX) < 1){
+                if(Math.abs(deltaX) < 2.5){
                     directionListener.onUp();
                 }
             }
