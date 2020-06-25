@@ -13,13 +13,14 @@ public class Constants {
     public static final float GROUND_HEIGHT = 3f;
     public static final float GROUND_DENSITY = 0f;
 
-    public static final float RUNNER_X = 3;
-    public static final float RUNNER_Y = GROUND_HEIGHT;
-    public static final float RUNNER_DODGE_X = 3;
-    public static final float RUNNER_DODGE_Y = GROUND_HEIGHT;
     public static final float RUNNER_WIDTH = 1.75f;
     public static final float RUNNER_HEIGHT = 2.5f;
     public static final float RUNNER_DENSITY = 0.5f;
+    public static final float RUNNER_X = 3;
+    public static final float RUNNER_Y = GROUND_HEIGHT;
+    public static final float RUNNER_DODGE_X = 3;
+    public static final float RUNNER_DODGE_Y = 2.4f;
+
 
     public static float RUNNER_GRAVITY_SCALE = 3f;
     public static final Vector2 RUNNER_LINEAR_JUMP_IMPULSE = new Vector2(0, 25f);

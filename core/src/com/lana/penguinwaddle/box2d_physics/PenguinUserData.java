@@ -30,4 +30,8 @@ public class PenguinUserData extends UserData {
     public Vector2 getDodgePosition(){
         return dodgePosition;
     }
+
+    public float getDodgeAngle(){
+        return (float) (-90f * (Math.PI / 180f));
+    }
 }

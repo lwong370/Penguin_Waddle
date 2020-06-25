@@ -7,10 +7,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.lana.penguinwaddle.actors.Ground;
 import com.lana.penguinwaddle.actors.Penguin;
 import com.lana.penguinwaddle.utils.BodyUtils;
+import com.lana.penguinwaddle.utils.Constants;
 import com.lana.penguinwaddle.utils.DirectionGestureDetector;
 import com.lana.penguinwaddle.utils.WorldUtils;
 
@@ -28,6 +30,9 @@ public class GameStage extends Stage implements ContactListener {
     private OrthographicCamera camera;
     //Temp
     private Box2DDebugRenderer renderer;
+
+    boolean screenTouched;
+    float rotateDelay;
 
     public GameStage() {
 //        super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
@@ -75,7 +80,9 @@ public class GameStage extends Stage implements ContactListener {
 
             @Override
             public void onDown() {
+                screenTouched = true;
                 penguin.tumble();
+                rotateDelay = 0f;
             }
         });
         InputMultiplexer inputMultiplexer = new InputMultiplexer();
@@ -95,6 +102,16 @@ public class GameStage extends Stage implements ContactListener {
             accumulator -= TIME_STEP;
         }
 
+        //Detect screen touching
+        if(screenTouched){
+            if(penguin.isTumbling()){
+                rotateDelay += delta;
+                if(rotateDelay > 3){
+                    penguin.stopTumbling();
+                    screenTouched = false;
+                }
+            }
+        }
     }
 
     @Override
@@ -133,15 +150,20 @@ public class GameStage extends Stage implements ContactListener {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
        //If touch up, then everything is back to norm again, you can jump, etc.
         //If dont touch up, can't perform another action.
-        if(penguin.isTumbling()){
-            penguin.stopTumbling();
-        }
+//        if(penguin.isTumbling()){
+//            penguin.stopTumbling();
+//        }
         return super.touchUp(screenX, screenY, pointer, button);
     }
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         return super.touchDown(screenX, screenY, pointer, button);
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return super.touchDragged(screenX, screenY, pointer);
     }
 
     //    private void translateScreenToWorldCoordinates(int x, int y) {

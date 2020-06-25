@@ -11,7 +11,6 @@ public class Penguin extends GameActor {
 
     private boolean hopping;
     private boolean tumbling;
-    private boolean correcting;
 
     public Penguin(Body body) {
         super(body);
@@ -24,16 +23,15 @@ public class Penguin extends GameActor {
 
     public void hop(){
         System.out.println("Check if tumbl before hop:" + tumbling);
-        if(!hopping && !tumbling && !correcting){
+        if(!hopping && !tumbling){
             hopping = true;
             body.applyLinearImpulse(getUserData().getLinearJumpImpulse(), body.getWorldCenter(), true);
         }
     }
 
     public void tumble(){
-        if(!hopping && !tumbling && !correcting){
+        if(!hopping && !tumbling){
             tumbling = true;
-//            body.setAngularVelocity(-10f);
             body.setTransform(getUserData().getDodgePosition(), (float) (-90f * (Math.PI / 180f)));
         }
     }
@@ -47,9 +45,6 @@ public class Penguin extends GameActor {
         hopping = false;
     }
 
-    public void stopCorrecting(){
-        correcting = false;
-    }
 
     public boolean isHopping(){
         return hopping;
@@ -58,9 +53,4 @@ public class Penguin extends GameActor {
     public boolean isTumbling(){
         return tumbling;
     }
-
-    public boolean isCorrecting(){
-        return correcting;
-    }
-
 }
