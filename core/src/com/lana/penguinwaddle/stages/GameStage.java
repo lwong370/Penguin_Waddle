@@ -11,10 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.lana.penguinwaddle.actors.Ground;
 import com.lana.penguinwaddle.actors.Penguin;
-import com.lana.penguinwaddle.utils.BodyUtils;
-import com.lana.penguinwaddle.utils.Constants;
-import com.lana.penguinwaddle.utils.DirectionGestureDetector;
-import com.lana.penguinwaddle.utils.WorldUtils;
+import com.lana.penguinwaddle.utils.*;
 
 public class GameStage extends Stage implements ContactListener {
     private static final int VIEWPORT_WIDTH = 20;
@@ -28,11 +25,15 @@ public class GameStage extends Stage implements ContactListener {
     private float accumulator = 0f;
 
     private OrthographicCamera camera;
+
     //Temp
     private Box2DDebugRenderer renderer;
 
     boolean screenTouched;
     float rotateDelay;
+
+    private InputProcessor inputProcessor1;
+    private InputProcessor inputProcessor2;
 
     public GameStage() {
 //        super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
@@ -61,8 +62,8 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void setUpGesture(){
-        InputProcessor inputProcessor1 = this;
-        InputProcessor inputProcessor2 = new DirectionGestureDetector(new DirectionGestureDetector.DirectionListener() {
+        inputProcessor1 = this;
+        inputProcessor2 = new DirectionGestureDetector(new DirectionGestureDetector.DirectionListener() {
             @Override
             public void onLeft() {
 
@@ -106,7 +107,7 @@ public class GameStage extends Stage implements ContactListener {
         if(screenTouched){
             if(penguin.isTumbling()){
                 rotateDelay += delta;
-                if(rotateDelay > 3){
+                if(rotateDelay > 2){
                     penguin.stopTumbling();
                     screenTouched = false;
                 }
@@ -148,11 +149,6 @@ public class GameStage extends Stage implements ContactListener {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-       //If touch up, then everything is back to norm again, you can jump, etc.
-        //If dont touch up, can't perform another action.
-//        if(penguin.isTumbling()){
-//            penguin.stopTumbling();
-//        }
         return super.touchUp(screenX, screenY, pointer, button);
     }
 
