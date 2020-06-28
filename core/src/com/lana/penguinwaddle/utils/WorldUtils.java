@@ -6,7 +6,9 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.lana.penguinwaddle.box2d_physics.GroundUserData;
+import com.lana.penguinwaddle.box2d_physics.ObstacleUserData;
 import com.lana.penguinwaddle.box2d_physics.PenguinUserData;
+import com.lana.penguinwaddle.enums.ObstacleType;
 
 public class WorldUtils {
     public static World createWorld(){
@@ -36,6 +38,21 @@ public class WorldUtils {
         body.createFixture(shape, Constants.RUNNER_DENSITY);
         body.setUserData(new PenguinUserData());
         body.resetMassData();
+        shape.dispose();
+        return body;
+    }
+
+    public static Body createObstacle(World world){
+        ObstacleType obstacleType = RandomUtils.getRandomObstacleType();
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.KinematicBody;
+        bodyDef.position.set(new Vector2(obstacleType.getX(), obstacleType.getY()));
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(obstacleType.getWidth()/2, obstacleType.getHeight()/2);
+        Body body = world.createBody(bodyDef);
+        body.createFixture(shape, obstacleType.getDensity());
+        body.resetMassData();
+        body.setUserData(new ObstacleUserData(obstacleType.getWidth(), obstacleType.getHeight(), obstacleType.getAnimationAssetId()));
         shape.dispose();
         return body;
     }
