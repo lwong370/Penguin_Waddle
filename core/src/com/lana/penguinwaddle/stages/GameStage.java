@@ -10,9 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.lana.penguinwaddle.actors.Ground;
-import com.lana.penguinwaddle.actors.Obstacle;
 import com.lana.penguinwaddle.actors.Penguin;
-import com.lana.penguinwaddle.box2d_physics.UserData;
 import com.lana.penguinwaddle.utils.BodyUtils;
 import com.lana.penguinwaddle.utils.DirectionGestureDetector;
 import com.lana.penguinwaddle.utils.WorldUtils;
@@ -30,8 +28,15 @@ public class GameStage extends Stage implements ContactListener {
     private float accumulator = 0f;
 
     private OrthographicCamera camera;
+
     //Temp
     private Box2DDebugRenderer renderer;
+
+    boolean screenTouched;
+    float rotateDelay;
+
+    private InputProcessor inputProcessor1;
+    private InputProcessor inputProcessor2;
 
     public GameStage() {
 //        super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
@@ -66,8 +71,8 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void setUpGesture(){
-        InputProcessor inputProcessor1 = this;
-        InputProcessor inputProcessor2 = new DirectionGestureDetector(new DirectionGestureDetector.DirectionListener() {
+        inputProcessor1 = this;
+        inputProcessor2 = new DirectionGestureDetector(new DirectionGestureDetector.DirectionListener() {
             @Override
             public void onLeft() {
 
@@ -85,7 +90,9 @@ public class GameStage extends Stage implements ContactListener {
 
             @Override
             public void onDown() {
+                screenTouched = true;
                 penguin.tumble();
+                rotateDelay = 0f;
             }
         });
         InputMultiplexer inputMultiplexer = new InputMultiplexer();
@@ -110,6 +117,17 @@ public class GameStage extends Stage implements ContactListener {
         while(accumulator >= delta) {
             world.step(TIME_STEP, 6, 2);
             accumulator -= TIME_STEP;
+        }
+
+        //Detect screen touching
+        if(screenTouched){
+            if(penguin.isTumbling()){
+                rotateDelay += delta;
+                if(rotateDelay > 2){
+                    penguin.stopTumbling();
+                    screenTouched = false;
+                }
+            }
         }
     }
 
@@ -150,17 +168,17 @@ public class GameStage extends Stage implements ContactListener {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-       //If touch up, then everything is back to norm again, you can jump, etc.
-        //If dont touch up, can't perform another action.
-        if(penguin.isTumbling()){
-            penguin.stopTumbling();
-        }
         return super.touchUp(screenX, screenY, pointer, button);
     }
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         return super.touchDown(screenX, screenY, pointer, button);
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return super.touchDragged(screenX, screenY, pointer);
     }
 
     private void update(Body body){
