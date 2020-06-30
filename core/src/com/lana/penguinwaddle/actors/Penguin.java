@@ -12,6 +12,7 @@ public class Penguin extends GameActor {
     private boolean hopping;
     private boolean tumbling;
     private boolean correcting;
+    private boolean hit;
 
     public Penguin(Body body) {
         super(body);
@@ -61,6 +62,14 @@ public class Penguin extends GameActor {
 
     public boolean isCorrecting(){
         return correcting;
+    }
+
+    public boolean isHit(){
+        return hit;
+    }
+
+    public void hit(){
+        hit = true;
     }
 
 }

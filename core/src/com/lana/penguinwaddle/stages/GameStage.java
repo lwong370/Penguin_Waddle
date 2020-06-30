@@ -8,8 +8,11 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Array;
 import com.lana.penguinwaddle.actors.Ground;
+import com.lana.penguinwaddle.actors.Obstacle;
 import com.lana.penguinwaddle.actors.Penguin;
+import com.lana.penguinwaddle.box2d_physics.UserData;
 import com.lana.penguinwaddle.utils.BodyUtils;
 import com.lana.penguinwaddle.utils.DirectionGestureDetector;
 import com.lana.penguinwaddle.utils.WorldUtils;
@@ -21,6 +24,7 @@ public class GameStage extends Stage implements ContactListener {
     private World world;
     private Ground ground;
     private Penguin penguin;
+    private Obstacle obstacle;
 
     private final float TIME_STEP = 1/300f;
     private float accumulator = 0f;
@@ -44,9 +48,15 @@ public class GameStage extends Stage implements ContactListener {
         world.setContactListener(this);
         ground = new Ground(WorldUtils.createGround(world));
         penguin = new Penguin(WorldUtils.createPenguin(world));
+        createObstacle();
 
         addActor(ground);
         addActor(penguin);
+    }
+
+    private void createObstacle(){
+        Obstacle obstacle = new Obstacle(WorldUtils.createObstacle(world));
+        addActor(obstacle);
     }
 
     private void setUpCamera(){
@@ -88,13 +98,19 @@ public class GameStage extends Stage implements ContactListener {
     public void act(float delta) {
         super.act(delta);
 
+        Array<Body> bodies = new Array<Body>(world.getBodyCount());
+        world.getBodies(bodies);
+
+        for (Body body : bodies) {
+            update(body);
+        }
+
         accumulator += delta;
 
         while(accumulator >= delta) {
             world.step(TIME_STEP, 6, 2);
             accumulator -= TIME_STEP;
         }
-
     }
 
     @Override
@@ -111,6 +127,9 @@ public class GameStage extends Stage implements ContactListener {
         if((BodyUtils.bodyIsPenguin(a) && BodyUtils.bodyIsGround(b)) ||
                 (BodyUtils.bodyIsGround(a) && BodyUtils.bodyIsPenguin(b))){
             penguin.land();
+        } else if((BodyUtils.bodyIsPenguin(a) && BodyUtils.bodyIsObstacle(b)) ||
+        (BodyUtils.bodyIsObstacle(a) && BodyUtils.bodyIsPenguin(b))){
+            penguin.hit();
         }
     }
 
@@ -142,6 +161,15 @@ public class GameStage extends Stage implements ContactListener {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         return super.touchDown(screenX, screenY, pointer, button);
+    }
+
+    private void update(Body body){
+        if(!BodyUtils.bodyInBounds(body)){
+            if(BodyUtils.bodyIsObstacle(body) && !penguin.isHit()){
+                createObstacle();
+            }
+            world.destroyBody(body);
+        }
     }
 
     //    private void translateScreenToWorldCoordinates(int x, int y) {
