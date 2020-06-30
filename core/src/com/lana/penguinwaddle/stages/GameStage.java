@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.lana.penguinwaddle.actors.Ground;
+import com.lana.penguinwaddle.actors.Obstacle;
 import com.lana.penguinwaddle.actors.Penguin;
 import com.lana.penguinwaddle.utils.BodyUtils;
 import com.lana.penguinwaddle.utils.DirectionGestureDetector;
@@ -60,7 +61,7 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void createObstacle(){
-        Obstacle obstacle = new Obstacle(WorldUtils.createObstacle(world));
+        obstacle = new Obstacle(WorldUtils.createObstacle(world));
         addActor(obstacle);
     }
 
