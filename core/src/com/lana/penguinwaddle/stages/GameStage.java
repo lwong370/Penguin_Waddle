@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
+import com.lana.penguinwaddle.actors.Background;
 import com.lana.penguinwaddle.actors.Ground;
 import com.lana.penguinwaddle.actors.Obstacle;
 import com.lana.penguinwaddle.actors.Penguin;
@@ -31,7 +32,7 @@ public class GameStage extends Stage implements ContactListener {
     private OrthographicCamera camera;
 
     //Temp
-    private Box2DDebugRenderer renderer;
+//    private Box2DDebugRenderer renderer;
 
     boolean screenTouched;
     float rotateDelay;
@@ -45,7 +46,7 @@ public class GameStage extends Stage implements ContactListener {
         setUpWorldComponents();
         setUpGesture();
         //Temp
-        renderer = new Box2DDebugRenderer();
+//        renderer = new Box2DDebugRenderer();
         setUpCamera();
     }
 
@@ -56,6 +57,7 @@ public class GameStage extends Stage implements ContactListener {
         penguin = new Penguin(WorldUtils.createPenguin(world));
         createObstacle();
 
+        addActor(new Background());
         addActor(ground);
         addActor(penguin);
     }
@@ -132,11 +134,11 @@ public class GameStage extends Stage implements ContactListener {
         }
     }
 
-    @Override
-    public void draw() {
-        super.draw();
-        renderer.render(world, camera.combined);
-    }
+//    @Override
+//    public void draw() {
+//        super.draw();
+//        renderer.render(world, camera.combined);
+//    }
 
     @Override
     public void beginContact(Contact contact) {

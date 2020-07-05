@@ -40,8 +40,6 @@ public class Constants {
     public static final String OBSTACLE_FLY_ASSETS_ID = "obstacle_fly";
     public static final String OBSTACLE_HOVER_ASSETS_ID = "obstacle_hover";
 
-
-
-
+    public static final String BACKGROUND_IMAGE_PATH = "bkgrd.png";
 
 }
