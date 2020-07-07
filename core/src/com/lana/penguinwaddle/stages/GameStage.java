@@ -53,8 +53,8 @@ public class GameStage extends Stage implements ContactListener {
     private void setUpWorldComponents(){
         world = WorldUtils.createWorld();
         world.setContactListener(this);
-        ground = new Ground(WorldUtils.createGround(world));
         penguin = new Penguin(WorldUtils.createPenguin(world));
+        ground = new Ground(WorldUtils.createGround(world));
         createObstacle();
 
         addActor(new Background());

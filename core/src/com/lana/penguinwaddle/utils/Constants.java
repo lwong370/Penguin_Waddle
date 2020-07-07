@@ -6,11 +6,12 @@ import com.badlogic.gdx.math.Vector2;
 public class Constants {
     public static final int APP_WIDTH = Gdx.graphics.getWidth();
     public static final int APP_HEIGHT = Gdx.graphics.getHeight();
+    public static final float WORLD_TO_SCREEN = 32;
 
     public static final Vector2 GRAVITY = new Vector2(0, -10);
 
     public static final float GROUND_WIDTH = 65f;
-    public static final float GROUND_HEIGHT = 3f;
+    public static final float GROUND_HEIGHT = 5f;
     public static final float GROUND_DENSITY = 0f;
 
     public static final float RUNNER_X = 3;
@@ -41,5 +42,6 @@ public class Constants {
     public static final String OBSTACLE_HOVER_ASSETS_ID = "obstacle_hover";
 
     public static final String BACKGROUND_IMAGE_PATH = "bkgrd.png";
-
+    public static final String GROUND_IMAGE_PATH = "ground.png";
+    public static final String PENGUIN_NEUTRAL_STANCE_PATH = "penguin_neutral.png";
 }
