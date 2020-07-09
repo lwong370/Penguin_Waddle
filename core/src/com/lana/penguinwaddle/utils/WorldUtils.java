@@ -36,7 +36,7 @@ public class WorldUtils {
         shape.setAsBox(Constants.RUNNER_WIDTH/2, Constants.RUNNER_HEIGHT/2);
         body.setGravityScale(Constants.RUNNER_GRAVITY_SCALE);
         body.createFixture(shape, Constants.RUNNER_DENSITY);
-        body.setUserData(new PenguinUserData());
+        body.setUserData(new PenguinUserData(Constants.RUNNER_WIDTH, Constants.RUNNER_HEIGHT));
         body.resetMassData();
         shape.dispose();
         return body;

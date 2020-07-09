@@ -9,17 +9,21 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.lana.penguinwaddle.actors.Background;
 import com.lana.penguinwaddle.actors.Ground;
 import com.lana.penguinwaddle.actors.Obstacle;
 import com.lana.penguinwaddle.actors.Penguin;
 import com.lana.penguinwaddle.utils.BodyUtils;
+import com.lana.penguinwaddle.utils.Constants;
 import com.lana.penguinwaddle.utils.DirectionGestureDetector;
 import com.lana.penguinwaddle.utils.WorldUtils;
 
 public class GameStage extends Stage implements ContactListener {
-    private static final int VIEWPORT_WIDTH = 20;
-    private static final int VIEWPORT_HEIGHT = 13;
+
+    private static final int VIEWPORT_WIDTH = Constants.APP_WIDTH;
+    private static final int VIEWPORT_HEIGHT = Constants.APP_HEIGHT;
 
     private World world;
     private Ground ground;
@@ -41,8 +45,8 @@ public class GameStage extends Stage implements ContactListener {
     private InputProcessor inputProcessor2;
 
     public GameStage() {
-//        super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
-//                new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
+        super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
+                new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
         setUpWorldComponents();
         setUpGesture();
         //Temp
@@ -63,8 +67,8 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void createObstacle(){
-        obstacle = new Obstacle(WorldUtils.createObstacle(world));
-        addActor(obstacle);
+//        obstacle = new Obstacle(WorldUtils.createObstacle(world));
+//        addActor(obstacle);
     }
 
     private void setUpCamera(){
