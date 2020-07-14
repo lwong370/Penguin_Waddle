@@ -11,7 +11,7 @@ public class Constants {
     public static final Vector2 GRAVITY = new Vector2(0, -10);
 
     public static final float GROUND_WIDTH = 65f;
-    public static final float GROUND_HEIGHT = 5f;
+    public static final float GROUND_HEIGHT = 4f;
     public static final float GROUND_DENSITY = 0f;
 
     public static final float RUNNER_X = 3f;
@@ -41,7 +41,14 @@ public class Constants {
     public static final String OBSTACLE_FLY_ASSETS_ID = "obstacle_fly";
     public static final String OBSTACLE_HOVER_ASSETS_ID = "obstacle_hover";
 
+    public static final String[] PENGUIN_RUNNING_ANIMATION_FRAMES = new String[] {"penguin_waddle1", "penguin_waddle2"};
+    public static final String[] PENGUIN_TUMBLING_ANIMATION_FRAMES = new String[] {
+            "penguin_tumble1", "penguin_tumble2", "penguin_tumble3", "penguin_tumble4"
+    };
+
     public static final String BACKGROUND_IMAGE_PATH = "bkgrd.png";
     public static final String GROUND_IMAGE_PATH = "ground.png";
     public static final String PENGUIN_NEUTRAL_STANCE_PATH = "penguin.png";
+    public static final String PENGUIN_ATLAS_PATH = "penguin_sprites.txt";
+
 }

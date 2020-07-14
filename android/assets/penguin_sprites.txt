@@ -1,0 +1,103 @@
+penguin_sprites-0.png
+size: 1546, 2058
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+penguin_hop
+  rotate: false
+  xy: 5, 5
+  size: 1536, 2048
+  orig: 1536, 2048
+  offset: 0, 0
+  index: -1
+
+penguin_sprites-1.png
+size: 1546, 2058
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+penguin_stop
+  rotate: false
+  xy: 5, 5
+  size: 1536, 2048
+  orig: 1536, 2048
+  offset: 0, 0
+  index: -1
+
+penguin_sprites-2.png
+size: 1546, 2058
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+penguin_tumble1
+  rotate: false
+  xy: 5, 5
+  size: 1536, 2048
+  orig: 1536, 2048
+  offset: 0, 0
+  index: -1
+
+penguin_sprites-3.png
+size: 1546, 2058
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+penguin_tumble2
+  rotate: false
+  xy: 5, 5
+  size: 1536, 2048
+  orig: 1536, 2048
+  offset: 0, 0
+  index: -1
+
+penguin_sprites-4.png
+size: 1546, 2058
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+penguin_tumble3
+  rotate: false
+  xy: 5, 5
+  size: 1536, 2048
+  orig: 1536, 2048
+  offset: 0, 0
+  index: -1
+
+penguin_sprites-5.png
+size: 1546, 2058
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+penguin_tumble4
+  rotate: false
+  xy: 5, 5
+  size: 1536, 2048
+  orig: 1536, 2048
+  offset: 0, 0
+  index: -1
+
+penguin_sprites-6.png
+size: 1546, 2058
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+penguin_waddle1
+  rotate: false
+  xy: 5, 5
+  size: 1536, 2048
+  orig: 1536, 2048
+  offset: 0, 0
+  index: -1
+
+penguin_sprites-7.png
+size: 1546, 2058
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+penguin_waddle2
+  rotate: false
+  xy: 5, 5
+  size: 1536, 2048
+  orig: 1536, 2048
+  offset: 0, 0
+  index: -1
