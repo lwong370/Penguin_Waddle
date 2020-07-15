@@ -16,6 +16,8 @@ public class Ground extends GameActor {
     private Rectangle textureRegionBounds2;
     private int speed = 10;
 
+    private boolean stop;
+
     public Ground(Body body) {
         super(body);
         textureRegion = new TextureRegion(new Texture(Gdx.files.internal(Constants.GROUND_IMAGE_PATH)));
@@ -29,7 +31,7 @@ public class Ground extends GameActor {
         if(reachedLeftBound(delta)){
             resetBounds();
         }else{
-            updateXBounds(-delta);
+            updateXBounds(-delta, stop);
         }
     }
 
@@ -51,9 +53,18 @@ public class Ground extends GameActor {
         return (textureRegionBounds2.x - transformToPixels(delta * speed)) <= 0;
     }
 
-    private void updateXBounds(float delta){
-        textureRegionBounds1.x += transformToPixels(delta * speed);
-        textureRegionBounds2.x += transformToPixels(delta *speed);
+    private void updateXBounds(float delta, boolean stopped){
+        if(!stopped){
+            textureRegionBounds1.x += transformToPixels(delta * speed);
+            textureRegionBounds2.x += transformToPixels(delta *speed);
+        }else{
+            textureRegionBounds1.x = textureRegionBounds1.x;
+            textureRegionBounds2.y = textureRegionBounds2.y;
+        }
+    }
+
+    public void setStop(boolean isStopped){
+        stop = isStopped;
     }
 
     private void resetBounds(){

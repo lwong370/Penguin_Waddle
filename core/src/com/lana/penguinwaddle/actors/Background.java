@@ -16,6 +16,8 @@ public class Background extends Actor {
     private Rectangle textureRegionBounds2;
     private int speed = 100;
 
+    private boolean stop;
+
     public Background() {
         textureRegion = new TextureRegion(new Texture(Gdx.files.internal(Constants.BACKGROUND_IMAGE_PATH)));
         textureRegionBounds1 = new Rectangle(0 - Constants.APP_WIDTH/2, 0, Constants.APP_WIDTH, Constants.APP_HEIGHT);
@@ -28,7 +30,7 @@ public class Background extends Actor {
         if(reachedLeftBound(delta)){
             resetBounds();
         }else{
-            updateXBounds(-delta);
+            updateXBounds(-delta, stop);
         }
     }
 
@@ -45,9 +47,18 @@ public class Background extends Actor {
         return (textureRegionBounds2.x - (delta * speed)) <= 0;
     }
 
-    public void updateXBounds(float delta){
-        textureRegionBounds1.x += delta * speed;
-        textureRegionBounds2.x += delta * speed;
+    public void updateXBounds(float delta, boolean stopped){
+        if(!stopped){
+            textureRegionBounds1.x += delta * speed;
+            textureRegionBounds2.x += delta * speed;
+        }else{
+            textureRegionBounds1.x = textureRegionBounds1.x;
+            textureRegionBounds2.x = textureRegionBounds2.x;
+        }
+    }
+
+    public void setStop(boolean isStopped){
+        stop = isStopped;
     }
 
     public void resetBounds(){

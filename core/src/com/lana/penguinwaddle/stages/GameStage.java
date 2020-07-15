@@ -26,6 +26,7 @@ public class GameStage extends Stage implements ContactListener {
     private static final int VIEWPORT_HEIGHT = Constants.APP_HEIGHT;
 
     private World world;
+    private Background bkgrd;
     private Ground ground;
     private Penguin penguin;
     private Obstacle obstacle;
@@ -40,6 +41,7 @@ public class GameStage extends Stage implements ContactListener {
 
     boolean screenTouched;
     float rotateDelay;
+    int numFingersTouch = 0;
 
     private InputProcessor inputProcessor1;
     private InputProcessor inputProcessor2;
@@ -58,10 +60,11 @@ public class GameStage extends Stage implements ContactListener {
         world = WorldUtils.createWorld();
         world.setContactListener(this);
         penguin = new Penguin(WorldUtils.createPenguin(world));
+        bkgrd = new Background();
         ground = new Ground(WorldUtils.createGround(world));
         createObstacle();
 
-        addActor(new Background());
+        addActor(bkgrd);
         addActor(ground);
         addActor(penguin);
     }
@@ -101,6 +104,7 @@ public class GameStage extends Stage implements ContactListener {
                 penguin.tumble();
                 rotateDelay = 0f;
             }
+
         });
         InputMultiplexer inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(inputProcessor1);
@@ -138,12 +142,6 @@ public class GameStage extends Stage implements ContactListener {
         }
     }
 
-//    @Override
-//    public void draw() {
-//        super.draw();
-//        renderer.render(world, camera.combined);
-//    }
-
     @Override
     public void beginContact(Contact contact) {
         Body a = contact.getFixtureA().getBody();
@@ -175,11 +173,23 @@ public class GameStage extends Stage implements ContactListener {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        numFingersTouch = 0;
+        penguin.go();
+        bkgrd.setStop(false);
+        ground.setStop(false);
         return super.touchUp(screenX, screenY, pointer, button);
     }
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        numFingersTouch++;
+        if(numFingersTouch == 2){
+            penguin.stop();
+            if(penguin.isStopped()){
+                bkgrd.setStop(true);
+                ground.setStop(true);
+            }
+        }
         return super.touchDown(screenX, screenY, pointer, button);
     }
 
@@ -196,9 +206,4 @@ public class GameStage extends Stage implements ContactListener {
             world.destroyBody(body);
         }
     }
-
-    //    private void translateScreenToWorldCoordinates(int x, int y) {
-//        getCamera().unproject(touchPoint.set(x, y, 0));
-//    }
-
 }

@@ -12,12 +12,14 @@ import com.badlogic.gdx.utils.Timer;
 import com.lana.penguinwaddle.box2d_physics.PenguinUserData;
 import com.lana.penguinwaddle.utils.AssetsManager;
 import com.lana.penguinwaddle.utils.Constants;
+import com.sun.org.apache.bcel.internal.Const;
 
 public class Penguin extends GameActor {
 
     private boolean hopping;
     private boolean tumbling;
     private boolean hit;
+    private boolean stopped;
 
     private Animation waddleAnimation;
     private TextureRegion hoppingTexture;
@@ -62,19 +64,23 @@ public class Penguin extends GameActor {
         } else if (tumbling) {
             stateTime += Gdx.graphics.getDeltaTime();
             batch.draw((TextureRegion) tumbleAnimation.getKeyFrame(stateTime, true), x, y, width, rectangleRendered.height);
-        }
-        else {
+        }else if(stopped){
+            batch.draw(AssetsManager.getTextureRegion(Constants.PENGUIN_STOP_ASSETS_ID), x, y, width, rectangleRendered.height);
+        } else {
             stateTime += Gdx.graphics.getDeltaTime();
             batch.draw((TextureRegion) runningAnimation.getKeyFrame(stateTime, true), x, y, width, rectangleRendered.height);
         }
     }
 
     public void hop(){
-        System.out.println("Check if tumble before hop:" + tumbling);
         if(!hopping && !tumbling){
             hopping = true;
             body.applyLinearImpulse(getUserData().getLinearJumpImpulse(), body.getWorldCenter(), true);
         }
+    }
+
+    public void land(){
+        hopping = false;
     }
 
     public void tumble(){
@@ -89,10 +95,19 @@ public class Penguin extends GameActor {
         body.setTransform(getUserData().getRunningPosition(), 0f);
     }
 
-    public void land(){
-        hopping = false;
+    public void stop(){
+        if(!hopping && !tumbling){
+            stopped = true;
+        }
     }
 
+    public void go(){
+        stopped = false;
+    }
+
+    public void hit(){
+        hit = true;
+    }
 
     public boolean isHopping(){
         return hopping;
@@ -106,7 +121,7 @@ public class Penguin extends GameActor {
         return hit;
     }
 
-    public void hit(){
-        hit = true;
+    public boolean isStopped(){
+        return stopped;
     }
 }
