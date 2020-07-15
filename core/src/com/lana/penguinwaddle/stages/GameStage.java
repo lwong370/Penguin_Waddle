@@ -173,10 +173,12 @@ public class GameStage extends Stage implements ContactListener {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        numFingersTouch = 0;
-        penguin.go();
-        bkgrd.setStop(false);
-        ground.setStop(false);
+        numFingersTouch--;
+        if(numFingersTouch == 0){
+            penguin.go();
+            bkgrd.setStop(false);
+            ground.setStop(false);
+        }
         return super.touchUp(screenX, screenY, pointer, button);
     }
 

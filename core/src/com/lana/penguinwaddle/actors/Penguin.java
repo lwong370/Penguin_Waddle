@@ -73,7 +73,7 @@ public class Penguin extends GameActor {
     }
 
     public void hop(){
-        if(!hopping && !tumbling){
+        if(!hopping && !tumbling && !stopped){
             hopping = true;
             body.applyLinearImpulse(getUserData().getLinearJumpImpulse(), body.getWorldCenter(), true);
         }
@@ -84,7 +84,7 @@ public class Penguin extends GameActor {
     }
 
     public void tumble(){
-        if(!hopping && !tumbling){
+        if(!hopping && !tumbling && !stopped){
             tumbling = true;
             body.setTransform(getUserData().getDodgePosition(), (float) (-90f * (Math.PI / 180f)));
         }
