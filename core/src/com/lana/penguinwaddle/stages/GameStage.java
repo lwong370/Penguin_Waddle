@@ -131,7 +131,7 @@ public class GameStage extends Stage implements ContactListener {
         if(screenSlideDown){
             if(penguin.isTumbling()){
                 rotateDelay += delta;
-                if(rotateDelay > 2){
+                if(rotateDelay > 1){
                     penguin.stopTumbling();
                     screenSlideDown = false;
                 }
@@ -180,7 +180,6 @@ public class GameStage extends Stage implements ContactListener {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         numFingersTouch++;
-
         return super.touchDown(screenX, screenY, pointer, button);
     }
 
