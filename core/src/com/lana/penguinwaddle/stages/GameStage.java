@@ -5,9 +5,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.*;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
@@ -39,7 +37,7 @@ public class GameStage extends Stage implements ContactListener {
     //Temp
 //    private Box2DDebugRenderer renderer;
 
-    boolean screenTouched;
+    boolean screenSlideDown;
     float rotateDelay;
     int numFingersTouch = 0;
 
@@ -100,7 +98,7 @@ public class GameStage extends Stage implements ContactListener {
 
             @Override
             public void onDown() {
-                screenTouched = true;
+                screenSlideDown = true;
                 penguin.tumble();
                 rotateDelay = 0f;
             }
@@ -120,7 +118,7 @@ public class GameStage extends Stage implements ContactListener {
         world.getBodies(bodies);
 
         for (Body body : bodies) {
-            update(body);
+            updateObstacles(body);
         }
 
         accumulator += delta;
@@ -130,16 +128,18 @@ public class GameStage extends Stage implements ContactListener {
             accumulator -= TIME_STEP;
         }
 
-        //Detect screen touching
-        if(screenTouched){
+        if(screenSlideDown){
             if(penguin.isTumbling()){
                 rotateDelay += delta;
                 if(rotateDelay > 2){
                     penguin.stopTumbling();
-                    screenTouched = false;
+                    screenSlideDown = false;
                 }
             }
         }
+
+        updatePenguinFrightStopState();
+
     }
 
     @Override
@@ -174,24 +174,13 @@ public class GameStage extends Stage implements ContactListener {
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         numFingersTouch--;
-        if(numFingersTouch == 0){
-            penguin.go();
-            bkgrd.setStop(false);
-            ground.setStop(false);
-        }
         return super.touchUp(screenX, screenY, pointer, button);
     }
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         numFingersTouch++;
-        if(numFingersTouch == 2){
-            penguin.stop();
-            if(penguin.isStopped()){
-                bkgrd.setStop(true);
-                ground.setStop(true);
-            }
-        }
+
         return super.touchDown(screenX, screenY, pointer, button);
     }
 
@@ -200,12 +189,29 @@ public class GameStage extends Stage implements ContactListener {
         return super.touchDragged(screenX, screenY, pointer);
     }
 
-    private void update(Body body){
+    private void updateObstacles(Body body){
         if(!BodyUtils.bodyInBounds(body)){
             if(BodyUtils.bodyIsObstacle(body) && !penguin.isHit()){
                 createObstacle();
             }
             world.destroyBody(body);
+        }
+    }
+
+    private void updatePenguinFrightStopState(){
+        if(numFingersTouch == 2){
+            penguin.frightStop();
+            if(penguin.isFrightStopped()){
+                bkgrd.setStop(true);
+                ground.setStop(true);
+            }
+        }
+
+        if(!Gdx.input.isTouched()){
+            numFingersTouch = 0;
+            penguin.undoFrightStop();
+            bkgrd.setStop(false);
+            ground.setStop(false);
         }
     }
 }

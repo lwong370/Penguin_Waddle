@@ -5,21 +5,17 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.utils.Timer;
 import com.lana.penguinwaddle.box2d_physics.PenguinUserData;
 import com.lana.penguinwaddle.utils.AssetsManager;
 import com.lana.penguinwaddle.utils.Constants;
-import com.sun.org.apache.bcel.internal.Const;
 
 public class Penguin extends GameActor {
 
     private boolean hopping;
     private boolean tumbling;
     private boolean hit;
-    private boolean stopped;
+    private boolean frightStopped;
 
     private Animation waddleAnimation;
     private TextureRegion hoppingTexture;
@@ -64,7 +60,7 @@ public class Penguin extends GameActor {
         } else if (tumbling) {
             stateTime += Gdx.graphics.getDeltaTime();
             batch.draw((TextureRegion) tumbleAnimation.getKeyFrame(stateTime, true), x, y, width, rectangleRendered.height);
-        }else if(stopped){
+        }else if(frightStopped){
             batch.draw(AssetsManager.getTextureRegion(Constants.PENGUIN_STOP_ASSETS_ID), x, y, width, rectangleRendered.height);
         } else {
             stateTime += Gdx.graphics.getDeltaTime();
@@ -73,7 +69,7 @@ public class Penguin extends GameActor {
     }
 
     public void hop(){
-        if(!hopping && !tumbling && !stopped){
+        if(!hopping && !tumbling && !frightStopped){
             hopping = true;
             body.applyLinearImpulse(getUserData().getLinearJumpImpulse(), body.getWorldCenter(), true);
         }
@@ -84,7 +80,7 @@ public class Penguin extends GameActor {
     }
 
     public void tumble(){
-        if(!hopping && !tumbling && !stopped){
+        if(!hopping && !tumbling && !frightStopped){
             tumbling = true;
             body.setTransform(getUserData().getDodgePosition(), (float) (-90f * (Math.PI / 180f)));
         }
@@ -95,14 +91,14 @@ public class Penguin extends GameActor {
         body.setTransform(getUserData().getRunningPosition(), 0f);
     }
 
-    public void stop(){
-        if(!hopping && !tumbling){
-            stopped = true;
+    public void frightStop(){
+        if(!hopping && !tumbling && !frightStopped){
+            frightStopped = true;
         }
     }
 
-    public void go(){
-        stopped = false;
+    public void undoFrightStop(){
+        frightStopped = false;
     }
 
     public void hit(){
@@ -121,7 +117,7 @@ public class Penguin extends GameActor {
         return hit;
     }
 
-    public boolean isStopped(){
-        return stopped;
+    public boolean isFrightStopped(){
+        return frightStopped;
     }
 }
