@@ -1,0 +1,84 @@
+obstacle_sprites-0.png
+size: 1513, 1100
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cloud1
+  rotate: true
+  xy: 1148, 0
+  size: 578, 365
+  orig: 2048, 1538
+  offset: 617, 792
+  index: -1
+cloud2
+  rotate: false
+  xy: 0, 0
+  size: 1148, 1100
+  orig: 2048, 1538
+  offset: 405, 207
+  index: -1
+
+obstacle_sprites-1.png
+size: 1794, 1243
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+seagull
+  rotate: false
+  xy: 0, 0
+  size: 1794, 1243
+  orig: 2048, 1538
+  offset: 142, 283
+  index: -1
+
+obstacle_sprites-2.png
+size: 1693, 1295
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cloud3
+  rotate: false
+  xy: 0, 0
+  size: 1693, 1295
+  orig: 2048, 1538
+  offset: 167, 100
+  index: -1
+
+obstacle_sprites-3.png
+size: 2026, 1494
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ice_block
+  rotate: false
+  xy: 0, 0
+  size: 2026, 1494
+  orig: 2048, 1538
+  offset: 19, 0
+  index: -1
+
+obstacle_sprites-4.png
+size: 1949, 1512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cloud5
+  rotate: false
+  xy: 0, 0
+  size: 1949, 1512
+  orig: 2048, 1538
+  offset: 8, 21
+  index: -1
+
+obstacle_sprites-5.png
+size: 1957, 1533
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cloud4
+  rotate: false
+  xy: 0, 0
+  size: 1957, 1533
+  orig: 2048, 1538
+  offset: 0, 0
+  index: -1

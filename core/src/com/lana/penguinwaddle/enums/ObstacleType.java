@@ -3,9 +3,9 @@ package com.lana.penguinwaddle.enums;
 import com.lana.penguinwaddle.utils.Constants;
 
 public enum ObstacleType {
-    GROUND(2f, 1f, Constants.OBSTACLE_X, Constants.OBSTACLE_WATER_Y, Constants.OBSTACLE_DENSITY, Constants.OBSTACLE_GROUND_ASSETS_ID),
-    FLY(1f, 1f, Constants.OBSTACLE_X, Constants.OBSTACLE_BIRD_Y, Constants.OBSTACLE_DENSITY, Constants.OBSTACLE_FLY_ASSETS_ID),
-    HOVER(3f, 2f, Constants.OBSTACLE_X, Constants.OBSTACLE_STORM_Y, Constants.OBSTACLE_DENSITY, Constants.OBSTACLE_HOVER_ASSETS_ID);
+    GROUND(2f, 1f, Constants.OBSTACLE_X, Constants.OBSTACLE_GROUND_Y, Constants.OBSTACLE_DENSITY, Constants.OBSTACLE_GROUND_ASSETS_ID),
+    FLY(4f, 3f, Constants.OBSTACLE_X, Constants.OBSTACLE_FLY_Y, Constants.OBSTACLE_DENSITY, Constants.OBSTACLE_FLY_ASSETS_ID),
+    HOVER(3f, 2f, Constants.OBSTACLE_X, Constants.OBSTACLE_HOVER_Y, Constants.OBSTACLE_DENSITY, Constants.OBSTACLE_HOVER_GENERATE_ASSETS_ID);
 
     private float width;
     private float height;
@@ -47,3 +47,4 @@ public enum ObstacleType {
         return animationAssetId;
     }
 }
+

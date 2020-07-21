@@ -13,10 +13,10 @@ import com.lana.penguinwaddle.actors.Background;
 import com.lana.penguinwaddle.actors.Ground;
 import com.lana.penguinwaddle.actors.Obstacle;
 import com.lana.penguinwaddle.actors.Penguin;
-import com.lana.penguinwaddle.utils.BodyUtils;
-import com.lana.penguinwaddle.utils.Constants;
-import com.lana.penguinwaddle.utils.DirectionGestureDetector;
-import com.lana.penguinwaddle.utils.WorldUtils;
+import com.lana.penguinwaddle.enums.GameState;
+import com.lana.penguinwaddle.utils.*;
+
+import java.rmi.RemoteException;
 
 public class GameStage extends Stage implements ContactListener {
 
@@ -68,8 +68,8 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void createObstacle(){
-//        obstacle = new Obstacle(WorldUtils.createObstacle(world));
-//        addActor(obstacle);
+        obstacle = new Obstacle(WorldUtils.createObstacle(world));
+        addActor(obstacle);
     }
 
     private void setUpCamera(){

@@ -6,12 +6,12 @@ import com.lana.penguinwaddle.utils.Constants;
 
 public class ObstacleUserData extends UserData {
     private Vector2 linearVelocity;
-    private String animationAssetId;
+    private String assetId;
 
-    public ObstacleUserData(float width, float height, String animationAssetId) {
+    public ObstacleUserData(float width, float height, String assetId) {
         super(width, height);
         userDataType = UserDataType.OBSTACLE;
-        this.animationAssetId = animationAssetId;
+        this.assetId = assetId;
         linearVelocity = Constants.OBSTACLE_LINEAR_VELOCITY;
     }
 
@@ -23,11 +23,11 @@ public class ObstacleUserData extends UserData {
         this.linearVelocity = linearVelocity;
     }
 
-    public String getAnimationAssetId() {
-        return animationAssetId;
+    public String getAssetId() {
+        return assetId;
     }
 
-    public void setAnimationAssetId(String animationAssetId) {
-        this.animationAssetId = animationAssetId;
+    public void setAssetId(String assetId) {
+        this.assetId = assetId;
     }
 }
