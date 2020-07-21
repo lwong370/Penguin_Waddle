@@ -26,11 +26,8 @@ public class Penguin extends GameActor {
 
     private float stateTime;
 
-    private TextureRegion testRegion;
-
     public Penguin(Body body) {
         super(body);
-        testRegion = new TextureRegion(new Texture(Gdx.files.internal(Constants.PENGUIN_NEUTRAL_STANCE_PATH)));
         stateTime = 0f;
 
         runningAnimation = AssetsManager.getAnimation(Constants.PENGUIN_RUNNING_ASSETS_ID);
