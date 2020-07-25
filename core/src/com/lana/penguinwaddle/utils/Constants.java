@@ -49,7 +49,8 @@ public class Constants {
     public static final String[] STORM_GENERATE_FRAMES = new String[]{"cloud1", "cloud2", "cloud3"};
     public static final String[] STORM_REPEAT_FRAMES = new String[]{"cloud4", "cloud5"};
 
-    public static final String BACKGROUND_IMAGE_PATH = "bkgrd.png";
+    public static final String GAME_BACKGROUND_IMAGE_PATH = "bkgrd.png";
+    public static final String MENU_BACKGROUND_IMAGE_PATH = "main_menu_bkgrd.png";
     public static final String GROUND_IMAGE_PATH = "ground.png";
     public static final String PENGUIN_ATLAS_PATH = "penguin_sprites.txt";
     public static final String OBSTACLES_ATLAS_PATH = "obstacle_sprites.txt";

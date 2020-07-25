@@ -18,10 +18,10 @@ public class Background extends Actor {
 
     private boolean stop;
 
-    public Background() {
-        textureRegion = new TextureRegion(new Texture(Gdx.files.internal(Constants.BACKGROUND_IMAGE_PATH)));
-        textureRegionBounds1 = new Rectangle(0 - Constants.APP_WIDTH/2, 0, Constants.APP_WIDTH, Constants.APP_HEIGHT);
-        textureRegionBounds2 = new Rectangle(Constants.APP_WIDTH/2, 0, Constants.APP_WIDTH, Constants.APP_HEIGHT);
+    public Background(String path) {
+        textureRegion = new TextureRegion(new Texture(Gdx.files.internal(path)));
+        textureRegionBounds1 = new Rectangle(0, 0, Constants.APP_WIDTH, Constants.APP_HEIGHT);
+        textureRegionBounds2 = new Rectangle(Constants.APP_WIDTH, 0, Constants.APP_WIDTH, Constants.APP_HEIGHT);
     }
 
     @Override

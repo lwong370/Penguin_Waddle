@@ -1,7 +1,7 @@
 package com.lana.penguinwaddle.enums;
 
 public enum GameState {
-    RUNNING,
+    PLAY,
     PAUSED,
-    OVER;
+    MENU;
 }

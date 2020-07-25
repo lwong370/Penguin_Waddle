@@ -2,45 +2,36 @@ package com.lana.penguinwaddle.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 import com.lana.penguinwaddle.PenguinWaddle;
-import com.lana.penguinwaddle.actors.Penguin;
 import com.lana.penguinwaddle.enums.GameState;
-import com.lana.penguinwaddle.stages.GameStage;
+import com.lana.penguinwaddle.stages.MenuStage;
 import com.lana.penguinwaddle.utils.GameManager;
 
-public class GameScreen implements Screen {
-
+public class MenuScreen implements Screen {
     private PenguinWaddle game;
-    private GameStage gameStage;
-    private Penguin penguin;
+    private MenuStage menuStage;
 
     private InputMultiplexer multiplexer;
 
-    public GameScreen(PenguinWaddle game){
+    public MenuScreen(PenguinWaddle game) {
         this.game = game;
-        gameStage = new GameStage();
+        menuStage = new MenuStage();
         multiplexer = new InputMultiplexer();
     }
 
     @Override
     public void show() {
-        multiplexer.addProcessor(gameStage);
-        multiplexer.addProcessor(gameStage.getGameGestureDetector());
+        multiplexer.addProcessor(menuStage);
         Gdx.input.setInputProcessor(multiplexer);
     }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        menuStage.draw();
 
-        gameStage.draw();
-        gameStage.act(delta);
-
-        if(GameManager.getInstance().getGameState() == GameState.MENU){
-            game.setScreen(new MenuScreen(game));
+        if(GameManager.getInstance().getGameState() == GameState.PLAY){
+            game.setScreen(new GameScreen(game));
         }
     }
 
@@ -62,12 +53,12 @@ public class GameScreen implements Screen {
     @Override
     public void hide() {
 //        Gdx.input.setInputProcessor(null);
-        multiplexer.removeProcessor(gameStage);
+        multiplexer.removeProcessor(menuStage);
     }
 
     @Override
     public void dispose() {
-        gameStage.dispose();
+        menuStage.dispose();
     }
 
 }

@@ -16,8 +16,6 @@ import com.lana.penguinwaddle.actors.Penguin;
 import com.lana.penguinwaddle.enums.GameState;
 import com.lana.penguinwaddle.utils.*;
 
-import java.rmi.RemoteException;
-
 public class GameStage extends Stage implements ContactListener {
 
     private static final int VIEWPORT_WIDTH = Constants.APP_WIDTH;
@@ -41,24 +39,19 @@ public class GameStage extends Stage implements ContactListener {
     float rotateDelay;
     int numFingersTouch = 0;
 
-    private InputProcessor inputProcessor1;
-    private InputProcessor inputProcessor2;
-
     public GameStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
         setUpWorldComponents();
-        setUpGesture();
-        //Temp
-//        renderer = new Box2DDebugRenderer();
         setUpCamera();
+        onGameStart();
     }
 
     private void setUpWorldComponents(){
         world = WorldUtils.createWorld();
         world.setContactListener(this);
         penguin = new Penguin(WorldUtils.createPenguin(world));
-        bkgrd = new Background();
+        bkgrd = new Background(Constants.GAME_BACKGROUND_IMAGE_PATH);
         ground = new Ground(WorldUtils.createGround(world));
         createObstacle();
 
@@ -78,9 +71,8 @@ public class GameStage extends Stage implements ContactListener {
         camera.update();
     }
 
-    private void setUpGesture(){
-        inputProcessor1 = this;
-        inputProcessor2 = new DirectionGestureDetector(new DirectionGestureDetector.DirectionListener() {
+    public DirectionGestureDetector getGameGestureDetector(){
+        return new DirectionGestureDetector(new DirectionGestureDetector.DirectionListener() {
             @Override
             public void onLeft() {
 
@@ -102,12 +94,7 @@ public class GameStage extends Stage implements ContactListener {
                 penguin.tumble();
                 rotateDelay = 0f;
             }
-
         });
-        InputMultiplexer inputMultiplexer = new InputMultiplexer();
-        inputMultiplexer.addProcessor(inputProcessor1);
-        inputMultiplexer.addProcessor(inputProcessor2);
-        Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
     @Override
@@ -153,6 +140,7 @@ public class GameStage extends Stage implements ContactListener {
         } else if((BodyUtils.bodyIsPenguin(a) && BodyUtils.bodyIsObstacle(b)) ||
         (BodyUtils.bodyIsObstacle(a) && BodyUtils.bodyIsPenguin(b))){
             penguin.hit();
+            onGameOver();
         }
     }
 
@@ -187,6 +175,9 @@ public class GameStage extends Stage implements ContactListener {
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         return super.touchDragged(screenX, screenY, pointer);
     }
+    public Penguin getPenguin(){
+        return penguin;
+    }
 
     private void updateObstacles(Body body){
         if(!BodyUtils.bodyInBounds(body)){
@@ -195,6 +186,14 @@ public class GameStage extends Stage implements ContactListener {
             }
             world.destroyBody(body);
         }
+    }
+
+    private void onGameStart(){
+        GameManager.getInstance().setGameState(GameState.PLAY);
+    }
+
+    private void onGameOver(){
+        GameManager.getInstance().setGameState(GameState.MENU);
     }
 
     private void updatePenguinFrightStopState(){
