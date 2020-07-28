@@ -18,7 +18,7 @@ public abstract class GameButton extends Button{
         setHeight(bounds.height);
         setBounds(bounds.x, bounds.y, bounds.width, bounds.height);
         skin = new Skin();
-        skin.addRegions(AssetsManager.textureAtlas1);
+        skin.addRegions(AssetsManager.textureAtlas3);
         loadTextureRegion();
         addListener(new ClickListener(){
             @Override

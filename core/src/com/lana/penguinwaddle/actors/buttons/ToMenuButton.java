@@ -1,20 +1,19 @@
 package com.lana.penguinwaddle.actors.buttons;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.lana.penguinwaddle.enums.GameState;
 import com.lana.penguinwaddle.utils.Constants;
-import com.badlogic.gdx.math.Rectangle;
 import com.lana.penguinwaddle.utils.GameManager;
 
+public class ToMenuButton extends GameButton {
 
-public class PlayButton extends GameButton {
-
-    public interface PlayButtonListener {
-        public void onPlay();
+    public interface ToMainMenuListener{
+        public void toMenu();
     }
 
-    private PlayButtonListener listener;
+    private ToMainMenuListener listener;
 
-    public PlayButton(Rectangle bounds, PlayButtonListener listener) {
+    public ToMenuButton(Rectangle bounds, ToMainMenuListener listener) {
         super(bounds);
         this.listener = listener;
     }
@@ -22,18 +21,18 @@ public class PlayButton extends GameButton {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if(GameManager.getInstance().getGameState() != GameState.MENU){
+        if(GameManager.getInstance().getGameState() != GameState.GAME_OVER){
             remove();
         }
     }
 
     @Override
     public void touched() {
-        listener.onPlay();
+        listener.toMenu();
     }
 
     @Override
     protected String getRegionName() {
-        return Constants.BUTTON_PLAY_ASSET_ID;
+        return Constants.BUTTON_MENU_ASSET_ID;
     }
 }
