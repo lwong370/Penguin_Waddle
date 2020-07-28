@@ -5,32 +5,33 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.lana.penguinwaddle.PenguinWaddle;
 import com.lana.penguinwaddle.enums.GameState;
-import com.lana.penguinwaddle.stages.MenuStage;
+import com.lana.penguinwaddle.stages.GameOverStage;
 import com.lana.penguinwaddle.utils.GameManager;
 
-public class MenuScreen implements Screen {
+public class GameOverScreen implements Screen {
+
     private PenguinWaddle game;
-    private MenuStage menuStage;
+    private GameOverStage gameOverStage;
     private InputMultiplexer multiplexer;
 
-    public MenuScreen(PenguinWaddle game) {
+    public GameOverScreen(PenguinWaddle game) {
         this.game = game;
-        menuStage = new MenuStage();
+        gameOverStage = new GameOverStage();
         multiplexer = new InputMultiplexer();
     }
 
     @Override
     public void show() {
-        multiplexer.addProcessor(menuStage);
+        multiplexer.addProcessor(gameOverStage);
         Gdx.input.setInputProcessor(multiplexer);
     }
 
     @Override
     public void render(float delta) {
-        menuStage.draw();
+        gameOverStage.draw();
 
-        if(GameManager.getInstance().getGameState() == GameState.PLAY){
-            game.setScreen(new GameScreen(game));
+        if(GameManager.getInstance().getGameState() == GameState.MENU){
+            game.setScreen(new MenuScreen(game));
         }
     }
 
@@ -52,12 +53,11 @@ public class MenuScreen implements Screen {
     @Override
     public void hide() {
         Gdx.input.setInputProcessor(null);
-        multiplexer.removeProcessor(menuStage);
+        multiplexer.removeProcessor(gameOverStage);
     }
 
     @Override
     public void dispose() {
-        menuStage.dispose();
+        gameOverStage.dispose();
     }
-
 }

@@ -1,0 +1,81 @@
+package com.lana.penguinwaddle.stages;
+
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.viewport.ScalingViewport;
+import com.lana.penguinwaddle.actors.Background;
+import com.lana.penguinwaddle.actors.ScoreLabel;
+import com.lana.penguinwaddle.actors.buttons.ToMenuButton;
+import com.lana.penguinwaddle.enums.GameState;
+import com.lana.penguinwaddle.utils.Constants;
+import com.lana.penguinwaddle.utils.GameManager;
+
+public class GameOverStage extends Stage {
+
+    private static final int VIEWPORT_WIDTH = Constants.APP_WIDTH;
+    private static final int VIEWPORT_HEIGHT = Constants.APP_HEIGHT;
+
+    private OrthographicCamera camera;
+
+    private ToMenuButton toMenuButton;
+    private Background bkgrd;
+    private ScoreLabel scoreLabel;
+
+    public GameOverStage() {
+        super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
+                new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
+        addWorldComponents();
+        setUpCamera();
+        setUpToMenuButton();
+        setUpScoreLabel();
+    }
+
+    private void addWorldComponents(){
+        bkgrd = new Background(Constants.MENU_BACKGROUND_IMAGE_PATH);
+        addActor(bkgrd);
+    }
+
+    private void setUpScoreLabel(){
+        int labelWidth = (int) (getCamera().viewportWidth / 4);
+        Rectangle bounds = new Rectangle(getCamera().viewportWidth / 2 - labelWidth / 2,
+                getCamera().viewportHeight / 2, labelWidth,
+                getCamera().viewportWidth / 4);
+        scoreLabel = new ScoreLabel(bounds);
+        addActor(scoreLabel);
+    }
+
+    private void setUpToMenuButton(){
+        int buttonWidth = (int) (getCamera().viewportWidth / 4);
+        Rectangle bounds = new Rectangle(getCamera().viewportWidth / 2 - buttonWidth / 2,
+                getCamera().viewportHeight / 20, buttonWidth,
+                getCamera().viewportHeight / 4);
+        toMenuButton = new ToMenuButton(bounds, new ToMainMenuListener());
+        addActor(toMenuButton);
+    }
+
+    private void setUpReplayButton(){
+        int buttonWidth = (int) (getCamera().viewportWidth / 4);
+        Rectangle bounds = new Rectangle(getCamera().viewportWidth / 2 - buttonWidth / 2,
+                getCamera().viewportHeight / 20, buttonWidth,
+                getCamera().viewportHeight / 4);
+    }
+
+    private void setUpCamera(){
+        camera = new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+        camera.position.set(camera.viewportWidth, camera.viewportHeight, 0f);
+        camera.update();
+    }
+
+    private void onGetMenu(){
+        GameManager.getInstance().setGameState(GameState.MENU);
+    }
+
+    private class ToMainMenuListener implements ToMenuButton.ToMainMenuListener{
+        @Override
+        public void toMenu() {
+            onGetMenu();
+        }
+    }
+}

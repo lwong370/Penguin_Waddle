@@ -1,7 +1,5 @@
 package com.lana.penguinwaddle.stages;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -17,10 +15,10 @@ public class MenuStage extends Stage {
     private static final int VIEWPORT_WIDTH = Constants.APP_WIDTH;
     private static final int VIEWPORT_HEIGHT = Constants.APP_HEIGHT;
 
+    private OrthographicCamera camera;
+
     private Background bkgrd;
     private PlayButton playButton;
-
-    private OrthographicCamera camera;
 
     public MenuStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
@@ -31,7 +29,7 @@ public class MenuStage extends Stage {
     }
 
     private void setUpStartButton(){
-        Rectangle playButtonBounds = new Rectangle(getCamera().viewportWidth * 3 / 16,
+        Rectangle playButtonBounds = new Rectangle(getCamera().viewportWidth * 1/3,
                 getCamera().viewportHeight / 4, getCamera().viewportWidth / 4,
                 getCamera().viewportWidth / 4);
         playButton = new PlayButton(playButtonBounds, new GamePlayButtonListener());

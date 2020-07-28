@@ -1,18 +1,14 @@
 package com.lana.penguinwaddle.stages;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
-import com.lana.penguinwaddle.actors.Background;
-import com.lana.penguinwaddle.actors.Ground;
-import com.lana.penguinwaddle.actors.Obstacle;
-import com.lana.penguinwaddle.actors.Penguin;
+import com.lana.penguinwaddle.actors.*;
 import com.lana.penguinwaddle.enums.GameState;
 import com.lana.penguinwaddle.utils.*;
 
@@ -26,6 +22,9 @@ public class GameStage extends Stage implements ContactListener {
     private Ground ground;
     private Penguin penguin;
     private Obstacle obstacle;
+    private Score score;
+
+    private ScorePreferencesManager scorePreferencesManager = ScorePreferencesManager.getInstance();
 
     private final float TIME_STEP = 1/300f;
     private float accumulator = 0f;
@@ -44,6 +43,7 @@ public class GameStage extends Stage implements ContactListener {
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
         setUpWorldComponents();
         setUpCamera();
+        setUpScore();
         onGameStart();
     }
 
@@ -69,6 +69,14 @@ public class GameStage extends Stage implements ContactListener {
         camera = new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
         camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2, 0f);
         camera.update();
+    }
+
+    private void setUpScore(){
+        Rectangle bounds = new Rectangle(getCamera().viewportWidth * 47 / 64,
+                getCamera().viewportHeight * 57 / 64, getCamera().viewportWidth / 4,
+                getCamera().viewportHeight / 8);
+        score = new Score(bounds);
+        addActor(score);
     }
 
     public DirectionGestureDetector getGameGestureDetector(){
@@ -193,7 +201,8 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void onGameOver(){
-        GameManager.getInstance().setGameState(GameState.MENU);
+        GameManager.getInstance().setGameState(GameState.GAME_OVER);
+        scorePreferencesManager.writeScoreToPreferences(Constants.CURRENT_SCORE_KEY, score.getScore());
     }
 
     private void updatePenguinFrightStopState(){

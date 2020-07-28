@@ -1,6 +1,5 @@
 package com.lana.penguinwaddle.utils;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
 public class Constants {
@@ -41,6 +40,13 @@ public class Constants {
     public static final String OBSTACLE_FLY_ASSETS_ID = "obstacle_fly";
     public static final String OBSTACLE_HOVER_GENERATE_ASSETS_ID = "obstacle_hover_generate";
     public static final String OBSTACLE_HOVER_REPEAT_ASSETS_ID =  "obstacle_hover_repeat";
+    public static final String BUTTON_INFO_ASSET_ID = "info_button";
+    public static final String BUTTON_LEADERBOARD_ASSET_ID = "leaderboard_button";
+    public static final String BUTTON_MENU_ASSET_ID = "menu_button";
+    public static final String BUTTON_PAUSE_ASSET_ID = "pause_button";
+    public static final String BUTTON_PLAY_ASSET_ID = "play_button";
+    public static final String BUTTON_REPLAY_ASSET_ID = "replay_button";
+
 
     public static final String[] PENGUIN_RUNNING_ANIMATION_FRAMES = new String[] {"penguin_waddle1", "penguin_waddle2"};
     public static final String[] PENGUIN_TUMBLING_ANIMATION_FRAMES = new String[] {
@@ -54,5 +60,10 @@ public class Constants {
     public static final String GROUND_IMAGE_PATH = "ground.png";
     public static final String PENGUIN_ATLAS_PATH = "penguin_sprites.txt";
     public static final String OBSTACLES_ATLAS_PATH = "obstacle_sprites.txt";
+    public static final String BUTTON_ATLAS_PATH = "button_sprites.txt";
+
+    public static final String SCORE_PREFERENCE_NAME = "Score Preference";
+    public static final String CURRENT_SCORE_KEY = "Current Score";
+    public static final String SCORE_FONT = "roboto_bold.ttf";
 
 }
