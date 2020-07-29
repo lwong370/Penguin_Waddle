@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.lana.penguinwaddle.actors.Background;
 import com.lana.penguinwaddle.actors.ScoreLabel;
+import com.lana.penguinwaddle.actors.buttons.ReplayButton;
 import com.lana.penguinwaddle.actors.buttons.ToMenuButton;
 import com.lana.penguinwaddle.enums.GameState;
 import com.lana.penguinwaddle.utils.Constants;
@@ -19,9 +20,11 @@ public class GameOverStage extends Stage {
 
     private OrthographicCamera camera;
 
-    private ToMenuButton toMenuButton;
     private Background bkgrd;
     private ScoreLabel scoreLabel;
+
+    private ToMenuButton toMenuButton;
+    private ReplayButton replayButton;
 
     public GameOverStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
@@ -29,17 +32,18 @@ public class GameOverStage extends Stage {
         addWorldComponents();
         setUpCamera();
         setUpToMenuButton();
+        setUpReplayButton();
         setUpScoreLabel();
     }
 
     private void addWorldComponents(){
-        bkgrd = new Background(Constants.MENU_BACKGROUND_IMAGE_PATH);
+        bkgrd = new Background(Constants.GAME_OVER_BACKGROUND_IMAGE_PATH);
         addActor(bkgrd);
     }
 
     private void setUpScoreLabel(){
         int labelWidth = (int) (getCamera().viewportWidth / 4);
-        Rectangle bounds = new Rectangle(getCamera().viewportWidth / 2 - labelWidth / 2,
+        Rectangle bounds = new Rectangle(getCamera().viewportWidth * 5/8 - labelWidth / 2,
                 getCamera().viewportHeight / 2, labelWidth,
                 getCamera().viewportWidth / 4);
         scoreLabel = new ScoreLabel(bounds);
@@ -48,8 +52,8 @@ public class GameOverStage extends Stage {
 
     private void setUpToMenuButton(){
         int buttonWidth = (int) (getCamera().viewportWidth / 4);
-        Rectangle bounds = new Rectangle(getCamera().viewportWidth / 2 - buttonWidth / 2,
-                getCamera().viewportHeight / 20, buttonWidth,
+        Rectangle bounds = new Rectangle(getCamera().viewportWidth / 3 - buttonWidth / 2,
+                getCamera().viewportHeight / 5, buttonWidth,
                 getCamera().viewportHeight / 4);
         toMenuButton = new ToMenuButton(bounds, new ToMainMenuListener());
         addActor(toMenuButton);
@@ -57,9 +61,11 @@ public class GameOverStage extends Stage {
 
     private void setUpReplayButton(){
         int buttonWidth = (int) (getCamera().viewportWidth / 4);
-        Rectangle bounds = new Rectangle(getCamera().viewportWidth / 2 - buttonWidth / 2,
-                getCamera().viewportHeight / 20, buttonWidth,
+        Rectangle bounds = new Rectangle(getCamera().viewportWidth / 3 - buttonWidth / 2,
+                getCamera().viewportHeight / 2, buttonWidth,
                 getCamera().viewportHeight / 4);
+        replayButton = new ReplayButton(bounds, new ReplayGameListener());
+        addActor(replayButton);
     }
 
     private void setUpCamera(){
@@ -72,10 +78,21 @@ public class GameOverStage extends Stage {
         GameManager.getInstance().setGameState(GameState.MENU);
     }
 
+    private void onReplayGame(){
+        GameManager.getInstance().setGameState(GameState.PLAY);
+    }
+
     private class ToMainMenuListener implements ToMenuButton.ToMainMenuListener{
         @Override
         public void toMenu() {
             onGetMenu();
+        }
+    }
+
+    private class ReplayGameListener implements ReplayButton.ReplayButtonListener{
+        @Override
+        public void onReplay() {
+            onReplayGame();
         }
     }
 }

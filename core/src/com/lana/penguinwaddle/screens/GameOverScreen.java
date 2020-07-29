@@ -33,6 +33,9 @@ public class GameOverScreen implements Screen {
         if(GameManager.getInstance().getGameState() == GameState.MENU){
             game.setScreen(new MenuScreen(game));
         }
+        if(GameManager.getInstance().getGameState() == GameState.PLAY){
+            game.setScreen(new GameScreen(game));
+        }
     }
 
     @Override
