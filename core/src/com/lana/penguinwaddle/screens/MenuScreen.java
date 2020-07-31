@@ -31,6 +31,8 @@ public class MenuScreen implements Screen {
 
         if(GameManager.getInstance().getGameState() == GameState.PLAY){
             game.setScreen(new GameScreen(game));
+        } else if(GameManager.getInstance().getGameState() == GameState.LEADERBOARD){
+            game.setScreen(new LeaderboardScreen(game));
         }
     }
 

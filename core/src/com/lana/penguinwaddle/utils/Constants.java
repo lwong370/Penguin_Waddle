@@ -46,6 +46,7 @@ public class Constants {
     public static final String BUTTON_PAUSE_ASSET_ID = "pause_button";
     public static final String BUTTON_PLAY_ASSET_ID = "play_button";
     public static final String BUTTON_REPLAY_ASSET_ID = "replay_button";
+    public static final String BUTTON_BACK_ASSET_ID = "back_button";
 
 
     public static final String[] PENGUIN_RUNNING_ANIMATION_FRAMES = new String[] {"penguin_waddle1", "penguin_waddle2"};
@@ -57,7 +58,7 @@ public class Constants {
     public static final String[] STORM_REPEAT_FRAMES = new String[]{"cloud4", "cloud5"};
 
     public static final String GAME_BACKGROUND_IMAGE_PATH = "bkgrd.png";
-    public static final String GAME_OVER_BACKGROUND_IMAGE_PATH = "wordless_bkgrd.png";
+    public static final String WORDLESS_BACKGROUND_IMAGE_PATH = "wordless_bkgrd.png";
     public static final String MENU_BACKGROUND_IMAGE_PATH = "main_menu_bkgrd.png";
     public static final String GROUND_IMAGE_PATH = "ground.png";
     public static final String PENGUIN_ATLAS_PATH = "penguin_sprites.txt";

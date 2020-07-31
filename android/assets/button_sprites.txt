@@ -1,11 +1,18 @@
 button_sprites.png
-size: 1751, 1540
+size: 1929, 1540
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-info_button
+back_button
   rotate: false
   xy: 889, 330
+  size: 477, 454
+  orig: 477, 454
+  offset: 0, 0
+  index: -1
+info_button
+  rotate: false
+  xy: 1366, 330
   size: 563, 454
   orig: 563, 454
   offset: 0, 0
