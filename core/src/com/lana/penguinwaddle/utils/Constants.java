@@ -26,11 +26,11 @@ public class Constants {
     public static final Vector2 RUNNER_LINEAR_STOP_TUMBLE_IMPULSE = new Vector2(-10, 0);
 
     public static final float OBSTACLE_X = 25f;
-    public static final float OBSTACLE_GROUND_Y = 10f;
+    public static final float OBSTACLE_GROUND_Y = GROUND_HEIGHT;
     public static final float OBSTACLE_FLY_Y = 10f;
     public static final float OBSTACLE_HOVER_Y = 10f;
     public static final float OBSTACLE_DENSITY = RUNNER_DENSITY;
-    public static final Vector2 OBSTACLE_LINEAR_VELOCITY = new Vector2(-6f, 0);
+    public static final Vector2 OBSTACLE_LINEAR_VELOCITY = new Vector2(-8f, 0);
 
     public static final String PENGUIN_RUNNING_ASSETS_ID = "penguin_run";
     public static final String PENGUIN_TUMBLE_ASSETS_ID = "penguin_tumble";
@@ -52,6 +52,7 @@ public class Constants {
     public static final String[] PENGUIN_TUMBLING_ANIMATION_FRAMES = new String[] {
             "penguin_tumble1", "penguin_tumble2", "penguin_tumble3", "penguin_tumble4"
     };
+    public static final String[] SEAGULL_ANIMATION_FRAMES = new String[]{"seagull1", "seagull2"};
     public static final String[] STORM_GENERATE_FRAMES = new String[]{"cloud1", "cloud2", "cloud3"};
     public static final String[] STORM_REPEAT_FRAMES = new String[]{"cloud4", "cloud5"};
 

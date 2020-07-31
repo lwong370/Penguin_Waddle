@@ -27,25 +27,25 @@ cloud3
 cloud4
   rotate: false
   xy: 0, 461
-  size: 614, 461
-  orig: 614, 461
-  offset: 0, 0
-  index: -1
-cloud5
-  rotate: false
-  xy: 614, 461
-  size: 614, 461
-  orig: 614, 461
-  offset: 0, 0
-  index: -1
-ice_block
-  rotate: false
-  xy: 1228, 461
   size: 819, 615
   orig: 819, 615
   offset: 0, 0
   index: -1
-seagull
+cloud5
+  rotate: false
+  xy: 819, 461
+  size: 819, 615
+  orig: 819, 615
+  offset: 0, 0
+  index: -1
+ice_block
+  rotate: false
+  xy: 1638, 461
+  size: 410, 308
+  orig: 410, 308
+  offset: 0, 0
+  index: -1
+seagull1
   rotate: false
   xy: 0, 1076
   size: 1024, 769

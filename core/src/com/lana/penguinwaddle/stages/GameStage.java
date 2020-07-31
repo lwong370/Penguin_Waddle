@@ -53,11 +53,11 @@ public class GameStage extends Stage implements ContactListener {
         penguin = new Penguin(WorldUtils.createPenguin(world));
         bkgrd = new Background(Constants.GAME_BACKGROUND_IMAGE_PATH);
         ground = new Ground(WorldUtils.createGround(world));
-        createObstacle();
 
         addActor(bkgrd);
         addActor(ground);
         addActor(penguin);
+        createObstacle();
     }
 
     private void createObstacle(){
