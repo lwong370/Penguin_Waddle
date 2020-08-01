@@ -37,7 +37,7 @@ public class GameOverStage extends Stage {
     }
 
     private void addWorldComponents(){
-        bkgrd = new Background(Constants.GAME_OVER_BACKGROUND_IMAGE_PATH);
+        bkgrd = new Background(Constants.WORDLESS_BACKGROUND_IMAGE_PATH);
         addActor(bkgrd);
     }
 
@@ -46,7 +46,7 @@ public class GameOverStage extends Stage {
         Rectangle bounds = new Rectangle(getCamera().viewportWidth * 5/8 - labelWidth / 2,
                 getCamera().viewportHeight / 2, labelWidth,
                 getCamera().viewportWidth / 4);
-        scoreLabel = new ScoreLabel(bounds);
+        scoreLabel = new ScoreLabel(bounds, ScoreLabel.ScoreLabelType.SCORE);
         addActor(scoreLabel);
     }
 
@@ -85,6 +85,7 @@ public class GameOverStage extends Stage {
     private class ToMainMenuListener implements ToMenuButton.ToMainMenuListener{
         @Override
         public void toMenu() {
+            clear();
             onGetMenu();
         }
     }
@@ -92,6 +93,7 @@ public class GameOverStage extends Stage {
     private class ReplayGameListener implements ReplayButton.ReplayButtonListener{
         @Override
         public void onReplay() {
+            clear();
             onReplayGame();
         }
     }

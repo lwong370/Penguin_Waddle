@@ -18,7 +18,10 @@ public class ScoreLabel extends Actor {
     private Rectangle bounds;
     private BitmapFont font;
 
-    public ScoreLabel(Rectangle bounds) {
+    //Score label: High score, or just score.
+    private ScoreLabelType label;
+
+    public ScoreLabel(Rectangle bounds, ScoreLabelType label) {
         this.score = ScorePreferencesManager.getInstance().readFromPreferences(Constants.CURRENT_SCORE_KEY);
         this.bounds = bounds;
         setWidth(bounds.width);
@@ -29,6 +32,8 @@ public class ScoreLabel extends Actor {
 
         font.setColor(Color.WHITE);
         font.getData().setScale(1.5f);
+
+        this.label = label;
     }
 
     @Override
@@ -42,6 +47,27 @@ public class ScoreLabel extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-        font.draw(batch, "Score: " + score, bounds.x, bounds.y, bounds.width, Align.center, true);
+        String printedValue = null;
+        if(label == ScoreLabelType.HIGH_SCORE){
+            printedValue = label.getLabel() + ScorePreferencesManager.getInstance().readFromPreferences(Constants.HIGH_SCORE_PREFERENCE_KEY);
+        } else if(label == ScoreLabelType.SCORE){
+            printedValue = label.getLabel() + score;
+        }
+        font.draw(batch, printedValue, bounds.x, bounds.y, bounds.width, Align.center, true);
+    }
+
+    public enum ScoreLabelType {
+        SCORE ("Score: "),
+        HIGH_SCORE("High Score: ");
+
+        private final String label;
+
+        private ScoreLabelType(String label) {
+            this.label = label;
+        }
+
+        public String getLabel() {
+            return label;
+        }
     }
 }

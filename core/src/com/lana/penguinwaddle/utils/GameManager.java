@@ -21,4 +21,11 @@ public class GameManager {
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
     }
+
+    public void saveScore(int score){
+        int maxScore = ScorePreferencesManager.getInstance().readFromPreferences(Constants.HIGH_SCORE_PREFERENCE_KEY);
+        if(score > maxScore){
+            ScorePreferencesManager.getInstance().writeScoreToPreferences(Constants.HIGH_SCORE_PREFERENCE_KEY, score);
+        }
+    }
 }

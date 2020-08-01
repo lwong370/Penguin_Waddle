@@ -22,11 +22,11 @@ public class Constants {
     public static final float RUNNER_DENSITY = 0.5f;
 
     public static float RUNNER_GRAVITY_SCALE = 3f;
-    public static final Vector2 RUNNER_LINEAR_JUMP_IMPULSE = new Vector2(0, 130f);
+    public static final Vector2 RUNNER_LINEAR_JUMP_IMPULSE = new Vector2(0, 150f);
     public static final Vector2 RUNNER_LINEAR_STOP_TUMBLE_IMPULSE = new Vector2(-10, 0);
 
     public static final float OBSTACLE_X = 25f;
-    public static final float OBSTACLE_GROUND_Y = GROUND_HEIGHT;
+    public static final float OBSTACLE_GROUND_Y = 2.5f;
     public static final float OBSTACLE_FLY_Y = 10f;
     public static final float OBSTACLE_HOVER_Y = 10f;
     public static final float OBSTACLE_DENSITY = RUNNER_DENSITY;
@@ -67,6 +67,7 @@ public class Constants {
 
     public static final String SCORE_PREFERENCE_NAME = "Score Preference";
     public static final String CURRENT_SCORE_KEY = "Current Score";
+    public static final String HIGH_SCORE_PREFERENCE_KEY = "High Score";
     public static final String SCORE_FONT = "roboto_bold.ttf";
 
 }

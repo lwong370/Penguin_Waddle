@@ -203,6 +203,7 @@ public class GameStage extends Stage implements ContactListener {
     private void onGameOver(){
         GameManager.getInstance().setGameState(GameState.GAME_OVER);
         scorePreferencesManager.writeScoreToPreferences(Constants.CURRENT_SCORE_KEY, score.getScore());
+        GameManager.getInstance().saveScore(score.getScore());
     }
 
     private void updatePenguinFrightStopState(){

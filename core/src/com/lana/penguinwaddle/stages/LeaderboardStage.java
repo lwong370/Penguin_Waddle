@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.lana.penguinwaddle.actors.Background;
+import com.lana.penguinwaddle.actors.ScoreLabel;
 import com.lana.penguinwaddle.actors.buttons.BackButton;
 import com.lana.penguinwaddle.enums.GameState;
 import com.lana.penguinwaddle.utils.Constants;
@@ -19,12 +20,14 @@ public class LeaderboardStage extends Stage {
 
    private Background bkgrd;
    private BackButton backButton;
+   private ScoreLabel highScoreLabel;
 
     public LeaderboardStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
         addWorldComponents();
         setUpBackButton();
+        setUpHighScoreLabel();
         setUpCamera();
     }
 
@@ -45,6 +48,15 @@ public class LeaderboardStage extends Stage {
                 getCamera().viewportWidth / 10);
         backButton = new BackButton(bounds, new ToMainMenuListener());
         addActor(backButton);
+    }
+
+    private void setUpHighScoreLabel(){
+        int labelWidth = (int) (getCamera().viewportWidth / 4);
+        Rectangle bounds = new Rectangle(getCamera().viewportWidth * 5/8 - labelWidth / 2,
+                getCamera().viewportHeight / 2, labelWidth,
+                getCamera().viewportWidth / 4);
+        highScoreLabel = new ScoreLabel(bounds, ScoreLabel.ScoreLabelType.HIGH_SCORE);
+        addActor(highScoreLabel);
     }
 
     private void onGetMainMenu(){
