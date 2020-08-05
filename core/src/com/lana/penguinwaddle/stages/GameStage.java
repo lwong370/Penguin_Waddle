@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.lana.penguinwaddle.actors.*;
+import com.lana.penguinwaddle.enums.Difficulty;
 import com.lana.penguinwaddle.enums.GameState;
 import com.lana.penguinwaddle.utils.*;
 
@@ -28,6 +29,7 @@ public class GameStage extends Stage implements ContactListener {
 
     private final float TIME_STEP = 1/300f;
     private float accumulator = 0f;
+    private float totalTimePassed;
 
     private OrthographicCamera camera;
 
@@ -41,10 +43,10 @@ public class GameStage extends Stage implements ContactListener {
     public GameStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
+        onGameStart();
         setUpWorldComponents();
         setUpCamera();
         setUpScore();
-        onGameStart();
     }
 
     private void setUpWorldComponents(){
@@ -62,6 +64,7 @@ public class GameStage extends Stage implements ContactListener {
 
     private void createObstacle(){
         obstacle = new Obstacle(WorldUtils.createObstacle(world));
+        obstacle.changeDifficulty(GameManager.getInstance().getDifficulty());
         addActor(obstacle);
     }
 
@@ -108,6 +111,11 @@ public class GameStage extends Stage implements ContactListener {
     @Override
     public void act(float delta) {
         super.act(delta);
+
+        if(GameManager.getInstance().getGameState() == GameState.PLAY){
+            totalTimePassed += delta;
+            updateDifficulty();
+        }
 
         Array<Body> bodies = new Array<Body>(world.getBodyCount());
         world.getBodies(bodies);
@@ -196,8 +204,27 @@ public class GameStage extends Stage implements ContactListener {
         }
     }
 
+    private void updateDifficulty(){
+        if(GameManager.getInstance().isMaxDifficulty()){
+            return;
+        }
+
+        Difficulty currentDifficulty = GameManager.getInstance().getDifficulty();
+
+        if(totalTimePassed - (8 * currentDifficulty.getLevel()) > 0){
+            int nextDifficulty = currentDifficulty.getLevel() + 1;
+            String difficultyName = "DIFFICULTY_" + nextDifficulty;
+            GameManager.getInstance().setDifficulty(Difficulty.valueOf(difficultyName));
+
+            penguin.changeDifficulty(GameManager.getInstance().getDifficulty());
+            score.setMultiplier(GameManager.getInstance().getDifficulty().getScoreMultiplier());
+        }
+    }
+
     private void onGameStart(){
         GameManager.getInstance().setGameState(GameState.PLAY);
+        GameManager.getInstance().resetDifficulty();
+        totalTimePassed = 0;
     }
 
     private void onGameOver(){

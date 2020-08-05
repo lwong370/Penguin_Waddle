@@ -1,12 +1,12 @@
 package com.lana.penguinwaddle.actors;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.lana.penguinwaddle.box2d_physics.PenguinUserData;
+import com.lana.penguinwaddle.enums.Difficulty;
 import com.lana.penguinwaddle.utils.AssetsManager;
 import com.lana.penguinwaddle.utils.Constants;
 
@@ -116,5 +116,10 @@ public class Penguin extends GameActor {
 
     public boolean isFrightStopped(){
         return frightStopped;
+    }
+
+    public void changeDifficulty(Difficulty newDifficulty){
+        body.setGravityScale(newDifficulty.getRunnerGravityScale());
+        getUserData().setLinearJumpImpulse(newDifficulty.getRunnerJumpingLinearImpulse());
     }
 }

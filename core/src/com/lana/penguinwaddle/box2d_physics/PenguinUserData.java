@@ -41,4 +41,8 @@ public class PenguinUserData extends UserData {
     public float getDodgeAngle(){
         return (float) (-90f * (Math.PI / 180f));
     }
+
+    public void setLinearJumpImpulse(Vector2 linearJumpImpulse){
+        this.linearJumpImpulse = linearJumpImpulse;
+    }
 }

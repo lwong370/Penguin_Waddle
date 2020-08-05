@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.lana.penguinwaddle.box2d_physics.ObstacleUserData;
+import com.lana.penguinwaddle.enums.Difficulty;
 import com.lana.penguinwaddle.utils.AssetsManager;
 import com.lana.penguinwaddle.utils.Constants;
 
@@ -49,5 +50,9 @@ public class Obstacle extends GameActor {
 //            batch.draw((TextureRegion) animation.getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
 //                    rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
         }
+    }
+
+    public void changeDifficulty(Difficulty newDifficulty){
+        getUserData().setLinearVelocity(newDifficulty.getObstacleLinearVelocity());
     }
 }

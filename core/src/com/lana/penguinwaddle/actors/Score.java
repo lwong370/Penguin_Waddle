@@ -51,4 +51,8 @@ public class Score extends Actor {
     public int getScore(){
         return (int) score;
     }
+
+    public void setMultiplier(int multiplier){
+        this.multiplier = multiplier;
+    }
 }
