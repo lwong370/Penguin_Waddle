@@ -7,8 +7,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.lana.penguinwaddle.box2d_physics.ObstacleUserData;
 import com.lana.penguinwaddle.enums.Difficulty;
+import com.lana.penguinwaddle.enums.GameState;
 import com.lana.penguinwaddle.utils.AssetsManager;
 import com.lana.penguinwaddle.utils.Constants;
+import com.lana.penguinwaddle.utils.GameManager;
 
 public class Obstacle extends GameActor {
 
@@ -37,12 +39,13 @@ public class Obstacle extends GameActor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-
+        if(GameManager.getInstance().getGameState() == GameState.PLAY){
+            stateTime += Gdx.graphics.getDeltaTime();
+        }
         if (getUserData().getAssetId().equals(Constants.OBSTACLE_GROUND_ASSETS_ID)) {
             batch.draw(AssetsManager.getTextureRegion(Constants.OBSTACLE_GROUND_ASSETS_ID), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
                     rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
         } else if(getUserData().getAssetId().equals(Constants.OBSTACLE_FLY_ASSETS_ID)){
-            stateTime += Gdx.graphics.getDeltaTime();
             batch.draw((TextureRegion) AssetsManager.getAnimation(Constants.OBSTACLE_FLY_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
                     rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
 //        }else{

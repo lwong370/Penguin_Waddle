@@ -7,8 +7,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.lana.penguinwaddle.box2d_physics.PenguinUserData;
 import com.lana.penguinwaddle.enums.Difficulty;
+import com.lana.penguinwaddle.enums.GameState;
 import com.lana.penguinwaddle.utils.AssetsManager;
 import com.lana.penguinwaddle.utils.Constants;
+import com.lana.penguinwaddle.utils.GameManager;
 
 public class Penguin extends GameActor {
 
@@ -60,7 +62,9 @@ public class Penguin extends GameActor {
         }else if(frightStopped){
             batch.draw(AssetsManager.getTextureRegion(Constants.PENGUIN_STOP_ASSETS_ID), x, y, width, rectangleRendered.height);
         } else {
-            stateTime += Gdx.graphics.getDeltaTime();
+            if(GameManager.getInstance().getGameState() == GameState.PLAY){
+                stateTime += Gdx.graphics.getDeltaTime();
+            }
             batch.draw((TextureRegion) runningAnimation.getKeyFrame(stateTime, true), x, y, width, rectangleRendered.height);
         }
     }

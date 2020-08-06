@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.lana.penguinwaddle.actors.*;
+import com.lana.penguinwaddle.actors.buttons.PauseButton;
 import com.lana.penguinwaddle.enums.Difficulty;
 import com.lana.penguinwaddle.enums.GameState;
 import com.lana.penguinwaddle.utils.*;
@@ -24,6 +25,8 @@ public class GameStage extends Stage implements ContactListener {
     private Penguin penguin;
     private Obstacle obstacle;
     private Score score;
+    private PauseButton pauseButton;
+    private PauseButton resumeButton;
 
     private ScorePreferencesManager scorePreferencesManager = ScorePreferencesManager.getInstance();
 
@@ -32,9 +35,6 @@ public class GameStage extends Stage implements ContactListener {
     private float totalTimePassed;
 
     private OrthographicCamera camera;
-
-    //Temp
-//    private Box2DDebugRenderer renderer;
 
     boolean screenSlideDown;
     float rotateDelay;
@@ -60,6 +60,7 @@ public class GameStage extends Stage implements ContactListener {
         addActor(ground);
         addActor(penguin);
         createObstacle();
+        setUpPauseButton();
     }
 
     private void createObstacle(){
@@ -82,6 +83,22 @@ public class GameStage extends Stage implements ContactListener {
         addActor(score);
     }
 
+    private void setUpPauseButton(){
+        Rectangle bounds = new Rectangle(getCamera().viewportWidth / 64,
+                getCamera().viewportHeight * 13 / 16, getCamera().viewportHeight / 10,
+                getCamera().viewportHeight / 10);
+        pauseButton = new PauseButton(bounds, new PauseButtonListener());
+        addActor(pauseButton);
+    }
+
+    private void setUpResumeButton(){
+        Rectangle bounds = new Rectangle(getCamera().viewportWidth * 1/3,
+                getCamera().viewportHeight / 4, getCamera().viewportWidth / 4,
+                getCamera().viewportWidth / 4);
+        resumeButton = new PauseButton(bounds, new ResumeButtonListener());
+        addActor(resumeButton);
+    }
+
     public DirectionGestureDetector getGameGestureDetector(){
         return new DirectionGestureDetector(new DirectionGestureDetector.DirectionListener() {
             @Override
@@ -96,21 +113,31 @@ public class GameStage extends Stage implements ContactListener {
 
             @Override
             public void onUp() {
-               penguin.hop();
+                if(GameManager.getInstance().getGameState() == GameState.PLAY){
+                    penguin.hop();
+                }
             }
 
             @Override
             public void onDown() {
-                screenSlideDown = true;
-                penguin.tumble();
-                rotateDelay = 0f;
+                if(GameManager.getInstance().getGameState() == GameState.PLAY){
+                    screenSlideDown = true;
+                    penguin.tumble();
+                    rotateDelay = 0f;
+                }
             }
         });
     }
 
+
+
     @Override
     public void act(float delta) {
         super.act(delta);
+
+        if(GameManager.getInstance().getGameState() == GameState.PAUSED){
+            return;
+        }
 
         if(GameManager.getInstance().getGameState() == GameState.PLAY){
             totalTimePassed += delta;
@@ -142,7 +169,6 @@ public class GameStage extends Stage implements ContactListener {
         }
 
         updatePenguinFrightStopState();
-
     }
 
     @Override
@@ -233,6 +259,20 @@ public class GameStage extends Stage implements ContactListener {
         GameManager.getInstance().saveScore(score.getScore());
     }
 
+    private void onGamePause(){
+        GameManager.getInstance().setGameState(GameState.PAUSED);
+        bkgrd.setStop(true);
+        ground.setStop(true);
+        setUpResumeButton();
+        pauseButton.remove();
+    }
+
+    private void onGameResumed(){
+        GameManager.getInstance().setGameState(GameState.PLAY);
+        setUpPauseButton();
+        resumeButton.remove();
+    }
+
     private void updatePenguinFrightStopState(){
         if(numFingersTouch == 2){
             penguin.frightStop();
@@ -247,6 +287,20 @@ public class GameStage extends Stage implements ContactListener {
             penguin.undoFrightStop();
             bkgrd.setStop(false);
             ground.setStop(false);
+        }
+    }
+
+    private class PauseButtonListener implements PauseButton.PauseButtonListener{
+        @Override
+        public void onClicked() {
+            onGamePause();
+        }
+    }
+
+    private class ResumeButtonListener implements PauseButton.PauseButtonListener{
+        @Override
+        public void onClicked() {
+            onGameResumed();
         }
     }
 }
