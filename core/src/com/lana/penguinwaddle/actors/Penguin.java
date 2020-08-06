@@ -54,17 +54,18 @@ public class Penguin extends GameActor {
         float y = rectangleRendered.y;
         float width = rectangleRendered.width * 1.2f;
 
+        //For animation
+        if(GameManager.getInstance().getGameState() == GameState.PLAY){
+            stateTime += Gdx.graphics.getDeltaTime();
+        }
+
         if(hopping){
             batch.draw(AssetsManager.getTextureRegion(Constants.PENGUIN_HOPPING_ASSETS_ID), x, y, width, rectangleRendered.height);
         } else if (tumbling) {
-            stateTime += Gdx.graphics.getDeltaTime();
             batch.draw((TextureRegion) tumbleAnimation.getKeyFrame(stateTime, true), x, y, width, rectangleRendered.height);
         }else if(frightStopped){
             batch.draw(AssetsManager.getTextureRegion(Constants.PENGUIN_STOP_ASSETS_ID), x, y, width, rectangleRendered.height);
         } else {
-            if(GameManager.getInstance().getGameState() == GameState.PLAY){
-                stateTime += Gdx.graphics.getDeltaTime();
-            }
             batch.draw((TextureRegion) runningAnimation.getKeyFrame(stateTime, true), x, y, width, rectangleRendered.height);
         }
     }

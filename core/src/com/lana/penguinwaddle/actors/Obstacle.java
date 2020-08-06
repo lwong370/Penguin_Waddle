@@ -39,9 +39,12 @@ public class Obstacle extends GameActor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
+
+        //For animation
         if(GameManager.getInstance().getGameState() == GameState.PLAY){
             stateTime += Gdx.graphics.getDeltaTime();
         }
+        
         if (getUserData().getAssetId().equals(Constants.OBSTACLE_GROUND_ASSETS_ID)) {
             batch.draw(AssetsManager.getTextureRegion(Constants.OBSTACLE_GROUND_ASSETS_ID), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
                     rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
