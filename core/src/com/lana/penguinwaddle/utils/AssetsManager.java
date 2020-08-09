@@ -26,8 +26,6 @@ public class AssetsManager {
         texturesMap.put(Constants.PENGUIN_HOPPING_ASSETS_ID, textureAtlas1.findRegion("penguin_hop"));
         texturesMap.put(Constants.PENGUIN_STOP_ASSETS_ID, textureAtlas1.findRegion("penguin_stop"));
         texturesMap.put(Constants.PENGUIN_TUMBLE_ASSETS_ID, textureAtlas1.findRegion("penguin_tumble_crop"));
-        texturesMap.put(Constants.OBSTACLE_GROUND_ASSETS_ID, textureAtlas2.findRegion("ice_block"));
-        texturesMap.put(Constants.OBSTACLE_FLY_ASSETS_ID, textureAtlas2.findRegion("seagull1"));
         texturesMap.put(Constants.BUTTON_INFO_ASSET_ID, textureAtlas3.findRegion("info_button"));
         texturesMap.put(Constants.BUTTON_LEADERBOARD_ASSET_ID, textureAtlas3.findRegion("leaderboard_button"));
         texturesMap.put(Constants.BUTTON_MENU_ASSET_ID, textureAtlas3.findRegion("menu_button"));
@@ -39,8 +37,9 @@ public class AssetsManager {
         animationMap.put(Constants.PENGUIN_RUNNING_ASSETS_ID, createAnimation(textureAtlas1, Constants.PENGUIN_RUNNING_ANIMATION_FRAMES));
         animationMap.put(Constants.PENGUIN_TUMBLE_ASSETS_ID, createAnimation(textureAtlas1, Constants.PENGUIN_TUMBLING_ANIMATION_FRAMES));
         animationMap.put(Constants.OBSTACLE_FLY_ASSETS_ID, createAnimation(textureAtlas2, Constants.SEAGULL_ANIMATION_FRAMES));
-        animationMap.put(Constants.OBSTACLE_HOVER_GENERATE_ASSETS_ID, createAnimation(textureAtlas2, Constants.STORM_GENERATE_FRAMES));
-//        animationMap.put(Constants.OBSTACLE_HOVER_REPEAT_ASSETS_ID, createAnimation(textureAtlas2, Constants.STORM_REPEAT_FRAMES));
+        animationMap.put(Constants.OBSTACLE_CLOUD_ASSETS_ID, createAnimation(textureAtlas2, Constants.CLOUD_FRAMES));
+        animationMap.put(Constants.OBSTACLE_GROUND_ASSETS_ID, createAnimation(textureAtlas2, Constants.SNOWBALL_ANIMATION_FRAMES));
+        animationMap.put(Constants.OBSTACLE_RAIN_ASSETS_ID, createAnimation(textureAtlas2, Constants.RAIN_FRAMES));
     }
 
     private static Animation createAnimation(TextureAtlas atlas, String[] regionsArray){

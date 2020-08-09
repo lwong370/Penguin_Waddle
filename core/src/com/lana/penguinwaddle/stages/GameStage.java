@@ -65,6 +65,10 @@ public class GameStage extends Stage implements ContactListener {
 
     private void createObstacle(){
         obstacle = new Obstacle(WorldUtils.createObstacle(world));
+        //TODO Unsure where if-statement below belongs
+        if(obstacle.getUserData().getAssetId().equals(Constants.OBSTACLE_CLOUD_ASSETS_ID)){
+            obstacle.getUserData().setStormRaining(true);
+        }
         obstacle.changeDifficulty(GameManager.getInstance().getDifficulty());
         addActor(obstacle);
     }
@@ -169,6 +173,7 @@ public class GameStage extends Stage implements ContactListener {
         }
 
         updatePenguinFrightStopState();
+        penguinStormReaction();
     }
 
     @Override
@@ -227,6 +232,16 @@ public class GameStage extends Stage implements ContactListener {
                 createObstacle();
             }
             world.destroyBody(body);
+        }
+    }
+
+    private void penguinStormReaction(){
+        if(obstacle.getUserData().getAssetId().equals(Constants.OBSTACLE_CLOUD_ASSETS_ID)){
+            if(penguin.isFrightStopped()){
+                obstacle.getUserData().setStormRaining(false);
+            }else{
+                obstacle.getUserData().setStormRaining(true);
+            }
         }
     }
 

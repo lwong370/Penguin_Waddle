@@ -20,8 +20,6 @@ public class Obstacle extends GameActor {
 
     public Obstacle(Body body) {
         super(body);
-//        textureRegion = AssetsManager.getTextureRegion(getUserData().getAssetId());
-//        animation = AssetsManager.getAnimation(getUserData().getAssetId());
         stateTime = 0f;
     }
 
@@ -44,17 +42,23 @@ public class Obstacle extends GameActor {
         if(GameManager.getInstance().getGameState() == GameState.PLAY){
             stateTime += Gdx.graphics.getDeltaTime();
         }
-        
+
         if (getUserData().getAssetId().equals(Constants.OBSTACLE_GROUND_ASSETS_ID)) {
-            batch.draw(AssetsManager.getTextureRegion(Constants.OBSTACLE_GROUND_ASSETS_ID), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
+            batch.draw((TextureRegion) AssetsManager.getAnimation(Constants.OBSTACLE_GROUND_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
                     rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
         } else if(getUserData().getAssetId().equals(Constants.OBSTACLE_FLY_ASSETS_ID)){
             batch.draw((TextureRegion) AssetsManager.getAnimation(Constants.OBSTACLE_FLY_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
                     rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
-//        }else{
-//            stateTime += Gdx.graphics.getDeltaTime();
-//            batch.draw((TextureRegion) animation.getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
-//                    rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
+        }else if(getUserData().getAssetId().equals(Constants.OBSTACLE_CLOUD_ASSETS_ID)){
+            batch.draw((TextureRegion) AssetsManager.getAnimation(Constants.OBSTACLE_CLOUD_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
+                    rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
+            if(getUserData().isStormRaining()){
+                batch.draw((TextureRegion) AssetsManager.getAnimation(Constants.OBSTACLE_RAIN_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.03f)),
+                        rectangleRendered.y-100, rectangleRendered.width * 1.08f, rectangleRendered.height * 1.3f);
+                System.out.println("is rainingg");
+            }else{
+                System.out.println("is not raining");
+            }
         }
     }
 

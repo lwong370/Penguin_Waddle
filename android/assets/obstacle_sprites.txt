@@ -1,61 +1,75 @@
 obstacle_sprites-0.png
-size: 2048, 1845
+size: 1871, 1975
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 cloud1
   rotate: false
-  xy: 0, 0
-  size: 614, 461
-  orig: 614, 461
+  xy: 470, 0
+  size: 960, 445
+  orig: 960, 445
   offset: 0, 0
   index: -1
 cloud2
   rotate: false
-  xy: 614, 0
+  xy: 453, 445
+  size: 966, 452
+  orig: 966, 452
+  offset: 0, 0
+  index: -1
+rain1
+  rotate: false
+  xy: 449, 899
   size: 614, 461
   orig: 614, 461
   offset: 0, 0
   index: -1
-cloud3
+rain2
   rotate: false
-  xy: 1228, 0
+  xy: 1063, 899
   size: 614, 461
   orig: 614, 461
-  offset: 0, 0
-  index: -1
-cloud4
-  rotate: false
-  xy: 0, 461
-  size: 819, 615
-  orig: 819, 615
-  offset: 0, 0
-  index: -1
-cloud5
-  rotate: false
-  xy: 819, 461
-  size: 819, 615
-  orig: 819, 615
-  offset: 0, 0
-  index: -1
-ice_block
-  rotate: false
-  xy: 1638, 461
-  size: 410, 308
-  orig: 410, 308
   offset: 0, 0
   index: -1
 seagull1
   rotate: false
-  xy: 0, 1076
-  size: 1024, 769
-  orig: 1024, 769
+  xy: 0, 1360
+  size: 819, 615
+  orig: 819, 615
   offset: 0, 0
   index: -1
 seagull2
   rotate: false
-  xy: 1024, 1076
-  size: 1024, 769
-  orig: 1024, 769
+  xy: 819, 1360
+  size: 819, 615
+  orig: 819, 615
+  offset: 0, 0
+  index: -1
+snowball1
+  rotate: false
+  xy: 0, 0
+  size: 470, 444
+  orig: 470, 444
+  offset: 0, 0
+  index: -1
+snowball2
+  rotate: false
+  xy: 1419, 445
+  size: 452, 454
+  orig: 452, 454
+  offset: 0, 0
+  index: -1
+snowball3
+  rotate: false
+  xy: 0, 899
+  size: 449, 458
+  orig: 449, 458
+  offset: 0, 0
+  index: -1
+snowball4
+  rotate: false
+  xy: 0, 445
+  size: 453, 451
+  orig: 453, 451
   offset: 0, 0
   index: -1
