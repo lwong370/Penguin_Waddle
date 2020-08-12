@@ -49,17 +49,17 @@ public class Obstacle extends GameActor {
             batch.draw((TextureRegion) AssetsManager.getAnimation(Constants.OBSTACLE_FLY_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
                     rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
         }else if(getUserData().getAssetId().equals(Constants.OBSTACLE_CLOUD_ASSETS_ID)){
-            batch.draw((TextureRegion) AssetsManager.getAnimation(Constants.OBSTACLE_CLOUD_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
-                    rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
+            drawCloud(batch);
             if(getUserData().isStormRaining()){
-                batch.draw((TextureRegion) AssetsManager.getAnimation(Constants.OBSTACLE_RAIN_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.03f)),
-                        rectangleRendered.y-200, rectangleRendered.width * 1.08f, rectangleRendered.height * 2.5f);
+                batch.draw((TextureRegion) AssetsManager.getAnimation(Constants.OBSTACLE_RAIN_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.05f)),
+                        rectangleRendered.y-208, rectangleRendered.width * 1.08f, rectangleRendered.height * 2.7f);
+                drawCloud(batch);
 
-                //Add rain fixture
+                //Add rain fixture for collision detection
                 PolygonShape shape = new PolygonShape();
                 shape.setAsBox(6/2, 12/2);
                 body.createFixture(shape, Constants.OBSTACLE_DENSITY);
-                
+
             }else{
                 for(Fixture fixture: body.getFixtureList()){
                     body.destroyFixture(fixture);
@@ -70,5 +70,10 @@ public class Obstacle extends GameActor {
 
     public void changeDifficulty(Difficulty newDifficulty){
         getUserData().setLinearVelocity(newDifficulty.getObstacleLinearVelocity());
+    }
+
+    private void drawCloud(Batch batch){
+        batch.draw((TextureRegion) AssetsManager.getAnimation(Constants.OBSTACLE_CLOUD_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
+                rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
     }
 }
