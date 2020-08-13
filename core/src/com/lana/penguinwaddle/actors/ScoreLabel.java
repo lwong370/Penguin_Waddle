@@ -1,14 +1,12 @@
 package com.lana.penguinwaddle.actors;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Align;
 import com.lana.penguinwaddle.enums.GameState;
+import com.lana.penguinwaddle.utils.AssetsManager;
 import com.lana.penguinwaddle.utils.Constants;
 import com.lana.penguinwaddle.utils.GameManager;
 import com.lana.penguinwaddle.utils.ScorePreferencesManager;
@@ -26,12 +24,7 @@ public class ScoreLabel extends Actor {
         this.bounds = bounds;
         setWidth(bounds.width);
         setHeight(bounds.height);
-
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(Constants.SCORE_FONT));
-        font = generator.generateFont(new FreeTypeFontGenerator.FreeTypeFontParameter());
-
-        font.setColor(Color.WHITE);
-        font.getData().setScale(1.5f);
+        font = AssetsManager.getSmallFont();
 
         this.label = label;
     }

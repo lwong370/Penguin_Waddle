@@ -1,8 +1,11 @@
 package com.lana.penguinwaddle.utils;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 import java.util.HashMap;
 
@@ -14,6 +17,10 @@ public class AssetsManager {
     private static HashMap<String, TextureRegion> texturesMap = new HashMap<>();
     private static HashMap<String, Animation> animationMap = new HashMap<>();
 
+    private static BitmapFont smallFont;
+    private static BitmapFont largeFont;
+    private static BitmapFont smallestFont;
+
     public AssetsManager(){
 
     }
@@ -23,6 +30,7 @@ public class AssetsManager {
         textureAtlas2 = new TextureAtlas(Constants.OBSTACLES_ATLAS_PATH);
         textureAtlas3 = new TextureAtlas(Constants.BUTTON_ATLAS_PATH);
 
+        //TextureRegion
         texturesMap.put(Constants.PENGUIN_HOPPING_ASSETS_ID, textureAtlas1.findRegion("penguin_hop"));
         texturesMap.put(Constants.PENGUIN_STOP_ASSETS_ID, textureAtlas1.findRegion("penguin_stop"));
         texturesMap.put(Constants.PENGUIN_TUMBLE_ASSETS_ID, textureAtlas1.findRegion("penguin_tumble_crop"));
@@ -34,12 +42,27 @@ public class AssetsManager {
         texturesMap.put(Constants.BUTTON_PAUSE_ASSET_ID, textureAtlas3.findRegion("pause_button"));
         texturesMap.put(Constants.BUTTON_BACK_ASSET_ID, textureAtlas3.findRegion("back_button"));
 
+        //Animation
         animationMap.put(Constants.PENGUIN_RUNNING_ASSETS_ID, createAnimation(textureAtlas1, Constants.PENGUIN_RUNNING_ANIMATION_FRAMES));
         animationMap.put(Constants.PENGUIN_TUMBLE_ASSETS_ID, createAnimation(textureAtlas1, Constants.PENGUIN_TUMBLING_ANIMATION_FRAMES));
         animationMap.put(Constants.OBSTACLE_FLY_ASSETS_ID, createAnimation(textureAtlas2, Constants.SEAGULL_ANIMATION_FRAMES));
         animationMap.put(Constants.OBSTACLE_CLOUD_ASSETS_ID, createAnimation(textureAtlas2, Constants.CLOUD_FRAMES));
         animationMap.put(Constants.OBSTACLE_GROUND_ASSETS_ID, createAnimation(textureAtlas2, Constants.SNOWBALL_ANIMATION_FRAMES));
         animationMap.put(Constants.OBSTACLE_RAIN_ASSETS_ID, createAnimation(textureAtlas2, Constants.RAIN_FRAMES));
+
+        //Fonts
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(Constants.SCORE_FONT));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 36;
+        smallFont = generator.generateFont(parameter);
+        smallFont.setColor(1f, 1f, 1f, 1f);
+        parameter.size = 72;
+        largeFont = generator.generateFont(parameter);
+        largeFont.setColor(.21f, .22f, .21f, 1f);
+        parameter.size = 24;
+        smallestFont = generator.generateFont(parameter);
+        smallestFont.setColor(.21f, .22f, .21f, 1f);
+        generator.dispose();
     }
 
     private static Animation createAnimation(TextureAtlas atlas, String[] regionsArray){
@@ -60,5 +83,17 @@ public class AssetsManager {
 
     public static Animation getAnimation(String key){
         return animationMap.get(key);
+    }
+
+    public static BitmapFont getSmallFont() {
+        return smallFont;
+    }
+
+    public static BitmapFont getLargeFont() {
+        return largeFont;
+    }
+
+    public static BitmapFont getSmallestFont() {
+        return smallestFont;
     }
 }
