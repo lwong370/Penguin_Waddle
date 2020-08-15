@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.lana.penguinwaddle.actors.Background;
+import com.lana.penguinwaddle.actors.buttons.InfoButton;
 import com.lana.penguinwaddle.actors.buttons.LeaderboardButton;
 import com.lana.penguinwaddle.actors.buttons.PlayButton;
 import com.lana.penguinwaddle.enums.GameState;
@@ -20,6 +21,7 @@ public class MenuStage extends Stage {
 
     private Background bkgrd;
     private PlayButton playButton;
+    private InfoButton infoButton;
     private LeaderboardButton leaderboardButton;
 
     public MenuStage() {
@@ -27,16 +29,25 @@ public class MenuStage extends Stage {
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
         addWorldComponents();
         setUpStartButton();
+        setUpInfoButton();
         setUpLeaderboardButton();
         setUpCamera();
     }
 
     private void setUpStartButton(){
-        Rectangle bounds = new Rectangle(getCamera().viewportWidth * 1/3,
+        Rectangle bounds = new Rectangle(getCamera().viewportWidth * 1/3 + 25,
                 getCamera().viewportHeight / 4, getCamera().viewportWidth / 4,
                 getCamera().viewportWidth / 4);
         playButton = new PlayButton(bounds, new GamePlayButtonListener());
         addActor(playButton);
+    }
+
+    private void setUpInfoButton(){
+        Rectangle bounds = new Rectangle(getCamera().viewportWidth * 7 / 8,
+                getCamera().viewportHeight * 1 / 20, getCamera().viewportWidth / 10,
+                getCamera().viewportWidth / 12);
+        infoButton = new InfoButton(bounds, new InfoButtonListener());
+        addActor(infoButton);
     }
 
     private void setUpLeaderboardButton(){
@@ -67,6 +78,10 @@ public class MenuStage extends Stage {
         GameManager.getInstance().setGameState(GameState.LEADERBOARD);
     }
 
+    private void toInfoScreen(){
+        GameManager.getInstance().setGameState(GameState.INFO);
+    }
+
     private class GamePlayButtonListener implements PlayButton.PlayButtonListener{
         @Override
         public void onPlay() {
@@ -80,6 +95,14 @@ public class MenuStage extends Stage {
         public void toLeaderboard() {
             clear();
             onToLeaderboard();
+        }
+    }
+
+    private class InfoButtonListener implements InfoButton.InfoButtonListener{
+        @Override
+        public void onToInfoSreen() {
+            clear();
+            toInfoScreen();
         }
     }
 }

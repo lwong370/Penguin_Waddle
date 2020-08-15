@@ -5,36 +5,33 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.lana.penguinwaddle.PenguinWaddle;
 import com.lana.penguinwaddle.enums.GameState;
-import com.lana.penguinwaddle.stages.MenuStage;
+import com.lana.penguinwaddle.stages.InfoStage;
 import com.lana.penguinwaddle.utils.GameManager;
 
-public class MenuScreen implements Screen {
-    private PenguinWaddle game;
-    private MenuStage menuStage;
-    private InputMultiplexer multiplexer;
+public class InfoScreen implements Screen {
 
-    public MenuScreen(PenguinWaddle game) {
+    private PenguinWaddle game;
+    private InputMultiplexer multiplexer;
+    private InfoStage infoStage;
+
+    public InfoScreen(PenguinWaddle game) {
         this.game = game;
-        menuStage = new MenuStage();
         multiplexer = new InputMultiplexer();
+        infoStage = new InfoStage();
     }
 
     @Override
     public void show() {
-        multiplexer.addProcessor(menuStage);
+        multiplexer.addProcessor(infoStage);
         Gdx.input.setInputProcessor(multiplexer);
     }
 
     @Override
     public void render(float delta) {
-        menuStage.draw();
+        infoStage.draw();
 
-        if(GameManager.getInstance().getGameState() == GameState.PLAY){
-            game.setScreen(new GameScreen(game));
-        } else if(GameManager.getInstance().getGameState() == GameState.LEADERBOARD){
-            game.setScreen(new LeaderboardScreen(game));
-        } else if(GameManager.getInstance().getGameState() == GameState.INFO){
-            game.setScreen(new InfoScreen(game));
+        if(GameManager.getInstance().getGameState() == GameState.MENU){
+            game.setScreen(new MenuScreen(game));
         }
     }
 
@@ -56,12 +53,10 @@ public class MenuScreen implements Screen {
     @Override
     public void hide() {
         Gdx.input.setInputProcessor(null);
-        multiplexer.removeProcessor(menuStage);
     }
 
     @Override
     public void dispose() {
-        menuStage.dispose();
-    }
 
+    }
 }

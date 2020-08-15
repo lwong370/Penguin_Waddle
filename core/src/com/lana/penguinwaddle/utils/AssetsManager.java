@@ -19,7 +19,8 @@ public class AssetsManager {
 
     private static BitmapFont smallFont;
     private static BitmapFont largeFont;
-    private static BitmapFont smallestFont;
+    private static BitmapFont smallestFontDark;
+    private static BitmapFont smallestFontLight;
 
     public AssetsManager(){
 
@@ -51,7 +52,7 @@ public class AssetsManager {
         animationMap.put(Constants.OBSTACLE_RAIN_ASSETS_ID, createAnimation(textureAtlas2, Constants.RAIN_FRAMES));
 
         //Fonts
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(Constants.SCORE_FONT));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(Constants.FONT));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 36;
         smallFont = generator.generateFont(parameter);
@@ -59,9 +60,12 @@ public class AssetsManager {
         parameter.size = 72;
         largeFont = generator.generateFont(parameter);
         largeFont.setColor(.21f, .22f, .21f, 1f);
-        parameter.size = 24;
-        smallestFont = generator.generateFont(parameter);
-        smallestFont.setColor(.21f, .22f, .21f, 1f);
+        parameter.size = 25;
+        smallestFontDark = generator.generateFont(parameter);
+        smallestFontDark.setColor(.21f, .22f, .21f, 1f);
+        parameter.size = 25;
+        smallestFontLight = generator.generateFont(parameter);
+        smallestFontLight.setColor(1f, 1f, 1f, 1f);
         generator.dispose();
     }
 
@@ -93,7 +97,11 @@ public class AssetsManager {
         return largeFont;
     }
 
-    public static BitmapFont getSmallestFont() {
-        return smallestFont;
+    public static BitmapFont getSmallestFontDark() {
+        return smallestFontDark;
+    }
+
+    public static BitmapFont getSmallestFontLight() {
+        return smallestFontLight;
     }
 }
