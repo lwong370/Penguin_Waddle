@@ -21,7 +21,7 @@ public class Score extends Actor {
         setHeight(bounds.height);
         score = 0;
         multiplier = 2;
-        font = AssetsManager.getSmallestFont();
+        font = AssetsManager.getSmallestFontDark();
     }
 
     @Override
