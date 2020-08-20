@@ -3,10 +3,12 @@ package com.lana.penguinwaddle.stages;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.lana.penguinwaddle.actors.*;
 import com.lana.penguinwaddle.actors.buttons.PauseButton;
@@ -28,6 +30,11 @@ public class GameStage extends Stage implements ContactListener {
     private PauseButton pauseButton;
     private PauseButton resumeButton;
 
+    private Vector3 touchPoint;
+    private Rectangle screenRightSide;
+    private Rectangle screenLeftSide;
+    private Rectangle wholeScreen;
+
     private ScorePreferencesManager scorePreferencesManager = ScorePreferencesManager.getInstance();
 
     private final float TIME_STEP = 1/300f;
@@ -38,15 +45,24 @@ public class GameStage extends Stage implements ContactListener {
 
     boolean screenSlideDown;
     float rotateDelay;
-    int numFingersTouch = 0;
+
+    //Test variables
+    boolean leftActive = false;
+    boolean rightActive = false;
+    double leftTimer;
+    double rightTimer;
+    float delta;
+
+    private int numFingersTouch = 0;
 
     public GameStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
+        setUpCamera();
         onGameStart();
         setUpWorldComponents();
-        setUpCamera();
         setUpScore();
+        setUpTouchControlAreas();
     }
 
     private void setUpWorldComponents(){
@@ -87,6 +103,13 @@ public class GameStage extends Stage implements ContactListener {
         addActor(score);
     }
 
+    private void setUpTouchControlAreas(){
+        touchPoint = new Vector3();
+        screenRightSide =  new Rectangle(getCamera().viewportWidth/2, 0, getCamera().viewportWidth/2, getCamera().viewportHeight);
+        screenLeftSide = new Rectangle(0, 0, getCamera().viewportWidth/2, getCamera().viewportHeight);
+        wholeScreen = new Rectangle(0, 0, getCamera().viewportWidth, getCamera().viewportHeight);
+    }
+
     private void setUpPauseButton(){
         Rectangle bounds = new Rectangle(getCamera().viewportWidth / 64,
                 getCamera().viewportHeight * 13 / 16, getCamera().viewportHeight / 10,
@@ -103,41 +126,10 @@ public class GameStage extends Stage implements ContactListener {
         addActor(resumeButton);
     }
 
-    public DirectionGestureDetector getGameGestureDetector(){
-        return new DirectionGestureDetector(new DirectionGestureDetector.DirectionListener() {
-            @Override
-            public void onLeft() {
-
-            }
-
-            @Override
-            public void onRight() {
-
-            }
-
-            @Override
-            public void onUp() {
-                if(GameManager.getInstance().getGameState() == GameState.PLAY){
-                    penguin.hop();
-                }
-            }
-
-            @Override
-            public void onDown() {
-                if(GameManager.getInstance().getGameState() == GameState.PLAY){
-                    screenSlideDown = true;
-                    penguin.tumble();
-                    rotateDelay = 0f;
-                }
-            }
-        });
-    }
-
-
-
     @Override
     public void act(float delta) {
         super.act(delta);
+        this.delta = delta;
 
         if(GameManager.getInstance().getGameState() == GameState.PAUSED){
             return;
@@ -172,8 +164,10 @@ public class GameStage extends Stage implements ContactListener {
             }
         }
 
-        updatePenguinFrightStopState();
+        updateTouch();
         penguinStormReaction();
+        System.out.println("fingers" + numFingersTouch);
+
     }
 
     @Override
@@ -209,19 +203,66 @@ public class GameStage extends Stage implements ContactListener {
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         numFingersTouch--;
+
         return super.touchUp(screenX, screenY, pointer, button);
     }
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         numFingersTouch++;
-        return super.touchDown(screenX, screenY, pointer, button);
+        translateScreenToWorldCoordinates(screenX, screenY);
+
+        if(leftSideTouched(touchPoint.x, touchPoint.y) && !leftActive){
+            leftTimer = delta;
+            leftActive = true;
+        }
+
+        if(rightSideTouched(touchPoint.x, touchPoint.y) && !rightActive){
+            rightTimer = delta;
+            rightActive = true;
+        }
+
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                if(numFingersTouch == 2){
+                    penguin.frightStop();
+                    if(penguin.isFrightStopped()){
+                        bkgrd.setStop(true);
+                        ground.setStop(true);
+                    }
+                    leftActive = false;
+                    rightActive = false;
+                }
+
+                if(leftActive){
+                    leftTimer--;
+                    if(leftTimer < 0){
+                        screenSlideDown = true;
+                        penguin.tumble();
+                        rotateDelay = 0f;
+                        leftActive = false;
+                    }
+                }
+
+                if(rightActive){
+                    rightTimer--;
+                    if(rightTimer < 0){
+                        penguin.hop();
+                        rightActive = false;
+                    }
+                }
+            }
+        }, 0.05f);
+
+    return super.touchDown(screenX, screenY, pointer, button);
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         return super.touchDragged(screenX, screenY, pointer);
     }
+    
     public Penguin getPenguin(){
         return penguin;
     }
@@ -288,21 +329,28 @@ public class GameStage extends Stage implements ContactListener {
         resumeButton.remove();
     }
 
-    private void updatePenguinFrightStopState(){
-        if(numFingersTouch == 2){
-            penguin.frightStop();
-            if(penguin.isFrightStopped()){
-                bkgrd.setStop(true);
-                ground.setStop(true);
-            }
-        }
-
+    private void updateTouch(){
         if(!Gdx.input.isTouched()){
             numFingersTouch = 0;
             penguin.undoFrightStop();
             bkgrd.setStop(false);
             ground.setStop(false);
         }
+    }
+
+    private boolean rightSideTouched(float x, float y){
+        return screenRightSide.contains(x, y);
+    }
+
+    private boolean leftSideTouched(float x, float y){
+        return screenLeftSide.contains(x, y);
+    }
+    private boolean twoFingersOnScreen(float x, float y){
+        return wholeScreen.contains(x, y);
+    }
+
+    private void translateScreenToWorldCoordinates(int x, int y) {
+        getCamera().unproject(touchPoint.set(x, y, 0));
     }
 
     private class PauseButtonListener implements PauseButton.PauseButtonListener{
@@ -319,3 +367,4 @@ public class GameStage extends Stage implements ContactListener {
         }
     }
 }
+

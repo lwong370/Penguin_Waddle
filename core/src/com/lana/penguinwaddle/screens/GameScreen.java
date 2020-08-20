@@ -25,7 +25,6 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
         multiplexer.addProcessor(gameStage);
-        multiplexer.addProcessor(gameStage.getGameGestureDetector());
         Gdx.input.setInputProcessor(multiplexer);
     }
 
