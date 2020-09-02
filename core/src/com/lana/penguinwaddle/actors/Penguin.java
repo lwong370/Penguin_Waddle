@@ -94,7 +94,10 @@ public class Penguin extends GameActor {
     }
 
     public void frightStop(){
-        if(!hopping && !tumbling && !frightStopped){
+        if(!hopping && !frightStopped){
+            if(tumbling){
+                stopTumbling();
+            }
             frightStopped = true;
         }
     }
