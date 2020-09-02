@@ -22,7 +22,7 @@ public class Constants {
     public static final float RUNNER_DENSITY = 0.5f;
 
     public static float RUNNER_GRAVITY_SCALE = 3f;
-    public static final Vector2 RUNNER_LINEAR_JUMP_IMPULSE = new Vector2(0, 100f);
+    public static final Vector2 RUNNER_LINEAR_JUMP_IMPULSE = new Vector2(0, 105f);
     public static final Vector2 RUNNER_LINEAR_STOP_TUMBLE_IMPULSE = new Vector2(-10, 0);
 
     public static final float OBSTACLE_X = 23f;
@@ -60,7 +60,7 @@ public class Constants {
 
     public static final String GAME_BACKGROUND_IMAGE_PATH = "bkgrd.png";
     public static final String WORDLESS_BACKGROUND_IMAGE_PATH = "wordless_bkgrd.png";
-    public static final String MENU_BACKGROUND_IMAGE_PATH = "main_menu_bkgrd.png";
+    public static final String MENU_BACKGROUND_IMAGE_PATH = "title_bkgrd.png";
     public static final String GROUND_IMAGE_PATH = "ground.png";
     public static final String PENGUIN_ATLAS_PATH = "penguin_sprites.txt";
     public static final String OBSTACLES_ATLAS_PATH = "obstacle_sprites.txt";
