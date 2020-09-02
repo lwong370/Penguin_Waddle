@@ -43,15 +43,10 @@ public class GameStage extends Stage implements ContactListener {
 
     private OrthographicCamera camera;
 
-    boolean screenSlideDown;
     float rotateDelay;
 
-    //Test variables
     boolean leftActive = false;
     boolean rightActive = false;
-    double leftTimer;
-    double rightTimer;
-    float delta;
 
     private int numFingersTouch = 0;
 
@@ -81,7 +76,6 @@ public class GameStage extends Stage implements ContactListener {
 
     private void createObstacle(){
         obstacle = new Obstacle(WorldUtils.createObstacle(world));
-        //TODO Unsure where if-statement below belongs
         if(obstacle.getUserData().getAssetId().equals(Constants.OBSTACLE_CLOUD_ASSETS_ID)){
             obstacle.getUserData().setStormRaining(true);
         }
@@ -128,8 +122,7 @@ public class GameStage extends Stage implements ContactListener {
 
     @Override
     public void act(float delta) {
-        super.act(delta);
-        this.delta = delta;
+        super.act(delta);;
 
         if(GameManager.getInstance().getGameState() == GameState.PAUSED){
             return;
@@ -154,20 +147,16 @@ public class GameStage extends Stage implements ContactListener {
             accumulator -= TIME_STEP;
         }
 
-        if(screenSlideDown){
-            if(penguin.isTumbling()){
-                rotateDelay += delta;
-                if(rotateDelay > 1){
-                    penguin.stopTumbling();
-                    screenSlideDown = false;
-                }
+        if(penguin.isTumbling()){
+            rotateDelay += delta;
+            if(rotateDelay > 1){
+                penguin.stopTumbling();
             }
         }
 
         updateTouch();
         penguinStormReaction();
         System.out.println("fingers" + numFingersTouch);
-
     }
 
     @Override
@@ -212,13 +201,15 @@ public class GameStage extends Stage implements ContactListener {
         numFingersTouch++;
         translateScreenToWorldCoordinates(screenX, screenY);
 
+        if(GameManager.getInstance().getGameState() != GameState.PLAY){
+            return super.touchDown(screenX, screenY, pointer, button);
+        }
+
         if(leftSideTouched(touchPoint.x, touchPoint.y) && !leftActive){
-            leftTimer = delta;
             leftActive = true;
         }
 
         if(rightSideTouched(touchPoint.x, touchPoint.y) && !rightActive){
-            rightTimer = delta;
             rightActive = true;
         }
 
@@ -236,21 +227,16 @@ public class GameStage extends Stage implements ContactListener {
                 }
 
                 if(leftActive){
-                    leftTimer--;
-                    if(leftTimer < 0){
-                        screenSlideDown = true;
+                    if(GameManager.getInstance().getGameState() != GameState.PAUSED){
                         penguin.tumble();
                         rotateDelay = 0f;
-                        leftActive = false;
                     }
+                    leftActive = false;
                 }
 
                 if(rightActive){
-                    rightTimer--;
-                    if(rightTimer < 0){
-                        penguin.hop();
-                        rightActive = false;
-                    }
+                    penguin.hop();
+                    rightActive = false;
                 }
             }
         }, 0.05f);
