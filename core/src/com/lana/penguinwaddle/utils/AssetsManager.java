@@ -29,7 +29,7 @@ public class AssetsManager {
     public static void loadAssets(){
         textureAtlas1 = new TextureAtlas(Constants.PENGUIN_ATLAS_PATH);
         textureAtlas2 = new TextureAtlas(Constants.OBSTACLES_ATLAS_PATH);
-        textureAtlas3 = new TextureAtlas(Constants.BUTTON_ATLAS_PATH);
+        textureAtlas3 = new TextureAtlas(Constants.BUTTON_LABEL_ATLAS_PATH);
 
         //TextureRegion
         texturesMap.put(Constants.PENGUIN_HOPPING_ASSETS_ID, textureAtlas1.findRegion("penguin_hop"));
@@ -42,6 +42,8 @@ public class AssetsManager {
         texturesMap.put(Constants.BUTTON_REPLAY_ASSET_ID, textureAtlas3.findRegion("replay_button"));
         texturesMap.put(Constants.BUTTON_PAUSE_ASSET_ID, textureAtlas3.findRegion("pause_button"));
         texturesMap.put(Constants.BUTTON_BACK_ASSET_ID, textureAtlas3.findRegion("back_button"));
+        texturesMap.put(Constants.LABEL_MENU_TITLE_ID, textureAtlas3.findRegion("menu_label"));
+        texturesMap.put(Constants.LABEL_GAME_OVER_ID, textureAtlas3.findRegion("game_over_label"));
 
         //Animation
         animationMap.put(Constants.PENGUIN_RUNNING_ASSETS_ID, createAnimation(textureAtlas1, Constants.PENGUIN_RUNNING_ANIMATION_FRAMES));

@@ -1,0 +1,68 @@
+button_and_label_sprites.png
+size: 1929, 1757
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+back_button
+  rotate: false
+  xy: 889, 547
+  size: 477, 454
+  orig: 477, 454
+  offset: 0, 0
+  index: -1
+game_over_label
+  rotate: false
+  xy: 0, 0
+  size: 628, 151
+  orig: 628, 151
+  offset: 0, 0
+  index: -1
+info_button
+  rotate: false
+  xy: 1366, 547
+  size: 563, 454
+  orig: 563, 454
+  offset: 0, 0
+  index: -1
+leaderboard_button
+  rotate: false
+  xy: 874, 217
+  size: 877, 330
+  orig: 877, 330
+  offset: 0, 0
+  index: -1
+menu_button
+  rotate: false
+  xy: 0, 217
+  size: 874, 329
+  orig: 874, 329
+  offset: 0, 0
+  index: -1
+menu_label
+  rotate: false
+  xy: 628, 0
+  size: 1162, 217
+  orig: 1162, 217
+  offset: 0, 0
+  index: -1
+pause_button
+  rotate: false
+  xy: 0, 1001
+  size: 733, 746
+  orig: 733, 746
+  offset: 0, 0
+  index: -1
+play_button
+  rotate: false
+  xy: 733, 1001
+  size: 850, 756
+  orig: 850, 756
+  offset: 0, 0
+  index: -1
+replay_button
+  rotate: false
+  xy: 0, 547
+  size: 889, 345
+  orig: 889, 345
+  offset: 0, 0
+  index: -1
