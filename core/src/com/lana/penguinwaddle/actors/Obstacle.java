@@ -16,6 +16,7 @@ import com.lana.penguinwaddle.utils.GameManager;
 public class Obstacle extends GameActor {
 
     private float stateTime;
+    private boolean isStormRaining;
 
     public Obstacle(Body body) {
         super(body);
@@ -50,7 +51,7 @@ public class Obstacle extends GameActor {
                     rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
         }else if(getUserData().getAssetId().equals(Constants.OBSTACLE_CLOUD_ASSETS_ID)){
             drawCloud(batch);
-            if(getUserData().isStormRaining()){
+            if(isStormRaining()){
                 batch.draw((TextureRegion) AssetsManager.getAnimation(Constants.OBSTACLE_RAIN_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.05f)),
                         rectangleRendered.y-208, rectangleRendered.width * 1.08f, rectangleRendered.height * 2.7f);
                 drawCloud(batch);
@@ -75,5 +76,13 @@ public class Obstacle extends GameActor {
     private void drawCloud(Batch batch){
         batch.draw((TextureRegion) AssetsManager.getAnimation(Constants.OBSTACLE_CLOUD_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
                 rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
+    }
+
+    public boolean isStormRaining() {
+        return isStormRaining;
+    }
+
+    public void setStormRaining(boolean isStormRaining){
+        this.isStormRaining = isStormRaining;
     }
 }

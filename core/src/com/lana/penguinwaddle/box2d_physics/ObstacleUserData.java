@@ -9,8 +9,6 @@ public class ObstacleUserData extends UserData {
     private Vector2 zeroVelocity;
     private String assetId;
 
-    private boolean isStormRaining;
-
     public ObstacleUserData(float width, float height, String assetId) {
         super(width, height);
         userDataType = UserDataType.OBSTACLE;
@@ -34,13 +32,4 @@ public class ObstacleUserData extends UserData {
     public void setAssetId(String assetId) {
         this.assetId = assetId;
     }
-
-    public boolean isStormRaining() {
-        return isStormRaining;
-    }
-
-    public void setStormRaining(boolean isStormRaining){
-        this.isStormRaining = isStormRaining;
-    }
-
 }

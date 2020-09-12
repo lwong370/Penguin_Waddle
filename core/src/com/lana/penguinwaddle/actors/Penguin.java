@@ -84,7 +84,7 @@ public class Penguin extends GameActor {
     public void tumble(){
         if(!hopping && !tumbling && !frightStopped){
             tumbling = true;
-            body.setTransform(getUserData().getDodgePosition(), (float) (-90f * (Math.PI / 180f)));
+            body.setTransform(getUserData().getDodgePosition(), getUserData().getDodgeAngle());
         }
     }
 
