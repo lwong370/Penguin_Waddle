@@ -17,8 +17,8 @@ public class Constants {
     public static final float RUNNER_Y = GROUND_HEIGHT;
     public static final float RUNNER_DODGE_X = 3;
     public static final float RUNNER_DODGE_Y = 3.4f;
-    public static final float RUNNER_WIDTH = 3f;
-    public static final float RUNNER_HEIGHT = 4.5f;
+    public static final float RUNNER_WIDTH = 2.9f;
+    public static final float RUNNER_HEIGHT = 4.35f;
     public static final float RUNNER_DENSITY = 0.5f;
 
     public static float RUNNER_GRAVITY_SCALE = 3f;
@@ -27,7 +27,7 @@ public class Constants {
 
     public static final float OBSTACLE_X = 23f;
     public static final float OBSTACLE_GROUND_Y = 2.5f;
-    public static final float OBSTACLE_FLY_Y = 10f;
+    public static final float OBSTACLE_FLY_Y = 7f;
     public static final float OBSTACLE_HOVER_Y = 10f;
     public static final float OBSTACLE_DENSITY = RUNNER_DENSITY;
     public static final Vector2 OBSTACLE_LINEAR_VELOCITY = new Vector2(-8f, 0);

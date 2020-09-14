@@ -26,6 +26,8 @@ public class Penguin extends GameActor {
     private Animation runningAnimation;
     private Animation tumbleAnimation;
 
+    private double rollTime;
+
     private float stateTime;
 
     public Penguin(Body body) {
@@ -34,6 +36,8 @@ public class Penguin extends GameActor {
 
         runningAnimation = AssetsManager.getAnimation(Constants.PENGUIN_RUNNING_ASSETS_ID);
         tumbleAnimation = AssetsManager.getAnimation(Constants.PENGUIN_TUMBLE_ASSETS_ID);
+
+        rollTime = 1.5;
     }
 
     @Override
@@ -126,8 +130,17 @@ public class Penguin extends GameActor {
         return frightStopped;
     }
 
+    public double getRollTime(){
+        return rollTime;
+    }
+
+    private void setRollTime(double rollTime){
+        this.rollTime = rollTime;
+    }
+
     public void changeDifficulty(Difficulty newDifficulty){
         body.setGravityScale(newDifficulty.getRunnerGravityScale());
         getUserData().setLinearJumpImpulse(newDifficulty.getRunnerJumpingLinearImpulse());
+        this.setRollTime(newDifficulty.getRollTime());
     }
 }
