@@ -59,7 +59,8 @@ public class Obstacle extends GameActor {
                             rectangleRendered.y-208, rectangleRendered.width * 1.08f, rectangleRendered.height * 2.7f);
                     drawCloud(batch);
 
-                    //Add rain fixture for collision detection
+                    //Add rain fixture for collision detection.
+                    //If-statement assures game doesn't glitch out after game paused.
                     if(GameManager.getInstance().getGameState() == GameState.PLAY){
                         PolygonShape shape = new PolygonShape();
                         shape.setAsBox(6/2, 12/2);

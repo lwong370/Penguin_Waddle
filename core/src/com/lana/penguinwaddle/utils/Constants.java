@@ -73,6 +73,7 @@ public class Constants {
     public static final String HIGH_SCORE_PREFERENCE_KEY = "High Score";
 
     public static final String FONT = "roboto_bold.ttf";
-    public static final String ABOUT_TEXT = "About the Developer & Credits\n\nHello! My name is Lana. I’ve always wanted to develop my own mobile game; however, it was challenging with school and other commitments. But I finally did it! I mustered up my coding knowledge and art skills to create my first gaming app. I hope you enjoy it!\n" +
-            "More information at www.lana_bamboobox.com\n";
+    public static final String ABOUT_TEXT = "About the Developer & Credits\n\nHello! My name is Lana, an engineering student and art enthusiast who craves a lot of dark chocolate and matcha tea. " +
+            "I've always wanted to develop my own mobile game, and I finally mustered my coding knowledge and art skills to create my first app! " +
+            "Thank you for your support and I hope you enjoy this as much as I had making it! \n";
 }
