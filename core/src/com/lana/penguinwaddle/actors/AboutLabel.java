@@ -16,7 +16,7 @@ public class AboutLabel extends Actor {
         this.bounds = bounds;
         setWidth(bounds.width);
         setHeight(bounds.height);
-        font = AssetsManager.getSmallestFontLight();
+        font = AssetsManager.getInstance().getSmallestFontLight();
     }
 
     @Override

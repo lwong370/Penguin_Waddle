@@ -19,6 +19,6 @@ public class GameLabel extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-        batch.draw(AssetsManager.getTextureRegion(textureName), bounds.x, bounds.y, bounds.width, bounds.height);
+        batch.draw(AssetsManager.getInstance().getTextureRegion(textureName), bounds.x, bounds.y, bounds.width, bounds.height);
     }
 }

@@ -1,0 +1,13 @@
+
+test.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+leaderboard_button
+  rotate: false
+  xy: 1, 1094
+  size: 1754, 659
+  orig: 1754, 659
+  offset: 0, 0
+  index: -1

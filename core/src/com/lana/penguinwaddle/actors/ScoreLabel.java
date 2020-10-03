@@ -24,7 +24,7 @@ public class ScoreLabel extends Actor {
         this.bounds = bounds;
         setWidth(bounds.width);
         setHeight(bounds.height);
-        font = AssetsManager.getSmallFont();
+        font = AssetsManager.getInstance().getSmallFont();
 
         this.label = label;
     }

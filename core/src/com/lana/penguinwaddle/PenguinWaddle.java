@@ -8,7 +8,7 @@ public class PenguinWaddle extends Game {
 
 	@Override
 	public void create () {
-		AssetsManager.loadAssets();
+		AssetsManager.getInstance().loadAssets();
 		setScreen(new MenuScreen(this));
 	}
 

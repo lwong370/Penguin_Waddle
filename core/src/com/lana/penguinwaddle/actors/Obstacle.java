@@ -45,17 +45,17 @@ public class Obstacle extends GameActor {
 
         switch (getUserData().getAssetId()){
             case Constants.OBSTACLE_GROUND_ASSETS_ID:
-                batch.draw((TextureRegion) AssetsManager.getAnimation(Constants.OBSTACLE_GROUND_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
+                batch.draw((TextureRegion) AssetsManager.getInstance().getAnimation(Constants.OBSTACLE_GROUND_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
                         rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
                 break;
             case Constants.OBSTACLE_FLY_ASSETS_ID:
-                batch.draw((TextureRegion) AssetsManager.getAnimation(Constants.OBSTACLE_FLY_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
+                batch.draw((TextureRegion) AssetsManager.getInstance().getAnimation(Constants.OBSTACLE_FLY_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
                         rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
                 break;
             case Constants.OBSTACLE_CLOUD_ASSETS_ID:
                 drawCloud(batch);
                 if(isStormRaining()){
-                    batch.draw((TextureRegion) AssetsManager.getAnimation(Constants.OBSTACLE_RAIN_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.05f)),
+                    batch.draw((TextureRegion) AssetsManager.getInstance().getAnimation(Constants.OBSTACLE_RAIN_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.05f)),
                             rectangleRendered.y-208, rectangleRendered.width * 1.08f, rectangleRendered.height * 2.7f);
                     drawCloud(batch);
 
@@ -82,7 +82,7 @@ public class Obstacle extends GameActor {
     }
 
     private void drawCloud(Batch batch){
-        batch.draw((TextureRegion) AssetsManager.getAnimation(Constants.OBSTACLE_CLOUD_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
+        batch.draw((TextureRegion) AssetsManager.getInstance().getAnimation(Constants.OBSTACLE_CLOUD_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
                 rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
     }
 

@@ -34,8 +34,8 @@ public class Penguin extends GameActor {
         super(body);
         stateTime = 0f;
 
-        runningAnimation = AssetsManager.getAnimation(Constants.PENGUIN_RUNNING_ASSETS_ID);
-        tumbleAnimation = AssetsManager.getAnimation(Constants.PENGUIN_TUMBLE_ASSETS_ID);
+        runningAnimation = AssetsManager.getInstance().getAnimation(Constants.PENGUIN_RUNNING_ASSETS_ID);
+        tumbleAnimation = AssetsManager.getInstance().getAnimation(Constants.PENGUIN_TUMBLE_ASSETS_ID);
 
         rollTime = 1.5;
     }
@@ -64,11 +64,11 @@ public class Penguin extends GameActor {
         }
 
         if(hopping){
-            batch.draw(AssetsManager.getTextureRegion(Constants.PENGUIN_HOPPING_ASSETS_ID), x, y, width, rectangleRendered.height);
+            batch.draw(AssetsManager.getInstance().getTextureRegion(Constants.PENGUIN_HOPPING_ASSETS_ID), x, y, width, rectangleRendered.height);
         } else if (tumbling) {
             batch.draw((TextureRegion) tumbleAnimation.getKeyFrame(stateTime, true), x, y, width, rectangleRendered.height);
         }else if(frightStopped){
-            batch.draw(AssetsManager.getTextureRegion(Constants.PENGUIN_STOP_ASSETS_ID), x, y, width, rectangleRendered.height);
+            batch.draw(AssetsManager.getInstance().getTextureRegion(Constants.PENGUIN_STOP_ASSETS_ID), x, y, width, rectangleRendered.height);
         } else {
             batch.draw((TextureRegion) runningAnimation.getKeyFrame(stateTime, true), x, y, width, rectangleRendered.height);
         }

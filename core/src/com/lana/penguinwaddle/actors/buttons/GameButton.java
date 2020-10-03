@@ -18,12 +18,11 @@ public abstract class GameButton extends Button{
         setHeight(bounds.height);
         setBounds(bounds.x, bounds.y, bounds.width, bounds.height);
         skin = new Skin();
-        skin.addRegions(AssetsManager.textureAtlas3);
+        skin.addRegions(AssetsManager.getInstance().textureAtlas3);
         loadTextureRegion();
         addListener(new ClickListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("touched");
                 touched();
                 loadTextureRegion();
                 return true;

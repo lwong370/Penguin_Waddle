@@ -1,32 +1,45 @@
 package com.lana.penguinwaddle.utils;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.ray3k.stripe.FreeTypeSkin;
 
 import java.util.HashMap;
 
-public class AssetsManager {
-    public static TextureAtlas textureAtlas1;
-    public static TextureAtlas textureAtlas2;
-    public static TextureAtlas textureAtlas3;
+public class AssetsManager extends AssetManager {
+    public static AssetsManager instance;
 
-    private static HashMap<String, TextureRegion> texturesMap = new HashMap<>();
-    private static HashMap<String, Animation> animationMap = new HashMap<>();
+    public TextureAtlas textureAtlas1;
+    public TextureAtlas textureAtlas2;
+    public TextureAtlas textureAtlas3;
 
-    private static BitmapFont smallFont;
-    private static BitmapFont largeFont;
-    private static BitmapFont smallestFontDark;
-    private static BitmapFont smallestFontLight;
+    private HashMap<String, TextureRegion> texturesMap = new HashMap<>();
+    private HashMap<String, Animation> animationMap = new HashMap<>();
+
+    private BitmapFont smallFont;
+    private BitmapFont largeFont;
+    private BitmapFont smallestFontDark;
+    private BitmapFont smallestFontLight;
+    private Skin skin;
 
     public AssetsManager(){
 
     }
 
-    public static void loadAssets(){
+    public static AssetsManager getInstance(){
+        if(instance == null){
+            instance = new AssetsManager();
+        }
+        return instance;
+    }
+
+    public void loadAssets(){
         textureAtlas1 = new TextureAtlas(Constants.PENGUIN_ATLAS_PATH);
         textureAtlas2 = new TextureAtlas(Constants.OBSTACLES_ATLAS_PATH);
         textureAtlas3 = new TextureAtlas(Constants.BUTTON_LABEL_ATLAS_PATH);
@@ -54,6 +67,8 @@ public class AssetsManager {
         animationMap.put(Constants.OBSTACLE_RAIN_ASSETS_ID, createAnimation(textureAtlas2, Constants.RAIN_FRAMES));
 
         //Fonts
+        skin = new FreeTypeSkin(Gdx.files.internal("test.json"));
+
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(Constants.FONT));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 36;
@@ -71,7 +86,7 @@ public class AssetsManager {
         generator.dispose();
     }
 
-    private static Animation createAnimation(TextureAtlas atlas, String[] regionsArray){
+    private Animation createAnimation(TextureAtlas atlas, String[] regionsArray){
         float frameDuration = 0.4f;
         TextureRegion[] textureRegions = new TextureRegion[regionsArray.length];
         for(int i = 0; i < regionsArray.length; i++){
@@ -83,27 +98,31 @@ public class AssetsManager {
         return new Animation(frameDuration, textureRegions);
     }
 
-    public static TextureRegion getTextureRegion(String key){
+    public TextureRegion getTextureRegion(String key){
         return texturesMap.get(key);
     }
 
-    public static Animation getAnimation(String key){
+    public Animation getAnimation(String key){
         return animationMap.get(key);
     }
 
-    public static BitmapFont getSmallFont() {
+    public BitmapFont getSmallFont() {
         return smallFont;
     }
 
-    public static BitmapFont getLargeFont() {
+    public BitmapFont getLargeFont() {
         return largeFont;
     }
 
-    public static BitmapFont getSmallestFontDark() {
+    public BitmapFont getSmallestFontDark() {
         return smallestFontDark;
     }
 
-    public static BitmapFont getSmallestFontLight() {
+    public BitmapFont getSmallestFontLight() {
         return smallestFontLight;
+    }
+
+    public Skin getSkin(){
+        return skin;
     }
 }
