@@ -1,0 +1,54 @@
+{
+com.badlogic.gdx.graphics.g2d.BitmapFont: {
+	choco_raindrops_bold: {
+		file: choco_raindrops_bold.fnt
+	}
+	roboto_bold: {
+		file: roboto_bold.fnt
+	}
+	Subsciber-aXdK: {
+		file: Subsciber-aXdK.fnt
+	}
+}
+com.badlogic.gdx.graphics.Color: {
+	azure: {
+		r: 0.46666664
+		g: 1
+		b: 0.9317333
+		a: 1
+	}
+	black: {
+		r: 0
+		g: 0
+		b: 0
+		a: 1
+	}
+	grey: {
+		r: 0.50333333
+		g: 0.50333333
+		b: 0.50333333
+		a: 1
+	}
+	white: {
+		r: 1
+		g: 1
+		b: 1
+		a: 1
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+	default: {
+		font: Subsciber-aXdK
+		fontColor: white
+	}
+	test : {
+		font: choco_raindrops_bold,
+		"fontColor": white
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {
+	default: {
+		label: default
+	}
+}
+}

@@ -3,10 +3,8 @@ package com.lana.penguinwaddle.utils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.ray3k.stripe.FreeTypeSkin;
 
@@ -22,10 +20,6 @@ public class AssetsManager extends AssetManager {
     private HashMap<String, TextureRegion> texturesMap = new HashMap<>();
     private HashMap<String, Animation> animationMap = new HashMap<>();
 
-    private BitmapFont smallFont;
-    private BitmapFont largeFont;
-    private BitmapFont smallestFontDark;
-    private BitmapFont smallestFontLight;
     private Skin skin;
 
     public AssetsManager(){
@@ -66,24 +60,8 @@ public class AssetsManager extends AssetManager {
         animationMap.put(Constants.OBSTACLE_GROUND_ASSETS_ID, createAnimation(textureAtlas2, Constants.SNOWBALL_ANIMATION_FRAMES));
         animationMap.put(Constants.OBSTACLE_RAIN_ASSETS_ID, createAnimation(textureAtlas2, Constants.RAIN_FRAMES));
 
-        //Fonts
-        skin = new FreeTypeSkin(Gdx.files.internal("test.json"));
-
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(Constants.FONT));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 36;
-        smallFont = generator.generateFont(parameter);
-        smallFont.setColor(1f, 1f, 1f, 1f);
-        parameter.size = 72;
-        largeFont = generator.generateFont(parameter);
-        largeFont.setColor(.21f, .22f, .21f, 1f);
-        parameter.size = 25;
-        smallestFontDark = generator.generateFont(parameter);
-        smallestFontDark.setColor(.21f, .22f, .21f, 1f);
-        parameter.size = 25;
-        smallestFontLight = generator.generateFont(parameter);
-        smallestFontLight.setColor(1f, 1f, 1f, 1f);
-        generator.dispose();
+        //Skin
+        skin = new FreeTypeSkin(Gdx.files.internal("penguin_waddle.json"));
     }
 
     private Animation createAnimation(TextureAtlas atlas, String[] regionsArray){
@@ -104,22 +82,6 @@ public class AssetsManager extends AssetManager {
 
     public Animation getAnimation(String key){
         return animationMap.get(key);
-    }
-
-    public BitmapFont getSmallFont() {
-        return smallFont;
-    }
-
-    public BitmapFont getLargeFont() {
-        return largeFont;
-    }
-
-    public BitmapFont getSmallestFontDark() {
-        return smallestFontDark;
-    }
-
-    public BitmapFont getSmallestFontLight() {
-        return smallestFontLight;
     }
 
     public Skin getSkin(){

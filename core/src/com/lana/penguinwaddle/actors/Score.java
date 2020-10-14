@@ -21,7 +21,7 @@ public class Score extends Actor {
         setHeight(bounds.height);
         score = 0;
         multiplier = 2;
-        font = AssetsManager.getInstance().getSmallestFontDark();
+        font = AssetsManager.getInstance().getSkin().getFont("roboto_bold");
     }
 
     @Override

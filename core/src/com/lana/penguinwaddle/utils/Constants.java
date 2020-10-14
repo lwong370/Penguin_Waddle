@@ -71,9 +71,15 @@ public class Constants {
     public static final String SCORE_PREFERENCE_NAME = "Score Preference";
     public static final String CURRENT_SCORE_KEY = "Current Score";
     public static final String HIGH_SCORE_PREFERENCE_KEY = "High Score";
+    public static final String RANK_KEY_1 = "Rank1";
+    public static final String RANK_KEY_2 = "Rank2";
+    public static final String RANK_KEY_3 = "Rank3";
+    public static final String RANK_KEY_4 = "Rank4";
+    public static final String RANK_KEY_5 = "Rank5";
+
 
     public static final String FONT = "roboto_bold.ttf";
     public static final String ABOUT_TEXT = "About the Developer & Credits\n\nHello! My name is Lana, an engineering student and art enthusiast who craves a lot of dark chocolate and matcha tea. " +
             "I've always wanted to develop my own mobile game, and I finally mustered my coding knowledge and art skills to create my first app! " +
-            "Thank you for your support and I hope you enjoy this as much as I had making it! \n";
+            "Thank you for your support! \n";
 }

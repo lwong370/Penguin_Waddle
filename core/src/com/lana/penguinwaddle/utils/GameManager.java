@@ -25,10 +25,29 @@ public class GameManager {
     }
 
     public void saveScore(int score){
-        int maxScore = ScorePreferencesManager.getInstance().readFromPreferences(Constants.HIGH_SCORE_PREFERENCE_KEY);
-        if(score > maxScore){
-            ScorePreferencesManager.getInstance().writeScoreToPreferences(Constants.HIGH_SCORE_PREFERENCE_KEY, score);
+        if(score > getScoreFromPref("Rank1")){
+            for(int i = 5; i > 1; i--){
+                //Replace current ranked score into ranked score below.
+                ScorePreferencesManager.getInstance().writeScoreToPreferences("Rank" + (i), getScoreFromPref("Rank" + (i-1)));
+            }
+            //Set Rank1 to new score.
+            ScorePreferencesManager.getInstance().writeScoreToPreferences(Constants.RANK_KEY_1, score);
+        }else{
+            for(int i = 2; i <= 5; i++){
+                if(score > getScoreFromPref("Rank" + i) && score < getScoreFromPref("Rank"+(i-1))){
+                    for(int j = 5; j > i; j--){
+                        //Replace current ranked score into ranked score below.
+                        ScorePreferencesManager.getInstance().writeScoreToPreferences("Rank" + (j), getScoreFromPref("Rank" + (j-1)));
+                    }
+                    //Set ranked score to new score.
+                    ScorePreferencesManager.getInstance().writeScoreToPreferences("Rank" + i, score);
+                }
+            }
         }
+    }
+
+    public int getScoreFromPref(String key){
+        return ScorePreferencesManager.getInstance().readFromPreferences(key);
     }
 
     //Game Difficulty//

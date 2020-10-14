@@ -1,0 +1,27 @@
+
+penguin_waddle.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Subsciber-aXdK
+  rotate: false
+  xy: 1, 203
+  size: 505, 95
+  orig: 505, 95
+  offset: 0, 0
+  index: -1
+choco_raindrops_bold
+  rotate: false
+  xy: 1, 390
+  size: 506, 115
+  orig: 506, 115
+  offset: 0, 0
+  index: -1
+roboto_bold
+  rotate: false
+  xy: 1, 300
+  size: 505, 88
+  orig: 505, 88
+  offset: 0, 0
+  index: -1

@@ -56,7 +56,7 @@ public class GameOverStage extends Stage {
         Rectangle bounds = new Rectangle(getCamera().viewportWidth * 11/16 - labelWidth / 2,
                 getCamera().viewportHeight / 3, labelWidth,
                 getCamera().viewportWidth / 5);
-        scoreLabel = new ScoreLabel(bounds, ScoreLabel.ScoreLabelType.SCORE);
+        scoreLabel = new ScoreLabel(bounds);
         addActor(scoreLabel);
     }
 
