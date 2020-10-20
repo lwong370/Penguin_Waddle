@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.lana.penguinwaddle.actors.Background;
-import com.lana.penguinwaddle.actors.GameLabel;
+import com.lana.penguinwaddle.actors.DrawnGameLabel;
 import com.lana.penguinwaddle.actors.buttons.InfoButton;
 import com.lana.penguinwaddle.actors.buttons.LeaderboardButton;
 import com.lana.penguinwaddle.actors.buttons.PlayButton;
@@ -24,7 +24,7 @@ public class MenuStage extends Stage {
     private PlayButton playButton;
     private InfoButton infoButton;
     private LeaderboardButton leaderboardButton;
-    private GameLabel titleLabel;
+    private DrawnGameLabel titleLabel;
 
     public MenuStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
@@ -65,9 +65,9 @@ public class MenuStage extends Stage {
         bkgrd = new Background(Constants.WORDLESS_BACKGROUND_IMAGE_PATH);
 
         float width = getCamera().viewportWidth * 9/10;
-        float height = getCamera().viewportHeight / 5;
+        float height = getCamera().viewportHeight * 2/9;
         Rectangle bounds = new Rectangle(getCamera().viewportWidth - width, getCamera().viewportHeight - height, getCamera().viewportWidth * 4/5, height);
-        titleLabel = new GameLabel(bounds, Constants.LABEL_MENU_TITLE_ID);
+        titleLabel = new DrawnGameLabel(bounds, Constants.LABEL_MENU_TITLE_ID);
 
         addActor(bkgrd);
         addActor(titleLabel);

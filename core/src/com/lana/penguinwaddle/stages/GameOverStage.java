@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.lana.penguinwaddle.actors.Background;
-import com.lana.penguinwaddle.actors.GameLabel;
+import com.lana.penguinwaddle.actors.DrawnGameLabel;
 import com.lana.penguinwaddle.actors.ScoreLabel;
 import com.lana.penguinwaddle.actors.buttons.ReplayButton;
 import com.lana.penguinwaddle.actors.buttons.ToMenuButton;
@@ -23,7 +23,7 @@ public class GameOverStage extends Stage {
 
     private Background bkgrd;
     private ScoreLabel scoreLabel;
-    private GameLabel gameOverLabel;
+    private DrawnGameLabel gameOverLabel;
 
     private ToMenuButton toMenuButton;
     private ReplayButton replayButton;
@@ -45,7 +45,7 @@ public class GameOverStage extends Stage {
         Rectangle bounds = new Rectangle(getCamera().viewportWidth * 11/16 - labelWidth/ 2,
                 getCamera().viewportHeight / 2, labelWidth,
                 getCamera().viewportHeight / 5);
-        gameOverLabel = new GameLabel(bounds, Constants.LABEL_GAME_OVER_ID);
+        gameOverLabel = new DrawnGameLabel(bounds, Constants.LABEL_GAME_OVER_ID);
 
         addActor(bkgrd);
         addActor(gameOverLabel);

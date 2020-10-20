@@ -5,11 +5,11 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.lana.penguinwaddle.utils.AssetsManager;
 
-public class GameLabel extends Actor {
+public class DrawnGameLabel extends Actor {
     private Rectangle bounds;
     private String textureName;
 
-    public GameLabel(Rectangle bounds, String textureName) {
+    public DrawnGameLabel(Rectangle bounds, String textureName) {
         this.bounds = bounds;
         this.textureName = textureName;
         setWidth(bounds.width);

@@ -8,11 +8,11 @@ import com.badlogic.gdx.utils.Align;
 import com.lana.penguinwaddle.utils.AssetsManager;
 import com.lana.penguinwaddle.utils.Constants;
 
-public class AboutLabel extends Actor {
+public class AboutMeText extends Actor {
     private Rectangle bounds;
     private BitmapFont font;
 
-    public AboutLabel(Rectangle bounds){
+    public AboutMeText(Rectangle bounds){
         this.bounds = bounds;
         setWidth(bounds.width);
         setHeight(bounds.height);
