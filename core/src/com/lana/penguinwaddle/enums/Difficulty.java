@@ -5,7 +5,7 @@ import com.lana.penguinwaddle.utils.Constants;
 
 public enum Difficulty {
     DIFFICULTY_1(1, Constants.OBSTACLE_LINEAR_VELOCITY, Constants.RUNNER_GRAVITY_SCALE, Constants.RUNNER_LINEAR_JUMP_IMPULSE, 1.6,2),
-    DIFFICULTY_2(2, new Vector2(-10f, 0f), Constants.RUNNER_GRAVITY_SCALE * 1.1f, Constants.RUNNER_LINEAR_JUMP_IMPULSE, 1.5,2),
+    DIFFICULTY_2(2, new Vector2(-10f, 0f), Constants.RUNNER_GRAVITY_SCALE, Constants.RUNNER_LINEAR_JUMP_IMPULSE, 1.5,2),
     DIFFICULTY_3(3, new Vector2(-10.5f, 0f), Constants.RUNNER_GRAVITY_SCALE * 1.1f, new Vector2(0, 102f), 1.5,3),
     DIFFICULTY_4(4, new Vector2(-11f, 0f), Constants.RUNNER_GRAVITY_SCALE * 1.1f, new Vector2(0, 102f), 1.5,3),
     DIFFICULTY_5(5, new Vector2(-11.5f, 0f), Constants.RUNNER_GRAVITY_SCALE * 1.1f , new Vector2(0, 102f), 1.5,4),

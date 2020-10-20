@@ -21,8 +21,8 @@ public class Constants {
     public static final float RUNNER_HEIGHT = 4.35f;
     public static final float RUNNER_DENSITY = 0.5f;
 
-    public static float RUNNER_GRAVITY_SCALE = 3f;
-    public static final Vector2 RUNNER_LINEAR_JUMP_IMPULSE = new Vector2(0, 105f);
+    public static float RUNNER_GRAVITY_SCALE = 2.75f;
+    public static final Vector2 RUNNER_LINEAR_JUMP_IMPULSE = new Vector2(0, 106f);
     public static final Vector2 RUNNER_LINEAR_STOP_TUMBLE_IMPULSE = new Vector2(-10, 0);
 
     public static final float OBSTACLE_X = 23f;
@@ -30,7 +30,7 @@ public class Constants {
     public static final float OBSTACLE_FLY_Y = 7f;
     public static final float OBSTACLE_HOVER_Y = 10f;
     public static final float OBSTACLE_DENSITY = RUNNER_DENSITY;
-    public static final Vector2 OBSTACLE_LINEAR_VELOCITY = new Vector2(-8f, 0);
+    public static final Vector2 OBSTACLE_LINEAR_VELOCITY = new Vector2(-9f, 0);
     public static final Vector2 ZERO_VELOCITY = new Vector2(0f, 0f);
 
     public static final String PENGUIN_RUNNING_ASSETS_ID = "penguin_run";
@@ -41,6 +41,7 @@ public class Constants {
     public static final String OBSTACLE_FLY_ASSETS_ID = "obstacle_fly";
     public static final String OBSTACLE_CLOUD_ASSETS_ID =  "obstacle_cloud_repeat";
     public static final String OBSTACLE_RAIN_ASSETS_ID = "obstacle_rain";
+    public static final String OBSTACLE_GROUND2_ASSETS_ID = "obstacle_seal";
 
     public static final String BUTTON_INFO_ASSET_ID = "info_button";
     public static final String BUTTON_LEADERBOARD_ASSET_ID = "leaderboard_button";
@@ -59,6 +60,7 @@ public class Constants {
     public static final String[] SNOWBALL_ANIMATION_FRAMES = new String[]{"snowball1", "snowball2", "snowball3", "snowball4"};
     public static final String[] CLOUD_FRAMES = new String[]{"cloud1", "cloud2"};
     public static final String[] RAIN_FRAMES = new String[]{"rain1", "rain2"};
+    public static final String[] SEAL_FRAMES = new String[]{"seal3", "seal2", "seal1", "seal2"};
 
     public static final String GAME_BACKGROUND_IMAGE_PATH = "bkgrd.png";
     public static final String WORDLESS_BACKGROUND_IMAGE_PATH = "wordless_bkgrd.png";

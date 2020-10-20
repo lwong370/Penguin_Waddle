@@ -59,6 +59,7 @@ public class AssetsManager extends AssetManager {
         animationMap.put(Constants.OBSTACLE_CLOUD_ASSETS_ID, createAnimation(textureAtlas2, Constants.CLOUD_FRAMES));
         animationMap.put(Constants.OBSTACLE_GROUND_ASSETS_ID, createAnimation(textureAtlas2, Constants.SNOWBALL_ANIMATION_FRAMES));
         animationMap.put(Constants.OBSTACLE_RAIN_ASSETS_ID, createAnimation(textureAtlas2, Constants.RAIN_FRAMES));
+        animationMap.put(Constants.OBSTACLE_GROUND2_ASSETS_ID, createAnimation(textureAtlas2, Constants.SEAL_FRAMES));
 
         //Skin
         skin = new FreeTypeSkin(Gdx.files.internal("penguin_waddle.json"));

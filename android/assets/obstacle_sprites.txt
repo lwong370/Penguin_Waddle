@@ -1,75 +1,96 @@
 obstacle_sprites-0.png
-size: 1871, 1975
+size: 1881, 2040
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 cloud1
   rotate: false
-  xy: 470, 0
-  size: 960, 445
-  orig: 960, 445
+  xy: 774, 0
+  size: 729, 338
+  orig: 729, 338
   offset: 0, 0
   index: -1
 cloud2
   rotate: false
-  xy: 453, 445
-  size: 966, 452
-  orig: 966, 452
+  xy: 0, 677
+  size: 734, 343
+  orig: 734, 343
   offset: 0, 0
   index: -1
 rain1
   rotate: false
-  xy: 449, 899
-  size: 614, 461
-  orig: 614, 461
+  xy: 375, 1055
+  size: 573, 431
+  orig: 573, 431
   offset: 0, 0
   index: -1
 rain2
   rotate: false
-  xy: 1063, 899
-  size: 614, 461
-  orig: 614, 461
+  xy: 948, 1055
+  size: 573, 431
+  orig: 573, 431
   offset: 0, 0
   index: -1
 seagull1
   rotate: false
-  xy: 0, 1360
-  size: 819, 615
-  orig: 819, 615
+  xy: 0, 1486
+  size: 737, 554
+  orig: 737, 554
   offset: 0, 0
   index: -1
 seagull2
   rotate: false
-  xy: 819, 1360
-  size: 819, 615
-  orig: 819, 615
+  xy: 737, 1486
+  size: 737, 554
+  orig: 737, 554
+  offset: 0, 0
+  index: -1
+seal1
+  rotate: false
+  xy: 0, 338
+  size: 771, 339
+  orig: 771, 339
+  offset: 0, 0
+  index: -1
+seal2
+  rotate: false
+  xy: 771, 338
+  size: 774, 339
+  orig: 774, 339
+  offset: 0, 0
+  index: -1
+seal3
+  rotate: false
+  xy: 0, 0
+  size: 774, 334
+  orig: 774, 334
   offset: 0, 0
   index: -1
 snowball1
   rotate: false
-  xy: 0, 0
-  size: 470, 444
-  orig: 470, 444
+  xy: 734, 677
+  size: 392, 370
+  orig: 392, 370
   offset: 0, 0
   index: -1
 snowball2
   rotate: false
-  xy: 1419, 445
-  size: 452, 454
-  orig: 452, 454
+  xy: 1504, 677
+  size: 377, 378
+  orig: 377, 378
   offset: 0, 0
   index: -1
 snowball3
   rotate: false
-  xy: 0, 899
-  size: 449, 458
-  orig: 449, 458
+  xy: 0, 1055
+  size: 375, 382
+  orig: 375, 382
   offset: 0, 0
   index: -1
 snowball4
   rotate: false
-  xy: 0, 445
-  size: 453, 451
-  orig: 453, 451
+  xy: 1126, 677
+  size: 378, 376
+  orig: 378, 376
   offset: 0, 0
   index: -1

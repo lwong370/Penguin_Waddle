@@ -5,7 +5,8 @@ import com.lana.penguinwaddle.utils.Constants;
 public enum ObstacleType {
     GROUND(2f, 2f, Constants.OBSTACLE_X, Constants.OBSTACLE_GROUND_Y, Constants.OBSTACLE_DENSITY, Constants.OBSTACLE_GROUND_ASSETS_ID),
     FLY(4f, 3f, Constants.OBSTACLE_X, Constants.OBSTACLE_FLY_Y, Constants.OBSTACLE_DENSITY, Constants.OBSTACLE_FLY_ASSETS_ID),
-    STORM(6f, 3f, Constants.OBSTACLE_X, Constants.OBSTACLE_HOVER_Y, Constants.OBSTACLE_DENSITY, Constants.OBSTACLE_CLOUD_ASSETS_ID);
+    STORM(6f, 3f, Constants.OBSTACLE_X, Constants.OBSTACLE_HOVER_Y, Constants.OBSTACLE_DENSITY, Constants.OBSTACLE_CLOUD_ASSETS_ID),
+    SEAL(3.5f, 2f, Constants.OBSTACLE_X, Constants.OBSTACLE_GROUND_Y, Constants.OBSTACLE_DENSITY, Constants.OBSTACLE_GROUND2_ASSETS_ID);
 
     private float width;
     private float height;

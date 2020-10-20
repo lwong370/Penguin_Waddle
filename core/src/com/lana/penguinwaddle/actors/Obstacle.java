@@ -52,6 +52,10 @@ public class Obstacle extends GameActor {
                 batch.draw((TextureRegion) AssetsManager.getInstance().getAnimation(Constants.OBSTACLE_FLY_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
                         rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
                 break;
+            case Constants.OBSTACLE_GROUND2_ASSETS_ID:
+                batch.draw((TextureRegion) AssetsManager.getInstance().getAnimation(Constants.OBSTACLE_GROUND2_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
+                        rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
+                break;
             case Constants.OBSTACLE_CLOUD_ASSETS_ID:
                 drawCloud(batch);
                 if(isStormRaining()){
