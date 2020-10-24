@@ -5,15 +5,15 @@ import com.lana.penguinwaddle.enums.GameState;
 import com.lana.penguinwaddle.utils.Constants;
 import com.lana.penguinwaddle.utils.GameManager;
 
-public class LeaderboardButton extends GameButton {
+public class ScoreboardButton extends GameButton {
 
-    public interface LeaderboardButtonListener{
+    public interface ScoreboardButtonListener {
         public void toLeaderboard();
     }
 
-    private LeaderboardButtonListener listener;
+    private ScoreboardButtonListener listener;
 
-    public LeaderboardButton(Rectangle bounds, LeaderboardButtonListener listener) {
+    public ScoreboardButton(Rectangle bounds, ScoreboardButtonListener listener) {
         super(bounds);
         this.listener = listener;
     }
@@ -33,6 +33,6 @@ public class LeaderboardButton extends GameButton {
 
     @Override
     protected String getRegionName() {
-        return Constants.BUTTON_LEADERBOARD_ASSET_ID;
+        return Constants.BUTTON_SCOREBOARD_ASSET_ID;
     }
 }

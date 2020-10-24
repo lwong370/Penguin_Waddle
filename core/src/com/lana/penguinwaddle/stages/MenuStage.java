@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.lana.penguinwaddle.actors.Background;
 import com.lana.penguinwaddle.actors.DrawnGameLabel;
 import com.lana.penguinwaddle.actors.buttons.InfoButton;
-import com.lana.penguinwaddle.actors.buttons.LeaderboardButton;
+import com.lana.penguinwaddle.actors.buttons.ScoreboardButton;
 import com.lana.penguinwaddle.actors.buttons.PlayButton;
 import com.lana.penguinwaddle.enums.GameState;
 import com.lana.penguinwaddle.utils.Constants;
@@ -23,7 +23,7 @@ public class MenuStage extends Stage {
     private Background bkgrd;
     private PlayButton playButton;
     private InfoButton infoButton;
-    private LeaderboardButton leaderboardButton;
+    private ScoreboardButton scoreboardButton;
     private DrawnGameLabel titleLabel;
 
     public MenuStage() {
@@ -32,7 +32,7 @@ public class MenuStage extends Stage {
         addWorldComponents();
         setUpStartButton();
         setUpInfoButton();
-        setUpLeaderboardButton();
+        setUpScoreboardButton();
         setUpCamera();
     }
 
@@ -52,13 +52,13 @@ public class MenuStage extends Stage {
         addActor(infoButton);
     }
 
-    private void setUpLeaderboardButton(){
-        int width = (int) (getCamera().viewportWidth / 4);
+    private void setUpScoreboardButton(){
+        int width = (int) (getCamera().viewportWidth * 2/7);
         Rectangle bounds = new Rectangle(getCamera().viewportWidth / 2 - width / 2,
-                getCamera().viewportHeight / 10, width,
-                getCamera().viewportWidth / 15);
-        leaderboardButton = new LeaderboardButton(bounds, new LeaderBoardButtonListener());
-        addActor(leaderboardButton);
+                getCamera().viewportHeight / 45, width,
+                getCamera().viewportWidth / 7);
+        scoreboardButton = new ScoreboardButton(bounds, new ScoreBoardButtonListener());
+        addActor(scoreboardButton);
     }
 
     private void addWorldComponents(){
@@ -99,7 +99,7 @@ public class MenuStage extends Stage {
         }
     }
 
-    private class LeaderBoardButtonListener implements LeaderboardButton.LeaderboardButtonListener{
+    private class ScoreBoardButtonListener implements ScoreboardButton.ScoreboardButtonListener {
         @Override
         public void toLeaderboard() {
             clear();

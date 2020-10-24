@@ -43,7 +43,7 @@ public class AssetsManager extends AssetManager {
         texturesMap.put(Constants.PENGUIN_STOP_ASSETS_ID, textureAtlas1.findRegion("penguin_stop"));
         texturesMap.put(Constants.PENGUIN_TUMBLE_ASSETS_ID, textureAtlas1.findRegion("penguin_tumble_crop"));
         texturesMap.put(Constants.BUTTON_INFO_ASSET_ID, textureAtlas3.findRegion("info_button"));
-        texturesMap.put(Constants.BUTTON_LEADERBOARD_ASSET_ID, textureAtlas3.findRegion("leaderboard_button"));
+        texturesMap.put(Constants.BUTTON_SCOREBOARD_ASSET_ID, textureAtlas3.findRegion("leaderboard_button"));
         texturesMap.put(Constants.BUTTON_MENU_ASSET_ID, textureAtlas3.findRegion("menu_button"));
         texturesMap.put(Constants.BUTTON_PLAY_ASSET_ID, textureAtlas3.findRegion("play_button"));
         texturesMap.put(Constants.BUTTON_REPLAY_ASSET_ID, textureAtlas3.findRegion("replay_button"));

@@ -44,7 +44,7 @@ public class Constants {
     public static final String OBSTACLE_GROUND2_ASSETS_ID = "obstacle_seal";
 
     public static final String BUTTON_INFO_ASSET_ID = "info_button";
-    public static final String BUTTON_LEADERBOARD_ASSET_ID = "leaderboard_button";
+    public static final String BUTTON_SCOREBOARD_ASSET_ID = "scoreboard_button";
     public static final String BUTTON_MENU_ASSET_ID = "menu_button";
     public static final String BUTTON_PAUSE_ASSET_ID = "pause_button";
     public static final String BUTTON_PLAY_ASSET_ID = "play_button";
