@@ -3,6 +3,7 @@ package com.lana.penguinwaddle.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.lana.penguinwaddle.PenguinWaddle;
 import com.lana.penguinwaddle.enums.GameState;
@@ -16,16 +17,23 @@ public class GameScreen implements Screen {
 
     private InputMultiplexer multiplexer;
 
+    private Music bkgrdMusic;
+
     public GameScreen(PenguinWaddle game){
         this.game = game;
         gameStage = new GameStage();
         multiplexer = new InputMultiplexer();
+
+        bkgrdMusic = Gdx.audio.newMusic(Gdx.files.internal("bensound-dreams_trimmed.mp3"));
+        bkgrdMusic.setLooping(true);
+        bkgrdMusic.setVolume(.5f);
     }
 
     @Override
     public void show() {
         multiplexer.addProcessor(gameStage);
         Gdx.input.setInputProcessor(multiplexer);
+        bkgrdMusic.play();
     }
 
     @Override
@@ -37,6 +45,7 @@ public class GameScreen implements Screen {
 
         if(GameManager.getInstance().getGameState() == GameState.GAME_OVER){
             game.setScreen(new GameOverScreen(game));
+            bkgrdMusic.dispose();
         }
     }
 

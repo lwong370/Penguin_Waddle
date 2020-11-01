@@ -1,6 +1,7 @@
 package com.lana.penguinwaddle.stages;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -15,6 +16,7 @@ import com.lana.penguinwaddle.actors.buttons.PauseButton;
 import com.lana.penguinwaddle.enums.Difficulty;
 import com.lana.penguinwaddle.enums.GameState;
 import com.lana.penguinwaddle.utils.*;
+import static com.lana.penguinwaddle.utils.Constants.OBSTACLE_CLOUD_ASSETS_ID;
 
 public class GameStage extends Stage implements ContactListener {
 
@@ -50,6 +52,13 @@ public class GameStage extends Stage implements ContactListener {
 
     private int numFingersTouch = 0;
 
+    private Sound slapSound;
+    private Sound hitGroundSound;
+
+    /*Makes sure sound doesn't play when game starts
+ since at start of game, penguin and ground make contact.*/
+    private boolean firstHopHappen = false;
+
     public GameStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
@@ -72,11 +81,14 @@ public class GameStage extends Stage implements ContactListener {
         addActor(penguin);
         createObstacle();
         setUpPauseButton();
+
+        slapSound = Gdx.audio.newSound(Gdx.files.internal("slap.mp3"));
+        hitGroundSound = Gdx.audio.newSound(Gdx.files.internal("hit_ground.mp3"));
     }
 
     private void createObstacle(){
         obstacle = new Obstacle(WorldUtils.createObstacle(world));
-        if(obstacle.getUserData().getAssetId().equals(Constants.OBSTACLE_CLOUD_ASSETS_ID)){
+        if(obstacle.getUserData().getAssetId().equals(OBSTACLE_CLOUD_ASSETS_ID)){
             obstacle.setStormRaining(true);
         }
         obstacle.changeDifficulty(GameManager.getInstance().getDifficulty());
@@ -166,8 +178,14 @@ public class GameStage extends Stage implements ContactListener {
         if((BodyUtils.bodyIsPenguin(a) && BodyUtils.bodyIsGround(b)) ||
                 (BodyUtils.bodyIsGround(a) && BodyUtils.bodyIsPenguin(b))){
             penguin.land();
+            if(firstHopHappen){
+                hitGroundSound.play();
+            }
         } else if((BodyUtils.bodyIsPenguin(a) && BodyUtils.bodyIsObstacle(b)) ||
         (BodyUtils.bodyIsObstacle(a) && BodyUtils.bodyIsPenguin(b))){
+            if(obstacle.getUserData().getAssetId() != OBSTACLE_CLOUD_ASSETS_ID){
+                slapSound.play();
+            }
             penguin.hit();
             onGameOver();
         }
@@ -235,6 +253,7 @@ public class GameStage extends Stage implements ContactListener {
 
                 if(rightActive){
                     penguin.hop();
+                    firstHopHappen = true;
                     rightActive = false;
                 }
             }
@@ -262,7 +281,7 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void penguinStormReaction(){
-        if(obstacle.getUserData().getAssetId().equals(Constants.OBSTACLE_CLOUD_ASSETS_ID)){
+        if(obstacle.getUserData().getAssetId().equals(OBSTACLE_CLOUD_ASSETS_ID)){
             if(penguin.isFrightStopped()){
                 obstacle.setStormRaining(false);
             }else{
