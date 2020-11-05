@@ -253,6 +253,9 @@ public class GameStage extends Stage implements ContactListener {
 
                 if(rightActive){
                     penguin.hop();
+                    if(penguin.isTumbling()){
+                        penguin.stopTumbling();
+                    }
                     firstHopHappen = true;
                     rightActive = false;
                 }

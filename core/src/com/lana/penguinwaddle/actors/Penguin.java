@@ -75,7 +75,7 @@ public class Penguin extends GameActor {
     }
 
     public void hop(){
-        if(!hopping && !tumbling && !frightStopped){
+        if(!hopping && !frightStopped){
             hopping = true;
             body.applyLinearImpulse(getUserData().getLinearJumpImpulse(), body.getWorldCenter(), true);
         }

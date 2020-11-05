@@ -15,8 +15,8 @@ public enum Difficulty {
     DIFFICULTY_9(9, new Vector2(-13.5f, 0f), Constants.RUNNER_GRAVITY_SCALE * 1.2f, new Vector2(0, 100f), 1.25,6),
     DIFFICULTY_10(10, new Vector2(-14f, 0f), Constants.RUNNER_GRAVITY_SCALE * 1.3f, new Vector2(0, 100f), 1,6),
     DIFFICULTY_11(11, new Vector2(-14.5f, 0f), Constants.RUNNER_GRAVITY_SCALE * 1.3f, new Vector2(0, 100f), 1,7),
-    DIFFICULTY_12(12, new Vector2(-15f, 0f), Constants.RUNNER_GRAVITY_SCALE * 1.3f, new Vector2(0, 98f), 0.75,7),
-    DIFFICULTY_13(13, new Vector2(-15.5f, 0f), Constants.RUNNER_GRAVITY_SCALE * 1.4f, new Vector2(0, 96f), 0.75,8);
+    DIFFICULTY_12(12, new Vector2(-15f, 0f), Constants.RUNNER_GRAVITY_SCALE * 1.3f, new Vector2(0, 98f), 1,7),
+    DIFFICULTY_13(13, new Vector2(-15.5f, 0f), Constants.RUNNER_GRAVITY_SCALE * 1.3f, new Vector2(0, 96f), 1,8);
 
     private int level;
     private Vector2 obstacleLinearVelocity;
