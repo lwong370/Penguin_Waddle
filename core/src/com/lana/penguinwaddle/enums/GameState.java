@@ -5,6 +5,7 @@ public enum GameState {
     PAUSED,
     GAME_OVER,
     MENU,
-    LEADERBOARD,
-    INFO;
+    SCOREBOARD,
+    INFO,
+    INSTRUCTIONS;
 }

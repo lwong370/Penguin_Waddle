@@ -31,10 +31,12 @@ public class MenuScreen implements Screen {
 
         if(GameManager.getInstance().getGameState() == GameState.PLAY){
             game.setScreen(new GameScreen(game));
-        } else if(GameManager.getInstance().getGameState() == GameState.LEADERBOARD){
-            game.setScreen(new LeaderboardScreen(game));
+        } else if(GameManager.getInstance().getGameState() == GameState.SCOREBOARD){
+            game.setScreen(new ScoreboardScreen(game));
         } else if(GameManager.getInstance().getGameState() == GameState.INFO){
             game.setScreen(new InfoScreen(game));
+        }else if(GameManager.getInstance().getGameState() == GameState.INSTRUCTIONS){
+            game.setScreen(new InstructionsScreen(game));
         }
     }
 

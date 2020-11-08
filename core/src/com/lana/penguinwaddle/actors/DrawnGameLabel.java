@@ -2,16 +2,14 @@ package com.lana.penguinwaddle.actors;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.lana.penguinwaddle.utils.AssetsManager;
 
-public class DrawnGameLabel extends Actor {
+public class DrawnGameLabel extends DrawnAsset {
     private Rectangle bounds;
-    private String textureName;
 
     public DrawnGameLabel(Rectangle bounds, String textureName) {
+        super(textureName);
         this.bounds = bounds;
-        this.textureName = textureName;
         setWidth(bounds.width);
         setHeight(bounds.height);
     }

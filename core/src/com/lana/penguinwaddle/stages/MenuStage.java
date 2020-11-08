@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.lana.penguinwaddle.actors.Background;
 import com.lana.penguinwaddle.actors.DrawnGameLabel;
 import com.lana.penguinwaddle.actors.buttons.InfoButton;
+import com.lana.penguinwaddle.actors.buttons.InstructionsButton;
 import com.lana.penguinwaddle.actors.buttons.ScoreboardButton;
 import com.lana.penguinwaddle.actors.buttons.PlayButton;
 import com.lana.penguinwaddle.enums.GameState;
@@ -24,6 +25,7 @@ public class MenuStage extends Stage {
     private PlayButton playButton;
     private InfoButton infoButton;
     private ScoreboardButton scoreboardButton;
+    private InstructionsButton instructionsButton;
     private DrawnGameLabel titleLabel;
 
     public MenuStage() {
@@ -32,12 +34,13 @@ public class MenuStage extends Stage {
         addWorldComponents();
         setUpStartButton();
         setUpInfoButton();
+        setUpInstructionsButton();
         setUpScoreboardButton();
         setUpCamera();
     }
 
     private void setUpStartButton(){
-        Rectangle bounds = new Rectangle(getCamera().viewportWidth * 1/3 + 25,
+        Rectangle bounds = new Rectangle(getCamera().viewportWidth * 1/6 + 25,
                 getCamera().viewportHeight / 4, getCamera().viewportWidth / 4,
                 getCamera().viewportWidth / 4);
         playButton = new PlayButton(bounds, new GamePlayButtonListener());
@@ -52,11 +55,20 @@ public class MenuStage extends Stage {
         addActor(infoButton);
     }
 
+    private void setUpInstructionsButton(){
+        int width = (int) (getCamera().viewportWidth * 2/7);
+        Rectangle bounds = new Rectangle(getCamera().viewportWidth / 2,
+                getCamera().viewportHeight / 4, width,
+                getCamera().viewportWidth / 12);
+        instructionsButton = new InstructionsButton(bounds, new InstructButtonListener());
+        addActor(instructionsButton);
+    }
+
     private void setUpScoreboardButton(){
         int width = (int) (getCamera().viewportWidth * 2/7);
-        Rectangle bounds = new Rectangle(getCamera().viewportWidth / 2 - width / 2,
-                getCamera().viewportHeight / 45, width,
-                getCamera().viewportWidth / 7);
+        Rectangle bounds = new Rectangle(getCamera().viewportWidth / 2,
+                getCamera().viewportHeight * 4/9, width,
+                getCamera().viewportWidth / 10);
         scoreboardButton = new ScoreboardButton(bounds, new ScoreBoardButtonListener());
         addActor(scoreboardButton);
     }
@@ -83,12 +95,16 @@ public class MenuStage extends Stage {
         GameManager.getInstance().setGameState(GameState.PLAY);
     }
 
-    private void onToLeaderboard(){
-        GameManager.getInstance().setGameState(GameState.LEADERBOARD);
+    private void onToScoreboard(){
+        GameManager.getInstance().setGameState(GameState.SCOREBOARD);
     }
 
     private void toInfoScreen(){
         GameManager.getInstance().setGameState(GameState.INFO);
+    }
+
+    private void toInstructionsScreen(){
+        GameManager.getInstance().setGameState(GameState.INSTRUCTIONS);
     }
 
     private class GamePlayButtonListener implements PlayButton.PlayButtonListener{
@@ -101,17 +117,25 @@ public class MenuStage extends Stage {
 
     private class ScoreBoardButtonListener implements ScoreboardButton.ScoreboardButtonListener {
         @Override
-        public void toLeaderboard() {
+        public void toScoreboard() {
             clear();
-            onToLeaderboard();
+            onToScoreboard();
         }
     }
 
     private class InfoButtonListener implements InfoButton.InfoButtonListener{
         @Override
-        public void onToInfoSreen() {
+        public void onToInfoScreen() {
             clear();
             toInfoScreen();
+        }
+    }
+
+    private class InstructButtonListener implements InstructionsButton.InstructionsButtonListener{
+        @Override
+        public void onClick() {
+            clear();
+            toInstructionsScreen();
         }
     }
 }

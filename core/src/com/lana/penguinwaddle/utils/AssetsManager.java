@@ -51,6 +51,9 @@ public class AssetsManager extends AssetManager {
         texturesMap.put(Constants.BUTTON_BACK_ASSET_ID, textureAtlas3.findRegion("back_button"));
         texturesMap.put(Constants.LABEL_MENU_TITLE_ID, textureAtlas3.findRegion("menu_label"));
         texturesMap.put(Constants.LABEL_GAME_OVER_ID, textureAtlas3.findRegion("game_over_label"));
+        texturesMap.put(Constants.INSTRUCT_ROLL, textureAtlas3.findRegion("instructions_roll"));
+        texturesMap.put(Constants.INSTRUCT_JUMP, textureAtlas3.findRegion("instructions_jump"));
+        texturesMap.put(Constants.INSTRUCT_EVADE, textureAtlas3.findRegion("instructions_evade"));
 
         //Animation
         animationMap.put(Constants.PENGUIN_RUNNING_ASSETS_ID, createAnimation(textureAtlas1, Constants.PENGUIN_RUNNING_ANIMATION_FRAMES));

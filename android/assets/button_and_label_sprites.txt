@@ -1,13 +1,13 @@
 button_and_label_sprites.png
-size: 1982, 2025
+size: 2032, 1998
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 back_button
   rotate: false
-  xy: 0, 562
-  size: 477, 454
-  orig: 477, 454
+  xy: 0, 885
+  size: 397, 378
+  orig: 397, 378
   offset: 0, 0
   index: -1
 game_over_label
@@ -19,16 +19,44 @@ game_over_label
   index: -1
 info_button
   rotate: false
-  xy: 477, 562
-  size: 563, 454
-  orig: 563, 454
+  xy: 397, 885
+  size: 469, 379
+  orig: 469, 379
+  offset: 0, 0
+  index: -1
+instructions_button
+  rotate: false
+  xy: 786, 217
+  size: 821, 308
+  orig: 821, 308
+  offset: 0, 0
+  index: -1
+instructions_evade
+  rotate: false
+  xy: 866, 885
+  size: 676, 508
+  orig: 676, 508
+  offset: 0, 0
+  index: -1
+instructions_jump
+  rotate: false
+  xy: 0, 1393
+  size: 676, 508
+  orig: 676, 508
+  offset: 0, 0
+  index: -1
+instructions_roll
+  rotate: false
+  xy: 676, 1393
+  size: 676, 508
+  orig: 676, 508
   offset: 0, 0
   index: -1
 menu_button
   rotate: false
   xy: 0, 217
-  size: 874, 329
-  orig: 874, 329
+  size: 786, 296
+  orig: 786, 296
   offset: 0, 0
   index: -1
 menu_label
@@ -40,29 +68,29 @@ menu_label
   index: -1
 pause_button
   rotate: false
-  xy: 0, 1269
-  size: 733, 746
-  orig: 733, 746
+  xy: 800, 525
+  size: 352, 358
+  orig: 352, 358
   offset: 0, 0
   index: -1
 play_button
   rotate: false
-  xy: 733, 1269
-  size: 850, 756
-  orig: 850, 756
+  xy: 1352, 1393
+  size: 680, 605
+  orig: 680, 605
   offset: 0, 0
   index: -1
 replay_button
   rotate: false
-  xy: 874, 217
-  size: 889, 345
-  orig: 889, 345
+  xy: 0, 525
+  size: 800, 311
+  orig: 800, 311
   offset: 0, 0
   index: -1
 scoreboard_button
   rotate: false
-  xy: 1040, 562
-  size: 942, 707
-  orig: 942, 707
+  xy: 1152, 525
+  size: 841, 360
+  orig: 841, 360
   offset: 0, 0
   index: -1

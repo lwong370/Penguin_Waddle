@@ -50,8 +50,12 @@ public class Constants {
     public static final String BUTTON_PLAY_ASSET_ID = "play_button";
     public static final String BUTTON_REPLAY_ASSET_ID = "replay_button";
     public static final String BUTTON_BACK_ASSET_ID = "back_button";
+    public static final String BUTTON_INSTRUCT_ID = "instructions_button";
     public static final String LABEL_MENU_TITLE_ID = "menu_label";
     public static final String LABEL_GAME_OVER_ID = "game_over_label";
+    public static final String INSTRUCT_ROLL = "instructions_roll";
+    public static final String INSTRUCT_JUMP = "instructions_jump";
+    public static final String INSTRUCT_EVADE = "instructions_evade";
 
     public static final String[] PENGUIN_RUNNING_ANIMATION_FRAMES = new String[] {"penguin_waddle1", "penguin_waddle2"};
     public static final String[] PENGUIN_TUMBLING_ANIMATION_FRAMES = new String[] {
@@ -70,15 +74,13 @@ public class Constants {
     public static final String OBSTACLES_ATLAS_PATH = "obstacle_sprites.txt";
     public static final String BUTTON_LABEL_ATLAS_PATH = "button_and_label_sprites.txt";
 
-    public static final String SCORE_PREFERENCE_NAME = "Score Preference";
+    public static final String PREFERENCE_NAME = "Preference";
     public static final String CURRENT_SCORE_KEY = "Current Score";
-    public static final String HIGH_SCORE_PREFERENCE_KEY = "High Score";
     public static final String RANK_KEY_1 = "Rank1";
     public static final String RANK_KEY_2 = "Rank2";
     public static final String RANK_KEY_3 = "Rank3";
     public static final String RANK_KEY_4 = "Rank4";
     public static final String RANK_KEY_5 = "Rank5";
-
 
     public static final String FONT = "roboto_bold.ttf";
     public static final String ABOUT_TEXT = "About the Developer & Credits\n\nHello! My name is Lana, an engineering student and art enthusiast who craves a lot of dark chocolate and matcha tea. " +
