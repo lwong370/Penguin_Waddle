@@ -9,7 +9,7 @@ import com.lana.penguinwaddle.enums.GameState;
 import com.lana.penguinwaddle.utils.AssetsManager;
 import com.lana.penguinwaddle.utils.Constants;
 import com.lana.penguinwaddle.utils.GameManager;
-import com.lana.penguinwaddle.utils.ScorePreferencesManager;
+import com.lana.penguinwaddle.utils.PreferencesManager;
 
 public class ScoreLabel extends Actor {
     private Integer score;
@@ -17,7 +17,7 @@ public class ScoreLabel extends Actor {
     private BitmapFont font;
 
     public ScoreLabel(Rectangle bounds) {
-        this.score = ScorePreferencesManager.getInstance().readFromPreferences(Constants.CURRENT_SCORE_KEY);
+        this.score = PreferencesManager.getInstance().readFromPreferences(Constants.CURRENT_SCORE_KEY);
         this.bounds = bounds;
         setWidth(bounds.width);
         setHeight(bounds.height);

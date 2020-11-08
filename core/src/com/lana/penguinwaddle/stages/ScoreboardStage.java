@@ -16,7 +16,7 @@ import com.lana.penguinwaddle.utils.AssetsManager;
 import com.lana.penguinwaddle.utils.Constants;
 import com.lana.penguinwaddle.utils.GameManager;
 
-public class LeaderboardStage extends Stage {
+public class ScoreboardStage extends Stage {
    public static final int VIEWPORT_WIDTH = Constants.APP_WIDTH;
    public static final int VIEWPORT_HEIGHT = Constants.APP_HEIGHT;
 
@@ -29,7 +29,7 @@ public class LeaderboardStage extends Stage {
    private Table scoreTable;
    private Skin skin;
 
-    public LeaderboardStage() {
+    public ScoreboardStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
         addWorldComponents();

@@ -4,17 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
 
-public class ScorePreferencesManager {
-    private static ScorePreferencesManager instance;
+public class PreferencesManager {
+    private static PreferencesManager instance;
     private Preferences preferences;
 
-    public ScorePreferencesManager() {
-        preferences = Gdx.app.getPreferences(Constants.SCORE_PREFERENCE_NAME);
+    public PreferencesManager() {
+        preferences = Gdx.app.getPreferences(Constants.PREFERENCE_NAME);
     }
 
-    public static ScorePreferencesManager getInstance(){
+    public static PreferencesManager getInstance(){
         if(instance == null){
-            instance = new ScorePreferencesManager();
+            instance = new PreferencesManager();
         }
         return instance;
     }

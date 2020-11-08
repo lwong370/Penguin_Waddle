@@ -8,7 +8,7 @@ import com.lana.penguinwaddle.utils.GameManager;
 public class ScoreboardButton extends GameButton {
 
     public interface ScoreboardButtonListener {
-        public void toLeaderboard();
+        public void toScoreboard();
     }
 
     private ScoreboardButtonListener listener;
@@ -28,7 +28,7 @@ public class ScoreboardButton extends GameButton {
 
     @Override
     public void touched() {
-        listener.toLeaderboard();
+        listener.toScoreboard();
     }
 
     @Override

@@ -7,7 +7,7 @@ import com.lana.penguinwaddle.utils.GameManager;
 
 public class InfoButton extends GameButton {
     public interface InfoButtonListener{
-        public void onToInfoSreen();
+        public void onToInfoScreen();
     }
 
     private InfoButtonListener listener;
@@ -27,7 +27,7 @@ public class InfoButton extends GameButton {
 
     @Override
     public void touched() {
-        listener.onToInfoSreen();
+        listener.onToInfoScreen();
     }
 
     @Override
