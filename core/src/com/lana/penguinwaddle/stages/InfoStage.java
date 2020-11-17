@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
-import com.lana.penguinwaddle.actors.AboutMeText;
+import com.lana.penguinwaddle.actors.Text;
 import com.lana.penguinwaddle.actors.Background;
 import com.lana.penguinwaddle.actors.buttons.BackButton;
 import com.lana.penguinwaddle.enums.GameState;
@@ -19,7 +19,9 @@ public class InfoStage extends Stage {
 
     private OrthographicCamera camera;
     private BackButton backButton;
-    private AboutMeText aboutMeText;
+    private Text aboutMeText;
+    private Text header;
+    private Text credits;
     private Background bkgrd;
 
     public InfoStage() {
@@ -27,7 +29,9 @@ public class InfoStage extends Stage {
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
         addWorldComponents();
         setUpBackButton();
+        setUpHeader();
         setUpAboutLabel();
+        setUpCredits();
         setUpCamera();
     }
 
@@ -43,11 +47,27 @@ public class InfoStage extends Stage {
         addActor(backButton);
     }
 
+    private void setUpHeader(){
+        float width = getCamera().viewportWidth/2;
+        Rectangle bounds = new Rectangle(getCamera().viewportWidth/2- width/2, getCamera().viewportHeight * 7 / 8,
+                width, getCamera().viewportHeight*(3/4));
+        header = new Text(bounds, Constants.INFO_HEADER);
+        addActor(header);
+    }
+
     private void setUpAboutLabel(){
         Rectangle bounds = new Rectangle(0, getCamera().viewportHeight * 7 / 8,
                 getCamera().viewportWidth, getCamera().viewportHeight/4);
-        aboutMeText = new AboutMeText(bounds);
+        aboutMeText = new Text(bounds, Constants.ABOUT_TEXT);
         addActor(aboutMeText);
+    }
+
+    private void setUpCredits(){
+        String combCredits = "\n\n" + Constants.GDX_CREDIT + "\n" + Constants.ZAPSPLAT_CREDIT + "\n" + Constants.BENSOUND_CREDIT;
+        Rectangle bounds = new Rectangle(0, getCamera().viewportHeight /2,
+                getCamera().viewportWidth/2, getCamera().viewportHeight/4);
+        credits = new Text(bounds, combCredits);
+        addActor(credits);
     }
 
     private void setUpCamera(){

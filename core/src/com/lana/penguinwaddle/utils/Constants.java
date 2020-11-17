@@ -83,7 +83,11 @@ public class Constants {
     public static final String RANK_KEY_5 = "Rank5";
 
     public static final String FONT = "roboto_bold.ttf";
-    public static final String ABOUT_TEXT = "About the Developer & Credits\n\nHello! My name is Lana, an engineering student and art enthusiast who craves a lot of dark chocolate and matcha tea. " +
+    public static final String INFO_HEADER = "About the Developer & Credits";
+    public static final String GDX_CREDIT = "Powered by: libGDX";
+    public static final String ZAPSPLAT_CREDIT = "Sound Effects: https://www.zapsplat.com";
+    public static final String BENSOUND_CREDIT = "Music: www.bensound.com";
+    public static final String ABOUT_TEXT = "\n\nHello! My name is Lana, an engineering student and art enthusiast who craves a lot of dark chocolate and boba. " +
             "I've always wanted to develop my own mobile game, and I finally mustered my coding knowledge and art skills to create my first app! " +
             "Thank you for your support! \n";
 }
