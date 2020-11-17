@@ -8,8 +8,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.lana.penguinwaddle.utils.Constants;
 
-
-
 public class Background extends Actor {
     private final TextureRegion textureRegion;
     private Rectangle textureRegionBounds1;

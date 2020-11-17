@@ -31,7 +31,7 @@ public class Ground extends GameActor {
         if(reachedLeftBound(delta)){
             resetBounds();
         }else{
-            updateXBounds(-delta, stop);
+            updateXBounds(-delta);
         }
     }
 
@@ -53,8 +53,8 @@ public class Ground extends GameActor {
         return (textureRegionBounds2.x - transformToPixels(delta * speed)) <= 0;
     }
 
-    private void updateXBounds(float delta, boolean stopped){
-        if(!stopped){
+    private void updateXBounds(float delta){
+        if(!stop){
             textureRegionBounds1.x += transformToPixels(delta * speed);
             textureRegionBounds2.x += transformToPixels(delta *speed);
         }else{

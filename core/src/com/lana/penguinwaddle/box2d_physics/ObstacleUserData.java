@@ -6,7 +6,6 @@ import com.lana.penguinwaddle.utils.Constants;
 
 public class ObstacleUserData extends UserData {
     private Vector2 linearVelocity;
-    private Vector2 zeroVelocity;
     private String assetId;
 
     public ObstacleUserData(float width, float height, String assetId) {
@@ -14,7 +13,6 @@ public class ObstacleUserData extends UserData {
         userDataType = UserDataType.OBSTACLE;
         this.assetId = assetId;
         linearVelocity = Constants.OBSTACLE_LINEAR_VELOCITY;
-        zeroVelocity = Constants.ZERO_VELOCITY;
     }
 
     public Vector2 getLinearVelocity() {

@@ -10,20 +10,17 @@ public class PenguinUserData extends UserData {
     private final Vector2 dodgePosition = new Vector2(Constants.RUNNER_DODGE_X, Constants.RUNNER_DODGE_Y);
 
     private Vector2 linearJumpImpulse;
-    private Vector2 linearStopTumbleImpulse;
 
     public PenguinUserData(){
         super();
         userDataType = UserDataType.PENGUIN;
         linearJumpImpulse = Constants.RUNNER_LINEAR_JUMP_IMPULSE;
-        linearStopTumbleImpulse = Constants.RUNNER_LINEAR_STOP_TUMBLE_IMPULSE;
     }
 
     public PenguinUserData(float width, float height){
         super(width, height);
         userDataType = UserDataType.PENGUIN;
         linearJumpImpulse = Constants.RUNNER_LINEAR_JUMP_IMPULSE;
-        linearStopTumbleImpulse = Constants.RUNNER_LINEAR_STOP_TUMBLE_IMPULSE;
     }
 
     public Vector2 getLinearJumpImpulse() {

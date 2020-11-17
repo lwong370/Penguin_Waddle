@@ -23,7 +23,6 @@ public class Constants {
 
     public static float RUNNER_GRAVITY_SCALE = 2.75f;
     public static final Vector2 RUNNER_LINEAR_JUMP_IMPULSE = new Vector2(0, 106f);
-    public static final Vector2 RUNNER_LINEAR_STOP_TUMBLE_IMPULSE = new Vector2(-10, 0);
 
     public static final float OBSTACLE_X = 23f;
     public static final float OBSTACLE_GROUND_Y = 2.5f;
@@ -31,7 +30,6 @@ public class Constants {
     public static final float OBSTACLE_HOVER_Y = 10f;
     public static final float OBSTACLE_DENSITY = RUNNER_DENSITY;
     public static final Vector2 OBSTACLE_LINEAR_VELOCITY = new Vector2(-9f, 0);
-    public static final Vector2 ZERO_VELOCITY = new Vector2(0f, 0f);
 
     public static final String PENGUIN_RUNNING_ASSETS_ID = "penguin_run";
     public static final String PENGUIN_TUMBLE_ASSETS_ID = "penguin_tumble";
@@ -68,7 +66,6 @@ public class Constants {
 
     public static final String GAME_BACKGROUND_IMAGE_PATH = "bkgrd.png";
     public static final String WORDLESS_BACKGROUND_IMAGE_PATH = "wordless_bkgrd.png";
-    public static final String MENU_BACKGROUND_IMAGE_PATH = "title_bkgrd.png";
     public static final String GROUND_IMAGE_PATH = "ground.png";
     public static final String PENGUIN_ATLAS_PATH = "penguin_sprites.txt";
     public static final String OBSTACLES_ATLAS_PATH = "obstacle_sprites.txt";
@@ -82,7 +79,6 @@ public class Constants {
     public static final String RANK_KEY_4 = "Rank4";
     public static final String RANK_KEY_5 = "Rank5";
 
-    public static final String FONT = "roboto_bold.ttf";
     public static final String INFO_HEADER = "About the Developer & Credits";
     public static final String GDX_CREDIT = "Powered by: libGDX";
     public static final String ZAPSPLAT_CREDIT = "Sound Effects: https://www.zapsplat.com";

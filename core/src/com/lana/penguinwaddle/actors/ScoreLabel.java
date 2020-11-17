@@ -36,7 +36,6 @@ public class ScoreLabel extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-
         font.draw(batch, "Score: " + score, bounds.x, bounds.y, bounds.width, Align.center, true);
     }
 

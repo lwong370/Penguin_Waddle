@@ -7,25 +7,21 @@ import com.lana.penguinwaddle.enums.UserDataType;
 public class BodyUtils {
     public static boolean bodyIsPenguin(Body body) {
         UserData userData = (UserData) body.getUserData();
-
         return userData != null && userData.getUserDataType() == UserDataType.PENGUIN;
     }
 
     public static boolean bodyIsGround(Body body) {
         UserData userData = (UserData) body.getUserData();
-
         return userData != null && userData.getUserDataType() == UserDataType.GROUND;
     }
 
     public static boolean bodyIsObstacle(Body body){
         UserData userData = (UserData) body.getUserData();
-
         return userData != null && userData.getUserDataType() == UserDataType.OBSTACLE;
     }
 
     public static boolean bodyInBounds(Body body) {
         UserData userData = (UserData) body.getUserData();
-
         switch (userData.getUserDataType()) {
             case PENGUIN:
             case OBSTACLE:

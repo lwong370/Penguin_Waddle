@@ -19,10 +19,6 @@ public class Penguin extends GameActor {
     private boolean hit;
     private boolean frightStopped;
 
-    private Animation waddleAnimation;
-    private TextureRegion hoppingTexture;
-    private TextureRegion dodgingTexture;
-
     private Animation runningAnimation;
     private Animation tumbleAnimation;
 
@@ -99,9 +95,6 @@ public class Penguin extends GameActor {
 
     public void frightStop(){
         if(!hopping && !frightStopped){
-            if(tumbling){
-                stopTumbling();
-            }
             frightStopped = true;
         }
     }
@@ -134,13 +127,9 @@ public class Penguin extends GameActor {
         return rollTime;
     }
 
-    private void setRollTime(double rollTime){
-        this.rollTime = rollTime;
-    }
-
     public void changeDifficulty(Difficulty newDifficulty){
         body.setGravityScale(newDifficulty.getRunnerGravityScale());
         getUserData().setLinearJumpImpulse(newDifficulty.getRunnerJumpingLinearImpulse());
-        this.setRollTime(newDifficulty.getRollTime());
+        this.rollTime = newDifficulty.getRollTime();
     }
 }

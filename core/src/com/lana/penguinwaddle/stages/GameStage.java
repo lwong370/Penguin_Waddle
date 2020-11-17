@@ -234,11 +234,12 @@ public class GameStage extends Stage implements ContactListener {
             @Override
             public void run() {
                 if(numFingersTouch == 2){
-                    penguin.frightStop();
-                    if(penguin.isFrightStopped()){
-                        bkgrd.setStop(true);
-                        ground.setStop(true);
+                    if(penguin.isTumbling()){
+                        penguin.stopTumbling();
                     }
+                    penguin.frightStop();
+                    bkgrd.setStop(true);
+                    ground.setStop(true);
                     leftActive = false;
                     rightActive = false;
                 }

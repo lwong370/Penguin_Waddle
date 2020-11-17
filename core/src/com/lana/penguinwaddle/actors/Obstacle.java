@@ -81,13 +81,13 @@ public class Obstacle extends GameActor {
         }
     }
 
-    public void changeDifficulty(Difficulty newDifficulty){
-        getUserData().setLinearVelocity(newDifficulty.getObstacleLinearVelocity());
-    }
-
     private void drawCloud(Batch batch){
         batch.draw((TextureRegion) AssetsManager.getInstance().getAnimation(Constants.OBSTACLE_CLOUD_ASSETS_ID).getKeyFrame(stateTime, true), (rectangleRendered.x - (rectangleRendered.width * 0.1f)),
                 rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
+    }
+
+    public void changeDifficulty(Difficulty newDifficulty){
+        getUserData().setLinearVelocity(newDifficulty.getObstacleLinearVelocity());
     }
 
     public boolean isStormRaining() {
