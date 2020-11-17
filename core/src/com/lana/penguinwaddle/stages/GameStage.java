@@ -37,7 +37,7 @@ public class GameStage extends Stage implements ContactListener {
     private Rectangle screenLeftSide;
     private Rectangle wholeScreen;
 
-    private ScorePreferencesManager scorePreferencesManager = ScorePreferencesManager.getInstance();
+    private PreferencesManager preferencesManager = PreferencesManager.getInstance();
 
     private final float TIME_STEP = 1/300f;
     private float accumulator = 0f;
@@ -57,7 +57,7 @@ public class GameStage extends Stage implements ContactListener {
 
     /*Makes sure sound doesn't play when game starts
  since at start of game, penguin and ground make contact.*/
-    private boolean firstHopHappen = false;
+    private boolean firstHopHappen;
 
     public GameStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
@@ -318,7 +318,7 @@ public class GameStage extends Stage implements ContactListener {
 
     private void onGameOver(){
         GameManager.getInstance().setGameState(GameState.GAME_OVER);
-        scorePreferencesManager.writeScoreToPreferences(Constants.CURRENT_SCORE_KEY, score.getScore());
+        preferencesManager.writeScoreToPreferences(Constants.CURRENT_SCORE_KEY, score.getScore());
         GameManager.getInstance().saveScore(score.getScore());
     }
 

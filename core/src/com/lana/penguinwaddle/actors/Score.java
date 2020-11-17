@@ -39,7 +39,7 @@ public class Score extends Actor {
         if(getScore() == 0){
             return;
         }
-        font.draw(batch,String.format("%d", getScore()), bounds.x, bounds.y, bounds.width, Align.right, true);
+        font.draw(batch,"Score: " + String.format("%d", getScore()), bounds.x, bounds.y, bounds.width, Align.right, true);
     }
 
     public int getScore(){
