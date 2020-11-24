@@ -161,7 +161,7 @@ public class GameStage extends Stage implements ContactListener {
 
         if(penguin.isTumbling()){
             rotateDelay += delta;
-            if(rotateDelay > penguin.getRollTime()){
+            if(rotateDelay > penguin.getTumbleTime()){
                 penguin.stopTumbling();
             }
         }

@@ -15,7 +15,7 @@ public class Constants {
 
     public static final float RUNNER_X = 3f;
     public static final float RUNNER_Y = GROUND_HEIGHT;
-    public static final float RUNNER_DODGE_X = 3;
+    public static final float RUNNER_DODGE_X = 3f;
     public static final float RUNNER_DODGE_Y = 3.4f;
     public static final float RUNNER_WIDTH = 2.9f;
     public static final float RUNNER_HEIGHT = 4.35f;
@@ -83,7 +83,6 @@ public class Constants {
     public static final String GDX_CREDIT = "Powered by: libGDX";
     public static final String ZAPSPLAT_CREDIT = "Sound Effects: https://www.zapsplat.com";
     public static final String BENSOUND_CREDIT = "Music: www.bensound.com";
-    public static final String ABOUT_TEXT = "\n\nHello! My name is Lana, an engineering student and art enthusiast who craves a lot of dark chocolate and boba. " +
-            "I've always wanted to develop my own mobile game, and I finally mustered my coding knowledge and art skills to create my first app! " +
-            "Thank you for your support! \n";
+    public static final String ABOUT_TEXT = "\n\nHello! My name is Lana, a dorky engineering student and art enthusiast who craves a lot of dark chocolate and bubble tea. " +
+            "This is the first mobile game I've developed so thank you for checking this game out! \n";
 }
