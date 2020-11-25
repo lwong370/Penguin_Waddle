@@ -23,6 +23,7 @@ public class InstructionsScreen implements Screen {
     public void show() {
         multiplexer.addProcessor(instructionsStage);
         Gdx.input.setInputProcessor(multiplexer);
+        Gdx.graphics.setContinuousRendering(false);
     }
 
     @Override

@@ -6,7 +6,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.lana.penguinwaddle.PenguinWaddle;
-import com.lana.penguinwaddle.enums.GameState;
 import com.lana.penguinwaddle.stages.GameStage;
 import com.lana.penguinwaddle.utils.GameManager;
 
@@ -33,6 +32,7 @@ public class GameScreen implements Screen {
     public void show() {
         multiplexer.addProcessor(gameStage);
         Gdx.input.setInputProcessor(multiplexer);
+        Gdx.graphics.setContinuousRendering(true);
         bkgrdMusic.play();
     }
 
@@ -43,9 +43,19 @@ public class GameScreen implements Screen {
         gameStage.draw();
         gameStage.act(delta);
 
-        if(GameManager.getInstance().getGameState() == GameState.GAME_OVER){
-            game.setScreen(new GameOverScreen(game));
-            bkgrdMusic.dispose();
+        switch (GameManager.getInstance().getGameState()){
+            case GAME_OVER:
+                game.setScreen(new GameOverScreen(game));
+                bkgrdMusic.dispose();
+                break;
+            case PAUSED:
+                bkgrdMusic.pause();
+                break;
+            case PLAY:
+                bkgrdMusic.play();
+                break;
+            default:
+                break;
         }
     }
 

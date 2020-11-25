@@ -18,6 +18,7 @@ public class GameOverScreen implements Screen {
         this.game = game;
         gameOverStage = new GameOverStage();
         multiplexer = new InputMultiplexer();
+        Gdx.graphics.setContinuousRendering(true);
     }
 
     @Override

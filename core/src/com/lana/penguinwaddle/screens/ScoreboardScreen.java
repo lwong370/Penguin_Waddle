@@ -20,6 +20,7 @@ public class ScoreboardScreen implements Screen {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(scoreboardStage);
+        Gdx.graphics.setContinuousRendering(false);
     }
 
     @Override

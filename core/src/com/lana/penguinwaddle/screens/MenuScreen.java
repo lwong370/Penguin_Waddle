@@ -23,6 +23,7 @@ public class MenuScreen implements Screen {
     public void show() {
         multiplexer.addProcessor(menuStage);
         Gdx.input.setInputProcessor(multiplexer);
+        Gdx.graphics.setContinuousRendering(true);
     }
 
     @Override
