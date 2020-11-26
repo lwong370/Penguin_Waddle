@@ -80,7 +80,7 @@ public class Constants {
     public static final String RANK_KEY_5 = "Rank5";
 
     public static final String INFO_HEADER = "About the Developer & Credits";
-    public static final String GDX_CREDIT = "Powered by: libGDX";
+    public static final String GDX_CREDIT = "Development Framework: libGDX";
     public static final String ZAPSPLAT_CREDIT = "Sound Effects: https://www.zapsplat.com";
     public static final String BENSOUND_CREDIT = "Music: www.bensound.com";
     public static final String ABOUT_TEXT = "\n\nHello! My name is Lana, a dorky engineering student and art enthusiast who craves a lot of dark chocolate and bubble tea. " +
