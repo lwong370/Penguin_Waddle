@@ -233,7 +233,7 @@ public class GameStage extends Stage implements ContactListener {
         Timer.schedule(new Timer.Task() {
             @Override
             public void run() {
-                if(numFingersTouch == 2){
+                if(numFingersTouch == 2 && !penguin.isHopping()){
                     if(penguin.isTumbling()){
                         penguin.stopTumbling();
                     }
