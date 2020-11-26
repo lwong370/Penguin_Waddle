@@ -11,14 +11,13 @@ android {
             assets.srcDirs = ['assets']
             jniLibs.srcDirs = ['libs']
         }
-
     }
     packagingOptions {
         exclude 'META-INF/robovm/ios/robovm.xml'
     }
     defaultConfig {
         applicationId "com.lana.penguinwaddle"
-        minSdkVersion 14
+        minSdkVersion 18
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -31,6 +30,9 @@ android {
     }
 }
 
+dependencies{
+    implementation 'com.google.android.gms:play-services-ads:19.5.0'
+}
 
 // called every time gradle gets executed, takes the native dependencies of
 // the natives configuration, and extracts them to the proper libs/ folders
