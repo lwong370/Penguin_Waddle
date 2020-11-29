@@ -1,22 +1,16 @@
 package com.lana.penguinwaddle;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.AdapterStatus;
+import com.google.android.gms.ads.*;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.lana.penguinwaddle.utils.AdsController;
-
-import java.util.Map;
+import com.lana.penguinwaddle.utils.GameManager;
 
 public class AndroidLauncher extends AndroidApplication implements AdsController {
 	private RelativeLayout layout;
@@ -48,15 +42,15 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 		MobileAds.initialize(this, new OnInitializationCompleteListener() {
 			@Override
 			public void onInitializationComplete(InitializationStatus initializationStatus) {
-				Map<String, AdapterStatus> statusMap = initializationStatus.getAdapterStatusMap();
-				for (String adapterClass : statusMap.keySet()) {
-					AdapterStatus status = statusMap.get(adapterClass);
-					Log.d("MyApp", String.format(
-							"Adapter name: %s, Description: %s, Latency: %d",
-							adapterClass, status.getDescription(), status.getLatency()));
-				}
-				AdRequest ad = new AdRequest.Builder().build();
-				bannerAd.loadAd(ad);
+			}
+		});
+		AdRequest ad = new AdRequest.Builder().build();
+		bannerAd.loadAd(ad);
+		bannerAd.setAdListener(new AdListener() {
+			@Override
+			public void onAdLoaded() {
+				// Code to be executed when an ad finishes loading.
+				GameManager.getInstance().setAdInit(true);
 			}
 		});
 	}

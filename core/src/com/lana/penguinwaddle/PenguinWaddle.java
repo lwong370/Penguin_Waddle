@@ -25,14 +25,19 @@ public class PenguinWaddle extends Game {
 	@Override
 	public void render() {
 		super.render();
+
 			if(GameManager.getInstance().getGameState() == GameState.GAME_OVER){
 				if(initShowing == false){
 					adsController.showBanner();
 					initShowing = true;
 				}
 			}else{
-				adsController.hideBanner();
+				if(GameManager.getInstance().isAdInit()){
+
+					adsController.hideBanner();
+				}
 				initShowing = false;
+
 			}
 	}
 }
