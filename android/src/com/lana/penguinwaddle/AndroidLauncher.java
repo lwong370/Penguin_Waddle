@@ -1,6 +1,7 @@
 package com.lana.penguinwaddle;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -10,7 +11,12 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.AdapterStatus;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.lana.penguinwaddle.utils.AdsController;
+
+import java.util.Map;
 
 public class AndroidLauncher extends AndroidApplication implements AdsController {
 	private RelativeLayout layout;
@@ -21,8 +27,8 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		initialize(new PenguinWaddle(this), config);
-		MobileAds.initialize(this);
 		View gameView = initializeForView(new PenguinWaddle(this), config);
+
 		//Define Layout
 		layout = new RelativeLayout(this);
 		layout.addView(gameView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -39,8 +45,20 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 		layout.addView(bannerAd, params);
 		setContentView(layout);
 
-		AdRequest ad = new AdRequest.Builder().build();
-		bannerAd.loadAd(ad);
+		MobileAds.initialize(this, new OnInitializationCompleteListener() {
+			@Override
+			public void onInitializationComplete(InitializationStatus initializationStatus) {
+				Map<String, AdapterStatus> statusMap = initializationStatus.getAdapterStatusMap();
+				for (String adapterClass : statusMap.keySet()) {
+					AdapterStatus status = statusMap.get(adapterClass);
+					Log.d("MyApp", String.format(
+							"Adapter name: %s, Description: %s, Latency: %d",
+							adapterClass, status.getDescription(), status.getLatency()));
+				}
+				AdRequest ad = new AdRequest.Builder().build();
+				bannerAd.loadAd(ad);
+			}
+		});
 	}
 
 	@Override
@@ -48,7 +66,9 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				bannerAd.setVisibility(View.VISIBLE);
+//				bannerAd.setVisibility(View.VISIBLE);
+				AdRequest ad = new AdRequest.Builder().build();
+				bannerAd.loadAd(ad);
 			}
 		});
 	}
@@ -58,7 +78,8 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				bannerAd.setVisibility(View.INVISIBLE);
+//				bannerAd.setVisibility(View.INVISIBLE);
+				bannerAd.destroy();
 			}
 		});
 	}

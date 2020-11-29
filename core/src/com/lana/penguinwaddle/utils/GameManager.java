@@ -66,4 +66,5 @@ public class GameManager {
     public void resetDifficulty(){
         setDifficulty(Difficulty.values()[0]);
     }
+
 }
