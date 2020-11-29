@@ -10,7 +10,11 @@ import com.lana.penguinwaddle.utils.GameManager;
 public class PenguinWaddle extends Game {
 	private AdsController adsController;
 
+	//Checks screen just popped up. Assures that ad doesn't spontaneously show and hide.
+	private boolean adInit;
+
 	public PenguinWaddle(AdsController adsController){
+		adInit = false;
 		this.adsController = adsController;
 	}
 
@@ -24,8 +28,12 @@ public class PenguinWaddle extends Game {
 	public void render() {
 		super.render();
 			if(GameManager.getInstance().getGameState() == GameState.GAME_OVER){
-				adsController.showBanner();
+				if(adInit == false){
+					adInit = true;
+					adsController.showBanner();
+				}
 			}else{
+				adInit = false;
 				adsController.hideBanner();
 			}
 	}
