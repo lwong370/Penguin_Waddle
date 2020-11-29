@@ -23,7 +23,7 @@ public class PenguinWaddle extends Game {
 	@Override
 	public void render() {
 		super.render();
-		if(GameManager.getInstance().getGameState() == GameState.GAME_OVER || GameManager.getInstance().getGameState() == GameState.SCOREBOARD){
+		if(GameManager.getInstance().getGameState() == GameState.GAME_OVER){
 			adsController.showBanner();
 		}else{
 			adsController.hideBanner();
