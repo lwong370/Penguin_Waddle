@@ -68,11 +68,4 @@ public class GameManager {
         setDifficulty(Difficulty.values()[0]);
     }
 
-    public void setAdInit(boolean adInit){
-        this.isAdInit = adInit;
-    }
-
-    public boolean isAdInit(){
-        return isAdInit;
-    }
 }

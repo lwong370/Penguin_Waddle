@@ -9,7 +9,6 @@ import com.lana.penguinwaddle.utils.GameManager;
 
 public class PenguinWaddle extends Game {
 	private AdsController adsController;
-	private boolean initShowing;
 
 	public PenguinWaddle(AdsController adsController){
 		this.adsController = adsController;
@@ -17,7 +16,6 @@ public class PenguinWaddle extends Game {
 
 	@Override
 	public void create () {
-		initShowing = false;
 		AssetsManager.getInstance().loadAssets();
 		setScreen(new MenuScreen(this));
 	}
@@ -26,13 +24,9 @@ public class PenguinWaddle extends Game {
 	public void render() {
 		super.render();
 			if(GameManager.getInstance().getGameState() == GameState.GAME_OVER){
-//				if(initShowing == false){
-					adsController.showBanner();
-//					initShowing = true;
-//				}
+				adsController.showBanner();
 			}else{
 				adsController.hideBanner();
-//				initShowing = false;
 			}
 	}
 }

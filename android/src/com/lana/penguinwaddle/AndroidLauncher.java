@@ -6,12 +6,10 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.google.android.ads.mediationtestsuite.MediationTestSuite;
 import com.google.android.gms.ads.*;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.lana.penguinwaddle.utils.AdsController;
-import com.lana.penguinwaddle.utils.GameManager;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +24,7 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		initialize(new PenguinWaddle(this), config);
 		View gameView = initializeForView(new PenguinWaddle(this), config);
-		MediationTestSuite.launch(this);
+//		MediationTestSuite.launch(this);
 
 		//Test ad
 		List<String> testDeviceIds = Arrays.asList("FF817A91E46E37F071F846C6EC7D0DD3");
@@ -55,15 +53,6 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 			public void onInitializationComplete(InitializationStatus initializationStatus) {
 				AdRequest ad = new AdRequest.Builder().build();
 				bannerAd.loadAd(ad);
-
-			}
-		});
-
-		bannerAd.setAdListener(new AdListener() {
-			@Override
-			public void onAdLoaded() {
-				// Code to be executed when an ad finishes loading.
-				GameManager.getInstance().setAdInit(true);
 			}
 		});
 	}
@@ -74,8 +63,6 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 			@Override
 			public void run() {
 				bannerAd.setVisibility(View.VISIBLE);
-//				AdRequest ad = new AdRequest.Builder().build();
-//				bannerAd.loadAd(ad);
 			}
 		});
 	}
@@ -86,7 +73,6 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 			@Override
 			public void run() {
 				bannerAd.setVisibility(View.INVISIBLE);
-//				bannerAd.destroy();
 			}
 		});
 	}
