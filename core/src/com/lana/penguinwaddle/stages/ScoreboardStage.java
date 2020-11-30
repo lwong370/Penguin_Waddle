@@ -36,7 +36,7 @@ public class ScoreboardStage extends Stage {
         setUpBackButton();
         setUpCamera();
 
-        skin = AssetsManager.getInstance().getSkin();
+        skin = AssetsManager.getInstance().getFontSkin();
 
         scoreTable = new Table();
         scoreTable.setFillParent(true);

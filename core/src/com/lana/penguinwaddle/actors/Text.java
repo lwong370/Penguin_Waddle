@@ -17,7 +17,7 @@ public class Text extends Actor {
         this.text = text;
         setWidth(bounds.width);
         setHeight(bounds.height);
-        font = AssetsManager.getInstance().getSkin().getFont("Subsciber-aXdK");
+        font = AssetsManager.getInstance().getFontSkin().getFont("Subsciber-aXdK");
         font.getData().setScale(((float) 1.05));
     }
 

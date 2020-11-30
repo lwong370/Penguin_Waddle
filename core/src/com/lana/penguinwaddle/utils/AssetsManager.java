@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.ray3k.stripe.FreeTypeSkin;
 
 import java.util.HashMap;
 
@@ -20,10 +19,9 @@ public class AssetsManager extends AssetManager {
     private HashMap<String, TextureRegion> texturesMap = new HashMap<>();
     private HashMap<String, Animation> animationMap = new HashMap<>();
 
-    private Skin skin;
+    private Skin fontSkin;
 
     public AssetsManager(){
-
     }
 
     public static AssetsManager getInstance(){
@@ -65,7 +63,7 @@ public class AssetsManager extends AssetManager {
         animationMap.put(Constants.OBSTACLE_GROUND2_ASSETS_ID, createAnimation(textureAtlas2, Constants.SEAL_FRAMES));
 
         //Skin
-        skin = new FreeTypeSkin(Gdx.files.internal("penguin_waddle.json"));
+        fontSkin = new Skin(Gdx.files.internal("penguin_waddle.json"));
     }
 
     private Animation createAnimation(TextureAtlas atlas, String[] regionsArray){
@@ -88,7 +86,7 @@ public class AssetsManager extends AssetManager {
         return animationMap.get(key);
     }
 
-    public Skin getSkin(){
-        return skin;
+    public Skin getFontSkin(){
+        return fontSkin;
     }
 }
