@@ -18,6 +18,8 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 	private RelativeLayout layout;
 	private RelativeLayout.LayoutParams params;
 	private AdView bannerAd;
+	private final String BANNER_AD_ID = "ca-app-pub-1108473416393995/7190021899";
+
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,7 +40,7 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 
 		//Set up Admob view
 		bannerAd = new AdView(this);
-		bannerAd.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+		bannerAd.setAdUnitId(BANNER_AD_ID);
 		bannerAd.setAdSize(AdSize.SMART_BANNER);
 
 		params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -63,8 +65,7 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 			@Override
 			public void run() {
 				bannerAd.setVisibility(View.VISIBLE);
-				AdRequest.Builder builder = new AdRequest.Builder();
-				AdRequest ad = builder.build();
+				AdRequest ad = new AdRequest.Builder().build();
 				bannerAd.loadAd(ad);
 			}
 		});
