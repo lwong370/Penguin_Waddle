@@ -6,13 +6,13 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.google.android.gms.ads.*;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.lana.penguinwaddle.utils.AdsController;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class AndroidLauncher extends AndroidApplication implements AdsController {
 	private RelativeLayout layout;
@@ -26,13 +26,6 @@ public class AndroidLauncher extends AndroidApplication implements AdsController
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		initialize(new PenguinWaddle(this), config);
 		View gameView = initializeForView(new PenguinWaddle(this), config);
-//		MediationTestSuite.launch(this);
-
-		//Test ad
-		List<String> testDeviceIds = Arrays.asList("FF817A91E46E37F071F846C6EC7D0DD3");
-		RequestConfiguration configuration =
-				new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
-		MobileAds.setRequestConfiguration(configuration);
 
 		//Define Layout
 		layout = new RelativeLayout(this);
