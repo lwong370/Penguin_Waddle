@@ -10,7 +10,7 @@ import com.lana.penguinwaddle.utils.GameManager;
 public class PenguinWaddle extends Game {
 	private AdsController adsController;
 
-	//Checks screen just popped up. Assures that ad doesn't spontaneously show and hide.
+	//Checks if screen just popped up. Assures that ad doesn't spontaneously show and hide.
 	private boolean adInit;
 
 	public PenguinWaddle(AdsController adsController){

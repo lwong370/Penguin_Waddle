@@ -31,23 +31,25 @@ public class GameOverStage extends Stage {
     public GameOverStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
-        addWorldComponents();
+        addBackground();
+        addGameOverLabel();
         setUpCamera();
         setUpToMenuButton();
         setUpReplayButton();
         setUpScoreLabel();
     }
 
-    private void addWorldComponents(){
+    private void addBackground(){
         bkgrd = new Background(Constants.WORDLESS_BACKGROUND_IMAGE_PATH);
+        addActor(bkgrd);
+    }
 
+    private void addGameOverLabel(){
         int labelWidth = (int) (getCamera().viewportWidth / 3);
         Rectangle bounds = new Rectangle(getCamera().viewportWidth * 11/16 - labelWidth/ 2,
                 getCamera().viewportHeight / 2, labelWidth,
                 getCamera().viewportHeight / 5);
         gameOverLabel = new DrawnGameLabel(bounds, Constants.LABEL_GAME_OVER_ID);
-
-        addActor(bkgrd);
         addActor(gameOverLabel);
     }
 

@@ -27,7 +27,7 @@ public class InfoStage extends Stage {
     public InfoStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
-        addWorldComponents();
+        addBackground();
         setUpBackButton();
         setUpHeader();
         setUpAboutLabel();
@@ -35,7 +35,7 @@ public class InfoStage extends Stage {
         setUpCamera();
     }
 
-    private void addWorldComponents(){
+    private void addBackground(){
         bkgrd = new Background(Constants.WORDLESS_BACKGROUND_IMAGE_PATH);
         addActor(bkgrd);
     }

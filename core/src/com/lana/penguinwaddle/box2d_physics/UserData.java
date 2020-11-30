@@ -2,6 +2,10 @@ package com.lana.penguinwaddle.box2d_physics;
 
 import com.lana.penguinwaddle.enums.UserDataType;
 
+/**
+ * UserData used to store information needed by Box2D bodies for movement.
+ * UserData basically attaches libGDX actors to Box2D body.
+ */
 public class UserData {
 
     protected UserDataType userDataType;

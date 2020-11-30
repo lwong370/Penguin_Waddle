@@ -32,7 +32,7 @@ public class ScoreboardStage extends Stage {
     public ScoreboardStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
-        addWorldComponents();
+        addBackground();
         setUpBackButton();
         setUpCamera();
 
@@ -61,7 +61,7 @@ public class ScoreboardStage extends Stage {
         }
     }
 
-    private void addWorldComponents(){
+    private void addBackground(){
         bkgrd = new Background(Constants.WORDLESS_BACKGROUND_IMAGE_PATH);
         addActor(bkgrd);
     }

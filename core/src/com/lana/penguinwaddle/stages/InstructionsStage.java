@@ -24,12 +24,12 @@ public class InstructionsStage extends Stage {
     public InstructionsStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
-        addWorldComponents();
+        addBackground();
         setUpBackButton();
         setUpInstructions();
     }
 
-    private void addWorldComponents(){
+    private void addBackground(){
         bkgrd = new Background(Constants.WORDLESS_BACKGROUND_IMAGE_PATH);
         addActor(bkgrd);
     }

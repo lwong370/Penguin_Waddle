@@ -31,7 +31,8 @@ public class MenuStage extends Stage {
     public MenuStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
-        addWorldComponents();
+        addBackground();
+        addTitleLabel();
         setUpStartButton();
         setUpInfoButton();
         setUpInstructionsButton();
@@ -73,15 +74,16 @@ public class MenuStage extends Stage {
         addActor(scoreboardButton);
     }
 
-    private void addWorldComponents(){
+    private void addBackground(){
         bkgrd = new Background(Constants.WORDLESS_BACKGROUND_IMAGE_PATH);
+        addActor(bkgrd);
+    }
 
+    private void addTitleLabel(){
         float width = getCamera().viewportWidth * 9/10;
         float height = getCamera().viewportHeight * 2/9;
         Rectangle bounds = new Rectangle(getCamera().viewportWidth - width, getCamera().viewportHeight - height, getCamera().viewportWidth * 4/5, height);
         titleLabel = new DrawnGameLabel(bounds, Constants.LABEL_MENU_TITLE_ID);
-
-        addActor(bkgrd);
         addActor(titleLabel);
     }
 

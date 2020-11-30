@@ -67,6 +67,9 @@ public class GameStage extends Stage implements ContactListener {
         setUpWorldComponents();
         setUpScore();
         setUpTouchControlAreas();
+
+        slapSound = Gdx.audio.newSound(Gdx.files.internal("slap.mp3"));
+        hitGroundSound = Gdx.audio.newSound(Gdx.files.internal("hit_ground.mp3"));
     }
 
     private void setUpWorldComponents(){
@@ -81,9 +84,6 @@ public class GameStage extends Stage implements ContactListener {
         addActor(penguin);
         createObstacle();
         setUpPauseButton();
-
-        slapSound = Gdx.audio.newSound(Gdx.files.internal("slap.mp3"));
-        hitGroundSound = Gdx.audio.newSound(Gdx.files.internal("hit_ground.mp3"));
     }
 
     private void createObstacle(){
@@ -159,17 +159,21 @@ public class GameStage extends Stage implements ContactListener {
             accumulator -= TIME_STEP;
         }
 
+        //Makes penguin have a timed roll.
         if(penguin.isTumbling()){
             rotateDelay += delta;
             if(rotateDelay > penguin.getTumbleTime()){
                 penguin.stopTumbling();
             }
         }
-
         updateTouch();
         penguinStormReaction();
     }
 
+    /**
+     * Detects contact made between penguin, obstacles, and ground.
+     * @param contact
+     */
     @Override
     public void beginContact(Contact contact) {
         Body a = contact.getFixtureA().getBody();
@@ -230,6 +234,7 @@ public class GameStage extends Stage implements ContactListener {
             rightActive = true;
         }
 
+        //Directs penguin action.
         Timer.schedule(new Timer.Task() {
             @Override
             public void run() {
@@ -284,6 +289,7 @@ public class GameStage extends Stage implements ContactListener {
         }
     }
 
+    //Storm stops when penguin reacts.
     private void penguinStormReaction(){
         if(obstacle.getUserData().getAssetId().equals(OBSTACLE_CLOUD_ASSETS_ID)){
             if(penguin.isFrightStopped()){
@@ -294,6 +300,7 @@ public class GameStage extends Stage implements ContactListener {
         }
     }
 
+    //Changes game difficulty. Obstacles move faster, penguin jumps lower, etc.
     private void updateDifficulty(){
         if(GameManager.getInstance().isMaxDifficulty()){
             return;

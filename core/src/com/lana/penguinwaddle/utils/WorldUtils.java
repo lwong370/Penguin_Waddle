@@ -15,6 +15,11 @@ public class WorldUtils {
         return new World(Constants.GRAVITY, true);
     }
 
+    /**
+     * Sets up ground shape body and userdata.
+     * @param world
+     * @return
+     */
     public static Body createGround(World world){
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(new Vector2(0f,0f));
@@ -27,6 +32,11 @@ public class WorldUtils {
         return body;
     }
 
+    /**
+     * Sets up penguin shape body and userdata.
+     * @param world
+     * @return
+     */
     public static Body createPenguin(World world){
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
@@ -42,6 +52,11 @@ public class WorldUtils {
         return body;
     }
 
+    /**
+     * Sets up obstacle shape body and userdata.
+     * @param world
+     * @return
+     */
     public static Body createObstacle(World world){
         ObstacleType obstacleType = RandomUtils.getRandomObstacleType();
         BodyDef bodyDef = new BodyDef();

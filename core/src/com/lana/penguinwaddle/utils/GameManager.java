@@ -8,7 +8,6 @@ public class GameManager {
 
     private GameState gameState;
     private Difficulty difficulty;
-    private boolean isAdInit;
 
     public static GameManager getInstance(){
         if(instance == null){
