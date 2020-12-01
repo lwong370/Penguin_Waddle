@@ -308,7 +308,8 @@ public class GameStage extends Stage implements ContactListener {
 
         Difficulty currentDifficulty = GameManager.getInstance().getDifficulty();
 
-        if(totalTimePassed - (8 * currentDifficulty.getLevel()) > 0){
+        //Difficulty changes every 10 seconds
+        if(totalTimePassed - (10 * currentDifficulty.getLevel()) > 0){
             int nextDifficulty = currentDifficulty.getLevel() + 1;
             String difficultyName = "DIFFICULTY_" + nextDifficulty;
             GameManager.getInstance().setDifficulty(Difficulty.valueOf(difficultyName));
