@@ -8,6 +8,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.lana.penguinwaddle.utils.Constants;
 
+/**
+ * Background actor
+ * @author Lana
+ */
 public class Background extends Actor {
     private final TextureRegion textureRegion;
     private Rectangle textureRegionBounds1;
@@ -16,6 +20,13 @@ public class Background extends Actor {
 
     private boolean stop;
 
+    /**
+     * Constructs a new background actor.
+     * Aligns two background texture regions next to each other.
+     * Initial position has the left background texture region fill the whole screen frame.
+     * This set-up allows for scrolling/moving the background for running effect.
+     * @param path Path to the background image.
+     */
     public Background(String path) {
         textureRegion = new TextureRegion(new Texture(Gdx.files.internal(path)));
         textureRegionBounds1 = new Rectangle(0, 0, Constants.APP_WIDTH, Constants.APP_HEIGHT);
@@ -41,10 +52,20 @@ public class Background extends Actor {
                 Constants.APP_HEIGHT);
     }
 
+    /**
+     * Checks whether the second background texture region has reached the left end of the screen.
+     * @param delta Amount of time (in seconds) the last frame took to be rendered.
+     * @return true if second texture region reaches left end of screen.
+     */
     public boolean reachedLeftBound(float delta){
         return (textureRegionBounds2.x - (delta * speed)) <= 0;
     }
 
+    /**
+     * Slides the background from right to left to give a running effect.
+     * @param delta
+     * @param stopped Checks if background should stop moving. EX: When the penguin stops, background should stop too.
+     */
     public void updateXBounds(float delta, boolean stopped){
         if(!stopped){
             textureRegionBounds1.x += delta * speed;
@@ -59,6 +80,9 @@ public class Background extends Actor {
         stop = isStopped;
     }
 
+    /**
+     * Sets background texture regions to the original position.
+     */
     public void resetBounds(){
         textureRegionBounds1 = textureRegionBounds2;
         textureRegionBounds2 = new Rectangle(Constants.APP_WIDTH, 0, Constants.APP_WIDTH, Constants.APP_HEIGHT);

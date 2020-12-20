@@ -234,7 +234,7 @@ public class GameStage extends Stage implements ContactListener {
             rightActive = true;
         }
 
-        //Directs penguin action.
+        //Directs penguin action depending on user input.
         Timer.schedule(new Timer.Task() {
             @Override
             public void run() {
@@ -289,7 +289,9 @@ public class GameStage extends Stage implements ContactListener {
         }
     }
 
-    //Storm stops when penguin reacts.
+    /**
+     * Assures that storm is not raining when penguin fright-stops.
+     */
     private void penguinStormReaction(){
         if(obstacle.getUserData().getAssetId().equals(OBSTACLE_CLOUD_ASSETS_ID)){
             if(penguin.isFrightStopped()){
@@ -300,7 +302,9 @@ public class GameStage extends Stage implements ContactListener {
         }
     }
 
-    //Changes game difficulty. Obstacles move faster, penguin jumps lower, etc.
+    /**
+     * Changes game difficulty. Obstacles move faster, penguin jumps lower, etc.
+     */
     private void updateDifficulty(){
         if(GameManager.getInstance().isMaxDifficulty()){
             return;

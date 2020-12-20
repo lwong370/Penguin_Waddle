@@ -4,6 +4,10 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.lana.penguinwaddle.box2d_physics.UserData;
 import com.lana.penguinwaddle.enums.UserDataType;
 
+/**
+ * Holds methods that check what kind of body something is (Penguin, Obstacle, Ground) according to the specified body's userData.
+ * @author Lana
+ */
 public class BodyUtils {
     public static boolean bodyIsPenguin(Body body) {
         UserData userData = (UserData) body.getUserData();

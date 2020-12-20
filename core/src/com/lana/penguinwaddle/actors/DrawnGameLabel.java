@@ -4,6 +4,10 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.lana.penguinwaddle.utils.AssetsManager;
 
+/**
+ * Actor for hand-drawn labels.
+ * @author Lana
+ */
 public class DrawnGameLabel extends DrawnAsset {
     private Rectangle bounds;
 

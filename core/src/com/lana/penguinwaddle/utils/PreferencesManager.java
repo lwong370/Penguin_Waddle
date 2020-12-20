@@ -3,7 +3,10 @@ package com.lana.penguinwaddle.utils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
-
+/**
+ * Manages preferences that store values with key-value pairs.
+ * @author Lana
+ */
 public class PreferencesManager {
     private static PreferencesManager instance;
     private Preferences preferences;

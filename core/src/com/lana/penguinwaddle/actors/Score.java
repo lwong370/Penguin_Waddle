@@ -9,6 +9,11 @@ import com.lana.penguinwaddle.enums.GameState;
 import com.lana.penguinwaddle.utils.AssetsManager;
 import com.lana.penguinwaddle.utils.GameManager;
 
+/**
+ * Score actor
+ * Shows the score amount during game play.
+ * @author Lana
+ */
 public class Score extends Actor {
     private float score;
     private Rectangle bounds;
@@ -46,6 +51,9 @@ public class Score extends Actor {
         return (int) score;
     }
 
+    /**
+     * @param multiplier Amount to multiply the score by.
+     */
     public void setMultiplier(int multiplier){
         this.multiplier = multiplier;
     }

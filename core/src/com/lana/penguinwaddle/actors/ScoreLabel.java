@@ -11,6 +11,11 @@ import com.lana.penguinwaddle.utils.Constants;
 import com.lana.penguinwaddle.utils.GameManager;
 import com.lana.penguinwaddle.utils.PreferencesManager;
 
+/**
+ * Score label actor
+ * Score amount shown when game-over.
+ * @author Lana
+ */
 public class ScoreLabel extends Actor {
     private Integer score;
     private Rectangle bounds;

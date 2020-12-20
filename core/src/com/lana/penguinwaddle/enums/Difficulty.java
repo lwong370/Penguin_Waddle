@@ -3,6 +3,11 @@ package com.lana.penguinwaddle.enums;
 import com.badlogic.gdx.math.Vector2;
 import com.lana.penguinwaddle.utils.Constants;
 
+/**
+ * Various difficulty levels in the game.
+ * As game progresses, the difficulty increases (Shorter jumps, faster obstacles, etc.)
+ * @author Lana
+ */
 public enum Difficulty {
     DIFFICULTY_1(1, Constants.OBSTACLE_LINEAR_VELOCITY, Constants.RUNNER_GRAVITY_SCALE, Constants.RUNNER_LINEAR_JUMP_IMPULSE, 1.6,2),
     DIFFICULTY_2(2, new Vector2(-10f, 0f), Constants.RUNNER_GRAVITY_SCALE, Constants.RUNNER_LINEAR_JUMP_IMPULSE, 1.5,2),

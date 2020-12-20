@@ -7,11 +7,18 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.lana.penguinwaddle.utils.AssetsManager;
 
-
+/**
+ * Parent class for all other buttons to extend from.
+ * @author Lana
+ */
 public abstract class GameButton extends Button{
     protected Rectangle bounds;
     private Skin skin;
 
+    /**
+     * Constructs a new game button.
+     * @param bounds Position and size of rectangle containing the button actor.
+     */
     public GameButton(Rectangle bounds) {
         this.bounds = bounds;
         setWidth(bounds.width);
@@ -30,13 +37,20 @@ public abstract class GameButton extends Button{
         });
     }
 
+    /**
+    Loads the texture region on to the button once we get the texture region for a certain button.
+    */
     private void loadTextureRegion(){
         ButtonStyle style = new ButtonStyle();
         style.up = skin.getDrawable(getRegionName());
         setStyle(style);
     }
 
+    /**Executed if the button is pressed.*/
     public abstract void touched();
 
+    /**
+   Returns the String name associated with the specified button texture region from the texture packer file.
+    */
     protected abstract String getRegionName();
 }
