@@ -13,6 +13,11 @@ import com.lana.penguinwaddle.utils.AssetsManager;
 import com.lana.penguinwaddle.utils.Constants;
 import com.lana.penguinwaddle.utils.GameManager;
 
+/**
+ * Obstacle actor
+ * Holds methods associated with the obstacles in the game.
+ * @author Lana
+ */
 public class Obstacle extends GameActor {
 
     private float stateTime;
@@ -38,7 +43,7 @@ public class Obstacle extends GameActor {
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
 
-        //For animation
+        //For movement: right to the left on the screen.
         if(GameManager.getInstance().getGameState() == GameState.PLAY){
             stateTime += Gdx.graphics.getDeltaTime();
         }
@@ -86,6 +91,10 @@ public class Obstacle extends GameActor {
                 rectangleRendered.y, rectangleRendered.width * 1.2f, rectangleRendered.height * 1.1f);
     }
 
+    /**
+     * When called, sets obstacle velocity to a new value in accordance to the new difficulty level of the game.
+     * @param newDifficulty enum value for difficulty level.
+     */
     public void changeDifficulty(Difficulty newDifficulty){
         getUserData().setLinearVelocity(newDifficulty.getObstacleLinearVelocity());
     }

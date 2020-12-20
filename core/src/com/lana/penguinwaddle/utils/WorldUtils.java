@@ -10,13 +10,17 @@ import com.lana.penguinwaddle.box2d_physics.ObstacleUserData;
 import com.lana.penguinwaddle.box2d_physics.PenguinUserData;
 import com.lana.penguinwaddle.enums.ObstacleType;
 
+/**
+ * Holds methods that set up shape, Box2D body, and userdata for world and penguin.
+ * @author Lana
+ */
 public class WorldUtils {
     public static World createWorld(){
         return new World(Constants.GRAVITY, true);
     }
 
     /**
-     * Sets up ground shape body and userdata.
+     * Sets up ground shape, body, and userdata.
      * @param world
      * @return
      */

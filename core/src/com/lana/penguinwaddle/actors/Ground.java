@@ -9,6 +9,11 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.lana.penguinwaddle.box2d_physics.GroundUserData;
 import com.lana.penguinwaddle.utils.Constants;
 
+/**
+ * Ground actor
+ * Same logic as Background to create running affect.
+ * @author Lana
+ */
 public class Ground extends GameActor {
 
     private final TextureRegion textureRegion;

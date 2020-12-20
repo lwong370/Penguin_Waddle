@@ -7,11 +7,21 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Align;
 import com.lana.penguinwaddle.utils.AssetsManager;
 
+/**
+ * Text actor
+ * Used anytime to create text with "Subsciber-aXdK" font.
+ * @author Lana
+ */
 public class Text extends Actor {
     private Rectangle bounds;
     private BitmapFont font;
     private String text;
 
+    /**
+     * Constructs new text actor from specified font called from a skin.
+     * @param bounds Position and size of space holding the text.
+     * @param text What the text says.
+     */
     public Text(Rectangle bounds, String text){
         this.bounds = bounds;
         this.text = text;

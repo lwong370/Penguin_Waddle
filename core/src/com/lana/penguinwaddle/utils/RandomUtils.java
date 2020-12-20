@@ -4,6 +4,10 @@ import com.lana.penguinwaddle.enums.ObstacleType;
 
 import java.util.Random;
 
+/**
+ * Randomizes the type of obstacles in the game.
+ * @author Lana
+ */
 public class RandomUtils {
     public static ObstacleType getRandomObstacleType(){
         RandomEnum<ObstacleType> randomEnum = new RandomEnum<ObstacleType>(ObstacleType.class);

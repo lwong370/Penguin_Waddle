@@ -3,6 +3,10 @@ package com.lana.penguinwaddle.utils;
 import com.lana.penguinwaddle.enums.Difficulty;
 import com.lana.penguinwaddle.enums.GameState;
 
+/**
+ * Manages underlying components in the whole app and stores the current game state.
+ * @author Lana
+ */
 public class GameManager {
     private static GameManager instance;
 
@@ -24,6 +28,11 @@ public class GameManager {
         this.gameState = gameState;
     }
 
+    /**
+     * Checks if the most recent score is a user's top five scores.
+     * If so, the most recent score is saved to preferences.
+     * @param score Score number after playing a game.
+     */
     public void saveScore(int score){
         if(score > getScoreFromPref("Rank1")){
             for(int i = 5; i > 1; i--){

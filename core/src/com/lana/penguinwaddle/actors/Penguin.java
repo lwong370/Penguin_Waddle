@@ -12,6 +12,11 @@ import com.lana.penguinwaddle.utils.AssetsManager;
 import com.lana.penguinwaddle.utils.Constants;
 import com.lana.penguinwaddle.utils.GameManager;
 
+/**
+ * Penguin actor
+ * Holds methods that are called for setting the penguin's various actions.
+ * @author Lana
+ */
 public class Penguin extends GameActor {
 
     private boolean hopping;
@@ -125,6 +130,10 @@ public class Penguin extends GameActor {
         return tumbleTime;
     }
 
+    /**
+     * When called, sets penguin jump impulse and amount of gravity experienced in accordance to the new difficulty level of the game.
+     * @param newDifficulty
+     */
     public void changeDifficulty(Difficulty newDifficulty){
         body.setGravityScale(newDifficulty.getRunnerGravityScale());
         getUserData().setLinearJumpImpulse(newDifficulty.getRunnerJumpingLinearImpulse());

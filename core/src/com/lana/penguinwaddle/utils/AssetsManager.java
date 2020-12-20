@@ -9,6 +9,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import java.util.HashMap;
 
+/**
+ * Manages assets in assets folder.
+ * Takes texture regions from texture packer files and adds them to a map with an associated constant name.
+ * Compiles character animations.
+ * @author Lana
+ */
 public class AssetsManager extends AssetManager {
     public static AssetsManager instance;
 
