@@ -9,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.lana.penguinwaddle.actors.Background;
-import com.lana.penguinwaddle.actors.ScoreLabel;
 import com.lana.penguinwaddle.actors.buttons.BackButton;
 import com.lana.penguinwaddle.enums.GameState;
 import com.lana.penguinwaddle.utils.AssetsManager;
@@ -24,7 +23,6 @@ public class ScoreboardStage extends Stage {
 
    private Background bkgrd;
    private BackButton backButton;
-   private ScoreLabel highScoreLabel;
 
    private Table scoreTable;
    private Skin skin;

@@ -361,9 +361,6 @@ public class GameStage extends Stage implements ContactListener {
     private boolean leftSideTouched(float x, float y){
         return screenLeftSide.contains(x, y);
     }
-    private boolean twoFingersOnScreen(float x, float y){
-        return wholeScreen.contains(x, y);
-    }
 
     private void translateScreenToWorldCoordinates(int x, int y) {
         getCamera().unproject(touchPoint.set(x, y, 0));
