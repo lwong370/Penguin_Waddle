@@ -63,7 +63,7 @@ public class WorldUtils {
         bodyDef.type = BodyDef.BodyType.KinematicBody;
         bodyDef.position.set(new Vector2(obstacleType.getX(), obstacleType.getY()));
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(obstacleType.getWidth()/2, obstacleType.getHeight()/2);
+        shape.setAsBox(obstacleType.getWidth()/4, obstacleType.getHeight()/4);
         Body body = world.createBody(bodyDef);
         body.createFixture(shape, obstacleType.getDensity());
         body.resetMassData();
